@@ -7,7 +7,12 @@
 body {
     background-color: #C5D3E4;
 }
-
+hr, .hrcolor {
+   height: 1px;
+   border: 0;
+   color: #517596 ;
+   background-color: #517596;
+}
 #wrapper {
     width: 100%;
 }
