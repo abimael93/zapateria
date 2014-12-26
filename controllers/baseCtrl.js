@@ -38,6 +38,20 @@ angular.module('Rutas', ['ngRoute'])
 		.when('/producto/list', {
 			templateUrl: 'views/producto_list.html'
 		})
+		//Módulo Desarrollo
+		.when('/desarrollo/create', {
+			templateUrl: 'views/desarrollo_form.html'
+		})
+		.when('/desarrollo/list', {
+			templateUrl: 'views/desarrollo_list.html'
+		})
+		//Módulo Producción
+		.when('/produccion/create', {
+			templateUrl: 'views/produccion_form.html'
+		})
+		.when('/produccion/list', {
+			templateUrl: 'views/produccion_list.html'
+		})
 		//Módulo Remisión
 		.when('/remision/create', {
 			templateUrl: 'views/remision_form.html'
