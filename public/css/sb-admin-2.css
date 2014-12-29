@@ -13,6 +13,9 @@ hr, .hrcolor {
    color: #517596 ;
    background-color: #517596;
 }
+.breadcrumb{
+    background-color: #DBEAF9;
+}
 #wrapper {
     width: 100%;
 }

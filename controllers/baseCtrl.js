@@ -15,6 +15,7 @@ angular.module('Rutas', ['ngRoute'])
 		})
 		//Módulo Cliente
 		.when('/cliente/create', {
+			//controller: 'TabsDemoCtrl',
 			templateUrl: 'views/cliente_form.html'
 		})
 		.when('/cliente/list', {
@@ -80,7 +81,5 @@ angular.module('Rutas', ['ngRoute'])
 		.when('/ajuste_salida/list', {
 			templateUrl: 'views/ajuste_salida_list.html'
 		})
-		.otherwise({
-			redirectTo: '/'
-		});
+		
 })
