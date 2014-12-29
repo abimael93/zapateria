@@ -1,1 +1,130 @@
-Proveedor Alta
+<section>
+    <h1>Proveedores</h1> <!--Nombre  del Modulo -->
+    <ol class="breadcrumb">
+        <!-- Seguido de la accion que se va a realizar en este caso crear empleado-->
+        <h4><li class="active"><i class="fa fa-user"></i> Nuevo Proveedor</li></h4>    
+    </ol>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Registro
+        </div>
+            <div class="panel-body">
+            <!-- para justificar utilze nav-justified -->
+            <ul class="nav nav-pills nav-justified "  ng-init="tab = 1">
+                <li ng-class="{active:tab===1} " ng-click="tab = 1"><a href data-toggle="tab" class="fa fa-pencil-square-o"> Datos del Proveedor</a></li>
+                <li ng-class="{active:tab===2}" ng-click="tab = 2"><a href data-toggle="tab" class="fa fa-building-o"> Sucursales</a></li>
+            </ul>
+            <form role="form">                
+                <div class="row" ng-show="tab === 1">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>RFC:</label>
+                            <input class="form-control" placeholder="El RFC debe tener 12 o 13 caracteres" name="" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Razón Social:</label>
+                            <input class="form-control" placeholder="Nombre del negocio o empresa" name="" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Representante:</label>
+                            <input class="form-control" placeholder="Dueño o Genrente" name="" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Alta:</label>
+                            <input class="form-control" placeholder="dd/mm/yyyy" name="" id="">
+                            <!-- Agregar Datapiker y fecha por default -->                            
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección:</label>
+                            <input class="form-control" placeholder="calle" name="" id="">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 form-group" border="0">
+                                <label>Numero Interior:</label>
+                                <input class="form-control" placeholder="N°" name="" id="">
+                            </div>
+
+                            <div class="col-lg-6 form-group">
+                                <label>Numero Exterior:</label>
+                                <input class="form-control" placeholder="N°" name="" id="">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-9 form-group" border="0">
+                                <label>Colonia:</label>
+                                <input class="form-control" placeholder="colonia" name="colonia" id="">
+                            </div>
+
+                            <div class="col-lg-3 form-group">
+                                <label>CP:</label>
+                                <input class="form-control" placeholder="codigo postal" name="" id="">
+                            </div>
+                        </div>
+                </div>
+
+                <!-- /.col-lg-6 (nested) -->
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Estado:</label>
+                        <select class="form-control">
+                            <option>Jalisco</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Municipio:</label>
+                        <select class="form-control">
+                            <option>Guadalajara</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>                    
+                    <label>Correo electronico:</label>
+                    <div class="form-group input-group">                            
+                        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                        <input type="text" class="form-control" placeholder="Email">
+                    </div>  
+                    <label>Telefono:</label>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
+                        <input type="text" class="form-control" placeholder="Tel:">
+                    </div>
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <br>                   
+                </div>
+                <!-- /.col-lg-6 (nested) -->
+                
+            </div>
+            <div class="row" ng-show="tab === 2">
+                <div class="col-md-6">
+                    <h1>SUCURSALES</h1>
+                </div>
+                
+            </div>            
+            <!-- /.row (nested) -->
+            <div class="pull-right row" ng-show="tab === 1">
+                <div class="col-md-12">
+                    <button class="pull-rigtht btn btn-danger" ng-click="tab = 2">Siguiente <span class="fa fa-share"></span></button>
+                </div>
+            </div>                
+            <div class="pull-right row" ng-show="tab === 2">
+                <div class="col-md-12">
+                    <button class="pull-rigtht btn btn-danger" ng-click="tab = 1"><span class="fa fa-reply"></span> Anterior</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-save "></span> Guardar</button>
+                </div>              
+            </div>
+        </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</section>
