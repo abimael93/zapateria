@@ -9,17 +9,19 @@
             Registro
         </div>
             <div class="panel-body">
+            <div>
             <!-- para justificar utilze nav-justified -->
             <ul class="nav nav-pills nav-justified "  ng-init="tab = 1">
                 <li ng-class="{active:tab===1} " ng-click="tab = 1"><a href data-toggle="tab" class="fa fa-pencil-square-o"> Datos del Cliente</a></li>
                 <li ng-class="{active:tab===2}" ng-click="tab = 2"><a href data-toggle="tab" class="fa fa-building-o"> Sucursales</a></li>
-            </ul>
+
+            </ul>     
             <form role="form">                
                 <div class="row" ng-show="tab === 1">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>RFC:</label>
-                            <input class="form-control" placeholder="El RFC debe tener 12 o 13 caracteres" name="" id="">
+                            <input class="form-control" placeholder="El RFC debe tener 12 o 13 caracteres" name="" id="" ng-required>
                         </div>
                         <div class="form-group">
                             <label>Razón Social:</label>
@@ -27,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label>Representante:</label>
-                            <input class="form-control" placeholder="Dueño o Genrente" name="" id="">
+                            <input class="form-control" placeholder="Dueño o Gerente" name="" id="">
                         </div>
                         <div class="form-group">
                             <label>Fecha de Alta:</label>
@@ -36,36 +38,36 @@
                         </div>
                         <div class="form-group">
                             <label>Calle:</label>
-                            <input class="form-control" placeholder="calle" name="" id="">
+                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6 form-group" border="0">
-                                <label>Numero Interior:</label>
-                                <input class="form-control" placeholder="N°" name="" id="">
+                            <div class="col-md-6 form-group" border="0">
+                                <label>Número Interior:</label>
+                                <input class="form-control" placeholder="Número Interior" name="" id="">
                             </div>
 
-                            <div class="col-lg-6 form-group">
-                                <label>Numero Exterior:</label>
-                                <input class="form-control" placeholder="N°" name="" id="">
+                            <div class="col-md-6 form-group">
+                                <label>Número Exterior:</label>
+                                <input class="form-control" placeholder="Número Exterior" name="" id="">
                             </div>
                         </div>
                         
                         <div class="row">
-                            <div class="col-lg-9 form-group" border="0">
+                            <div class="col-md-8 form-group" border="0">
                                 <label>Colonia:</label>
-                                <input class="form-control" placeholder="colonia" name="colonia" id="">
+                                <input class="form-control" placeholder="Colonia" name="colonia" id="">
                             </div>
 
-                            <div class="col-lg-3 form-group">
+                            <div class="col-md-4 form-group">
                                 <label>CP:</label>
-                                <input class="form-control" placeholder="codigo postal" name="" id="">
+                                <input class="form-control" placeholder="Código Postal" name="" id="">
                             </div>
                         </div>
                 </div>
 
-                <!-- /.col-lg-6 (nested) -->
-                <div class="col-lg-6">
+                <!-- /.col-md-6 (nested) -->
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Estado:</label>
                         <select class="form-control">
@@ -86,29 +88,38 @@
                             <option>5</option>
                         </select>
                     </div>                    
-                    <label>Correo electronico:</label>
+                    <label>Correo electrónico:</label>
                     <div class="form-group input-group">                            
                         <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
                         <input type="text" class="form-control" placeholder="Email">
                     </div>  
-                    <label>Telefono:</label>
+                    <label>Teléfono:</label>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                        <input type="text" class="form-control" placeholder="Tel:">
+                        <input type="text" class="form-control" placeholder="Teléfono">
                     </div>
                     <div class="form-group">
-                        <label>Observaciones</label>
+                        <label>Observaciones:</label>
                         <textarea class="form-control" rows="3"></textarea>
                     </div>
                     <br>                   
                 </div>
-                <!-- /.col-lg-6 (nested) -->
+                <!-- /.col-md-6 (nested) -->
                 
             </div>
 
             <div class="row" ng-show="tab === 2">
                 <div class="col-md-6">
-                    <h1>SUCURSALES</h1>
+                    
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Nueva sucursal</button>
+                    <!-- ejemplo de modal-->
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <h1>SUCURSALES</h1>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 
             </div>            
