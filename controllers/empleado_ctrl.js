@@ -1,5 +1,8 @@
-.factory('Empleados', function(){
-	return [
+var empleado = angular.module('apEmpleados',[]);
+
+empleado.controller('ControladorEmpleados', function empleado_ControladorDos() {
+	var empl = this;
+	empl.empleados = [
 		{
 		    rendering: 'Trident', browser: 'Internet Explorer 4.0', plataform: 'Win 95+', version: '4',
 		    grade: 'X'
@@ -229,45 +232,5 @@
 		    grade: 'U'
 		}
 	];
-})
-
-.factory('Tareas', function(){
-	return [{texto: 'Ser Super Heorico con Angular js', hecho: true}, 
-					 {texto: 'crear una ap con Angular', hecho: false}];
-
-})
-
-.controller('ControladorTareas', function($scope, Tareas){
-	$scope.tareas = Tareas;
-
-	$scope.agregarTarea= function() {
-	 	$scope.tareas.push({texto: $scope.textoNuevaTarea, hecho:false});
-	 	$scope.textoNuevaTarea = '';
- 	 };
-
- 	 $scope.restantes= function() {
- 	 	var cuenta = 0;
- 	 	angular.forEach($scope.tareas, function(tarea){
-	 		cuenta += tarea.hecho ? 0 : 1;
- 	 	});
- 	 	return cuenta;
- 	 };
-
- 	 $scope.eliminar = function() {
- 	 	var tareasViejas = $scope.tareas;
- 	 	$scope.tareas = [];
-
- 	 	angular.forEach(tareasViejas, function(tarea){
- 	 		if(!tarea.hecho) $scope.tareas.push(tarea);
- 	 	});
- 	 };
-})
-
-.controller('ControladorEmpleados', function($scope, Empleados){
-	$scope.empleados = Empleados;
-
-	$scope.ordenarPor = function(orden) {
-    $scope.ordenSeleccionado = orden;
-  };
 
 });

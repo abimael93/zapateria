@@ -1,39 +1,41 @@
-<section>
-    <h1>Productos</h1> <!--Nombre  del Modulo -->
-    <ol class="breadcrumb">
-        <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
-        <h4><li class="active"><i class="fa fa-user"></i> Nuevo Producto</li></h4>
-    </ol>
+<div ng-controller="ControladorEmpleados as emp">
+    <section>
+        <h1>Empleados</h1> <!--Nombre  del Modulo -->
+        <ol class="breadcrumb">
+            <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
+            <h4><li class="active"><i class="fa fa-user"></i> Lista de Empleados</li></h4>
+        </ol>
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            Registro
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive vertical-scroll">
-                <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="empleado in empleados | orderBy:ordenSeleccionado | filter:buscar">
-                            <td>{{empleado.rendering}}</td>
-                            <td>{{empleado.browser | uppercase}}</td>
-                            <td>{{empleado.plataform | lowercase}}</td>
-                            <td>{{empleado.version}}</td>
-                            <td>{{empleado.grade}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Registro
             </div>
-            </form>
+            <div class="panel-body">
+                <div class="table-responsive vertical-scroll">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Rendering engine</th>
+                                <th>Browser</th>
+                                <th>Platform(s)</th>
+                                <th>Engine version</th>
+                                <th>CSS grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="empleado in emp.empleados | orderBy:ordenSeleccionado | filter:buscar">
+                                <td>{{empleado.rendering}}</td>
+                                <td>{{empleado.browser | uppercase}}</td>
+                                <td>{{empleado.plataform | lowercase}}</td>
+                                <td>{{empleado.version}}</td>
+                                <td>{{empleado.grade}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </form>
+            </div>
+            <!-- /.panel-body -->
         </div>
-        <!-- /.panel-body -->
-    </div>
-</section>
+    </section>
+</div>
