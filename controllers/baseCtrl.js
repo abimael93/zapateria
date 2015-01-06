@@ -5,6 +5,7 @@ angular
 	[
 	 	'ngRoute',
 	 	'apEmpleados',
+	 	'myApp',
 	 	'miAp'
 	]
 )
