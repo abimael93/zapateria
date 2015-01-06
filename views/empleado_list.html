@@ -1,5 +1,5 @@
-<div ng-controller="ControladorEmpleados as emp">
-    <section>
+<section>
+    <div ng-controller="ControladorEmpleados as emp">
         <h1>Empleados</h1> <!--Nombre  del Modulo -->
         <ol class="breadcrumb">
             <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
@@ -11,6 +11,26 @@
                 Registro
             </div>
             <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-4 form-group">
+                        <label>Buscar: </label>
+                        <input class="form-control" placeholder="Buscar...." ng-model="buscar.$">
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 form-group">
+                        <label>Buscar Versión</label>
+                        <select ng-model="buscar.version" class="form-control">
+                            <option value="">Todos</option>
+                            <option value="3.">3.</option>
+                            <option value="1.">1.</option>
+                            <option value="2.">2.</option>
+                            <option value="0.">0.</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 form-group">
+                        <label>Buscar Browser: </label>
+                        <input class="form-control" placeholder="Buscar...." ng-model="buscar.browser">
+                    </div>
+                </div>
                 <div class="table-responsive vertical-scroll">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
@@ -37,5 +57,5 @@
             </div>
             <!-- /.panel-body -->
         </div>
-    </section>
-</div>
+    </div>
+</section>
