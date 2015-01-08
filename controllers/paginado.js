@@ -1,40 +1,13 @@
 // Code goes here
 
-var myApp = angular.module('myApp', ['angularUtils.directives.dirPagination']);
+var app_paginado = angular.module('app_paginado', ['angularUtils.directives.dirPagination']);
 
 function MyController($scope) {
 
   $scope.currentPage = 1;
   $scope.pageSize = 10;
   $scope.meals = [];
-
-  var dishes = [
-    'noodles',
-    'sausage',
-    'beans on toast',
-    'cheeseburger',
-    'battered mars bar',
-    'crisp butty',
-    'yorkshire pudding',
-    'wiener schnitzel',
-    'sauerkraut mit ei',
-    'salad',
-    'onion soup',
-    'bak choi',
-    'avacado maki'
-  ];
-  var sides = [
-    'with chips',
-    'a la king',
-    'drizzled with cheese sauce',
-    'with a side salad',
-    'on toast',
-    'with ketchup',
-    'on a bed of cabbage',
-    'wrapped in streaky bacon',
-    'on a stick with cheese',
-    'in pitta bread'
-  ];
+  
   $scope.meals = [
     {
         rendering: 'Trident', browser: 'Internet Explorer 4.0', plataform: 'Win 95+', version: '4',
@@ -283,5 +256,5 @@ function OtherController($scope) {
   };
 }
 
-myApp.controller('MyController', MyController);
-myApp.controller('OtherController', OtherController);
+app_paginado.controller('MyController', MyController);
+app_paginado.controller('OtherController', OtherController);

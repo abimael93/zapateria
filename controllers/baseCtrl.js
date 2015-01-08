@@ -5,7 +5,7 @@ angular
 	[
 	 	'ngRoute',
 	 	'apEmpleados',
-	 	'myApp',
+	 	'app_paginado',
 	 	'miAp'
 	]
 )
