@@ -14,7 +14,7 @@ hr, .hrcolor {
    background-color: #517596;
 }
 .breadcrumb{
-    background-color: #DBEAF9;
+    background-color: #C4D3D9;
 }
 #wrapper {
     width: 100%;
@@ -359,5 +359,36 @@ table.dataTable thead .sorting:after {
 /* Vertical Scroll */
 .vertical-scroll {
     overflow-y: auto;
-    height: 60ex;
+    max-height: 60ex;
 }
+
+.margin-none { 
+     margin: 0px;    
+     margin-bottom: 0px;
+     margin-top: 0px;
+     padding: 0px;
+     bottom: 0px;
+
+}
+/* Ejemplo de bordes por el momento*/
+.mis-bordes {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+/*Estilos de las divs que contienen los filtros de las busquedas */
+.div-buscar{
+    margin-top: -15px;
+    padding: 0px;
+    background-color: ;
+    color: #000000;
+}
+/*Estilos para las div que contienen los paginados */
+.div-paginado{
+    margin-top: 0px;
+    padding: 0px;
+    background-color:#8b9aa0 ;
+    color: #fff;
+}
+
