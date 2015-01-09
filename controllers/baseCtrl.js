@@ -39,16 +39,19 @@ angular
 		.when('/proveedor/list', {
 			templateUrl: 'views/proveedor_list.html'
 		})
-		//Módulo Almacen
-		.when('/almacen/list', {
-			templateUrl: 'views/almacen_list.html'
-		})
 		//Módulo Producto
 		.when('/producto/create', {
 			templateUrl: 'views/producto_form.html'
 		})
 		.when('/producto/list', {
 			templateUrl: 'views/producto_list.html'
+		})
+		//Módulo pedido
+		.when('/pedido/create', {
+			templateUrl: 'views/pedido_form.html'
+		})
+		.when('/pedido/list', {
+			templateUrl: 'views/pedido_list.html'
 		})
 		//Módulo Desarrollo
 		.when('/desarrollo/create', {
