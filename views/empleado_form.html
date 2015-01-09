@@ -1,9 +1,8 @@
 <section>
-    <h1>Empleados</h1> <!--Nombre  del Modulo -->
     <ol class="breadcrumb">
-    	<!-- Seguido de la accion que se va a realizar en este caso crear empleado-->
-        <h4><li class="active"><i class="fa fa-user"></i> Nuevo Empleado</li></h4>    
-    </ol>
+        <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
+        <h2><li class="active"><i class="fa fa-user"></i> Empleados /<small>Nuevo Empleado </small></li></h1>
+    </ol>    
     <div class="panel panel-primary">
     	<div class="panel-heading">
     	    Registro
@@ -13,82 +12,53 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>RFC:</label>
+                            <label>RFC <FONT color="red">* </FONT>:</label>
                             <input class="form-control" placeholder="El RFC debe tener 13 caracteres">
                         </div>
                         <div class="form-group">
-                            <label>Nombre:</label>
-                            <input class="form-control" placeholder="Nombre" name="" id="">
+                            <label>Nombres <FONT color="red">* </FONT>:</label>
+                            <input class="form-control" placeholder="Nombre(s)" name="" id="">
                         </div>
                         <div class="form-group">
-                            <label>Apellido Paterno:</label>
-                            <input class="form-control" placeholder="Apellido Paterno" name="" id="">
+                            <label>Apellidos <FONT color="red">* </FONT>:</label>
+                            <input class="form-control" placeholder="Apellido(s)" name="" id="">
+                        </div>                                                
+                       <label>Correo electrónico :</label>
+                        <div class="form-group input-group">                            
+                                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                <input type="text" class="form-control" placeholder="Email">
+                        </div>  
+                        <label>Teléfono <FONT color="red">* </FONT>:</label>
+                        <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
+                                <input type="text" class="form-control" placeholder="Teléfono">
+                        </div>
+                        <label>Celular :</label>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                            <input type="text" class="form-control" placeholder="Celular">
                         </div>
                         <div class="form-group">
-                            <label>Apellido Materno:</label>
-                            <input class="form-control" placeholder="Apellido Materno" name="" id="">
-                        </div>
-                        <div class="form-group">
-                        	<label>Fecha de Alta:</label>
-                        	<input class="form-control" placeholder="dd/mm/yyyy" name="" id="">
-                        	<!-- Agregar Datapiker y fecha por default -->                            
-                        </div>
-                        <div class="form-group">
-                            <label>Calle:</label>
-                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
-                        </div>
-
-                        <div class="row">
-                        	<div class="col-md-6 form-group" border="0">
-                                <label>Número Interior:</label>
-                                <input class="form-control" placeholder="Número Interior" name="" id="">
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                                <label>Número Exterior:</label>
-                                <input class="form-control" placeholder="Número Exterior" name="" id="">
-                            </div>
-                        </div>
-        				
-        				<div class="row">
-                        	<div class="col-md-8 form-group" border="0">
-                                <label>Colonia:</label>
-                                <input class="form-control" placeholder="Colonia" name="" id="">
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                                <label>CP:</label>
-                                <input class="form-control" placeholder="Codigo Postal" name="" id="">
-                            </div>
-                        </div>
-                         <div class="form-group">
-                            <label>Estado:</label>
+                            <label>Departamento <FONT color="red">* </FONT>:</label>
                             <select class="form-control">
-                                <option>Jalisco</option>
-                                <option>2</option>
+                                <option>Corte</option>
+                                <option>Despunte</option>
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Municipio:</label>
-                            <select class="form-control">
-                                <option>Guadalajara</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                                <label>Observaciones <FONT color="red">* </FONT>:</label>
+                                <textarea class="form-control" rows="5"></textarea>
                         </div>
-                        
-                    
+                        <br>
                 </div>
 
                 <!-- /.col-md-6 (nested) -->
                 <div class="col-md-6">
                     <div class="form-group">
-                            <label for="btn_file">Elegir la fotografía del empleado:</label>
+                            <label for="btn_file">Elegir la fotografía del empleado <FONT color="red">* </FONT>:</label>
                             <input type="file"  id="btn_file">
                     </div>
                     
@@ -100,34 +70,57 @@
                         </div>
                     </div>
 
-                   
-                    <label>Correo electrónico:</label>
-                    <div class="form-group input-group">                    		
-                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="text" class="form-control" placeholder="Email">
-                    </div>	
-                    <label>Teléfono:</label>
-                    <div class="form-group input-group">
-                            <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                            <input type="text" class="form-control" placeholder="Teléfono">
-                    </div>
-
                     <div class="form-group">
-                        <label>Departamento:</label>
+                        <label>Estado <FONT color="red">* </FONT>:</label>
                         <select class="form-control">
-                            <option>Corte</option>
-                            <option>Despunte</option>
+                            <option>Jalisco</option>
+                            <option>2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
                         </select>
                     </div>
                     <div class="form-group">
-                            <label>Observaciones</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                        <label>Municipio <FONT color="red">* </FONT>:</label>
+                        <select class="form-control">
+                            <option>Guadalajara</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
                     </div>
-                    <br>
-                   
+                    <div class="form-group">
+                        <label>Colonia <FONT color="red">* </FONT>:</label>
+                        <select class="form-control">
+                            <option>Alameda</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 form-group">
+                            <label>Calle <FONT color="red">* </FONT>:</label>
+                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
+                         </div>
+                        <div class="col-md-4 form-group">
+                            <label>CP <FONT color="red">* </FONT>:</label>
+                            <input class="form-control" placeholder="Codigo Postal" name="" id="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group" border="0">
+                            <label>Número Interior :</label>
+                            <input class="form-control" placeholder="Número Interior" name="" id="">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Número Exterior :</label>
+                            <input class="form-control" placeholder="Número Exterior" name="" id="">
+                        </div>
+                    </div>
                 </div>
                 <!-- /.col-md-6 (nested) -->
             </div>
@@ -135,7 +128,7 @@
             <!-- /.row (nested) -->
             <div class="pull-right row">
         		<div class="col-md-12">
-           			<button type="reset"  class="btn btn-warning"><span class="fa fa-file-o"></span> Limpiar</button>
+           			<!-- <button type="reset"  class="btn btn-warning"><span class="fa fa-file-o"></span> Limpiar</button>-->
         			<button type="submit" class="btn btn-success"><span class="fa fa-save "></span> Guardar</button>
         		</div>        		
             </div>

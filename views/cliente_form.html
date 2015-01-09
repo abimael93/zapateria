@@ -1,9 +1,8 @@
 <section>
-    <h1>Clientes</h1> <!--Nombre  del Modulo -->
     <ol class="breadcrumb">
-        <!-- Seguido de la accion que se va a realizar en este caso crear empleado-->
-        <h4><li class="active"><i class="fa fa-user"></i> Nuevo Cliente</li></h4>    
-    </ol>
+        <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
+        <h2><li class="active"><i class="fa fa-user"></i> Clientes /<small>Nuevo Cliente </small></li></h1>
+    </ol>    
     <div class="panel panel-primary">
         <div class="panel-heading">
             Registro
@@ -11,65 +10,49 @@
             <div class="panel-body">
             <div>
             <!-- para justificar utilze nav-justified -->
+            <!-- 
             <ul class="nav nav-pills nav-justified "  ng-init="tab = 1">
                 <li ng-class="{active:tab===1} " ng-click="tab = 1"><a href data-toggle="tab" class="fa fa-pencil-square-o"> Datos del Cliente</a></li>
                 <li ng-class="{active:tab===2}" ng-click="tab = 2"><a href data-toggle="tab" class="fa fa-building-o"> Sucursales</a></li>
 
-            </ul>     
+            </ul>-->     
             <form role="form">                
-                <div class="row" ng-show="tab === 1">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>RFC:</label>
+                            <label>RFC <FONT color="red">* </FONT>:</label>
                             <input class="form-control" placeholder="El RFC debe tener 12 o 13 caracteres" name="" id="" ng-required>
                         </div>
                         <div class="form-group">
-                            <label>Razón Social:</label>
+                            <label>Razón Social <FONT color="red">* </FONT>:</label>
                             <input class="form-control" placeholder="Nombre del negocio o empresa" name="" id="">
                         </div>
                         <div class="form-group">
-                            <label>Representante:</label>
+                            <label>Representante <FONT color="red">* </FONT>:</label>
                             <input class="form-control" placeholder="Dueño o Gerente" name="" id="">
+                        </div>                        
+                        <label>Correo electrónico <FONT color="red">* </FONT>:</label>
+                        <div class="form-group input-group">                            
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="text" class="form-control" placeholder="Email">
+                        </div>  
+                        <label>Teléfono <FONT color="red">* </FONT>:</label>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
+                            <input type="text" class="form-control" placeholder="Teléfono">
                         </div>
-                        <div class="form-group">
-                            <label>Fecha de Alta:</label>
-                            <input class="form-control" placeholder="dd/mm/yyyy" name="" id="">
-                            <!-- Agregar Datapiker y fecha por default -->                            
-                        </div>
-                        <div class="form-group">
-                            <label>Calle:</label>
-                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 form-group" border="0">
-                                <label>Número Interior:</label>
-                                <input class="form-control" placeholder="Número Interior" name="" id="">
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                                <label>Número Exterior:</label>
-                                <input class="form-control" placeholder="Número Exterior" name="" id="">
-                            </div>
+                        <label>Celular :</label>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                            <input type="text" class="form-control" placeholder="Celular">
                         </div>
                         
-                        <div class="row">
-                            <div class="col-md-8 form-group" border="0">
-                                <label>Colonia:</label>
-                                <input class="form-control" placeholder="Colonia" name="colonia" id="">
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                                <label>CP:</label>
-                                <input class="form-control" placeholder="Código Postal" name="" id="">
-                            </div>
-                        </div>
                 </div>
 
                 <!-- /.col-md-6 (nested) -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Estado:</label>
+                        <label>Estado <FONT color="red">* </FONT>:</label>
                         <select class="form-control">
                             <option>Jalisco</option>
                             <option>2</option>
@@ -79,7 +62,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Municipio:</label>
+                        <label>Municipio <FONT color="red">* </FONT>:</label>
                         <select class="form-control">
                             <option>Guadalajara</option>
                             <option>2</option>
@@ -87,32 +70,54 @@
                             <option>4</option>
                             <option>5</option>
                         </select>
-                    </div>                    
-                    <label>Correo electrónico:</label>
-                    <div class="form-group input-group">                            
-                        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                        <input type="text" class="form-control" placeholder="Email">
                     </div>  
-                    <label>Teléfono:</label>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                        <input type="text" class="form-control" placeholder="Teléfono">
+                    <div class="form-group">
+                        <label>Colonia <FONT color="red">* </FONT>:</label>
+                        <select class="form-control">
+                            <option>Alameda</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-8 form-group">
+                            <label>Calle <FONT color="red">* </FONT>:</label>
+                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
+                         </div>
+                        <div class="col-md-4 form-group">
+                            <label>CP <FONT color="red">* </FONT>:</label>
+                            <input class="form-control" placeholder="Codigo Postal" name="" id="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group" border="0">
+                            <label>Número Interior :</label>
+                            <input class="form-control" placeholder="Número Interior" name="" id="">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Número Exterior :</label>
+                            <input class="form-control" placeholder="Número Exterior" name="" id="">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Observaciones:</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <label>Observaciones :</label>
+                        <textarea class="form-control" rows="3" placeholder="Observaciones"></textarea>
                     </div>
                     <br>                   
                 </div>
                 <!-- /.col-md-6 (nested) -->
                 
             </div>
-
+            <!-- 
             <div class="row" ng-show="tab === 2">
                 <div class="col-md-6">
                     
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Nueva sucursal</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Nueva sucursal</button>-->
                     <!-- ejemplo de modal-->
+                    <!-- 
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -122,16 +127,20 @@
                     </div>
                 </div>
                 
-            </div>            
+            </div>
+            -->
+            
+
             <!-- /.row (nested) -->
+            <!-- 
             <div class="pull-right row" ng-show="tab === 1">
                 <div class="col-md-12">
                     <button class="pull-rigtht btn btn-danger" ng-click="tab = 2">Siguiente <span class="fa fa-share"></span></button>
                 </div>
-            </div>                
-            <div class="pull-right row" ng-show="tab === 2">
+            </div> -->               
+            <div class="pull-right row">
                 <div class="col-md-12">
-                    <button class="pull-rigtht btn btn-danger" ng-click="tab = 1"><span class="fa fa-reply"></span> Anterior</button>
+                    
                     <button type="submit" class="btn btn-success"><span class="fa fa-save "></span> Guardar</button>
                 </div>              
             </div>
