@@ -1,1 +1,88 @@
-Desarrollo Listar
+<section>
+    <div ng-controller="ControladorEmpleados as emp">
+        <ol class="breadcrumb">
+            <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
+            <h2><li class="active"><i class="fa fa-shopping-cart"></i> Desarrollo /<small>Lista de Modelos </small></li></h1>
+        </ol>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Registro
+            </div>
+            <div class="panel-body">              
+              <div class="row">
+                <div ng-controller="MyController" class="my-controller col-xs-12">
+                  <div class="row fluid breadcrumb div-buscar">                    
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">General:</label>
+                      <input ng-model="q.$" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar">                      
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">Plataforma:</label>
+                      <input ng-model="q.plataform" id="search" class="form-control" placeholder="Buscar">
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">Version:</label>
+                      <input ng-model="q.version" id="search" class="form-control" placeholder="Buscar">
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">Elementos p/pag:</label>
+                      <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+                    </div>
+                    <p class="col-xs-12">Optimize su busqueda con los filtros de la aplicación</p>
+                  </div>
+
+                  <br>
+                  <!--Comienzo de la Div que contiene la tabla resposiva -->
+                  <div class="table-responsive  margin-none ">
+                  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <th>Rendering engine</th>
+                              <th>Browser</th>
+                              <th>Platform(s)</th>
+                              <th>Engine version</th>
+                              <th>CSS grade</th>
+                          </tr>
+                      </thead>
+                      <div class="vertical-scroll">
+                        <tbody class="vertical-scroll">
+                            <tr dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+                                <td>{{meal.rendering}}</td>
+                                <td>{{meal.browser | uppercase}}</td>
+                                <td>{{meal.plataform | lowercase}}</td>
+                                <td>{{meal.version}}</td>
+                                <td>{{meal.grade}}</td>
+                            </tr>
+                      </tbody>
+                      </div>
+                  </table>
+                  <!--
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <ul>
+                        <li dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">{{ meal }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  -->
+                </div>
+                <!--Fin Tabla resposive -->
+                <div style="border : none" ng-controller="OtherController" class="row other-controller breadcrumb fluid text-center div-paginado" >
+                  <div class="col-xs-12 col-md-3">
+                    <h3><i class="fa fa-book"> Página: {{currentPage}}</i></h3>
+
+                  </div>
+                  <div class="col-xs-12 col-md-9">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="controllers/dirPagination.tpl.html"></dir-pagination-controls>
+                  </div>
+                  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- /.panel-body -->
+      </div>
+  </div>
+</section>

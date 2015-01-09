@@ -1,61 +1,88 @@
 <section>
     <div ng-controller="ControladorEmpleados as emp">
-        <h1>Empleados</h1> <!--Nombre  del Modulo -->
         <ol class="breadcrumb">
             <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
-            <h4><li class="active"><i class="fa fa-user"></i> Lista de Empleados</li></h4>
+            <h2><li class="active"><i class="fa fa-shopping-cart"></i> Empleados /<small>Lista de Empleados </small></li></h1>
         </ol>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 Registro
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6 col-lg-4 form-group">
-                        <label>Buscar: </label>
-                        <input class="form-control" placeholder="Buscar...." ng-model="buscar.$">
+            <div class="panel-body">              
+              <div class="row">
+                <div ng-controller="MyController" class="my-controller col-xs-12">
+                  <div class="row fluid breadcrumb div-buscar">                    
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">General:</label>
+                      <input ng-model="q.$" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar">                      
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-4 form-group">
-                        <label>Buscar Versión</label>
-                        <select ng-model="buscar.version" class="form-control">
-                            <option value="">Todos</option>
-                            <option value="3.">3.</option>
-                            <option value="1.">1.</option>
-                            <option value="2.">2.</option>
-                            <option value="0.">0.</option>
-                        </select>
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">Plataforma:</label>
+                      <input ng-model="q.plataform" id="search" class="form-control" placeholder="Buscar">
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-4 form-group">
-                        <label>Buscar Browser: </label>
-                        <input class="form-control" placeholder="Buscar...." ng-model="buscar.browser">
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">Version:</label>
+                      <input ng-model="q.version" id="search" class="form-control" placeholder="Buscar">
                     </div>
-                </div>
-                <div class="table-responsive vertical-scroll">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">Elementos p/pag:</label>
+                      <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+                    </div>
+                    <p class="col-xs-12">Optimize su busqueda con los filtros de la aplicación</p>
+                  </div>
+
+                  <br>
+                  <!--Comienzo de la Div que contiene la tabla resposiva -->
+                  <div class="table-responsive  margin-none ">
+                  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <th>Rendering engine</th>
+                              <th>Browser</th>
+                              <th>Platform(s)</th>
+                              <th>Engine version</th>
+                              <th>CSS grade</th>
+                          </tr>
+                      </thead>
+                      <div class="vertical-scroll">
+                        <tbody class="vertical-scroll">
+                            <tr dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+                                <td>{{meal.rendering}}</td>
+                                <td>{{meal.browser | uppercase}}</td>
+                                <td>{{meal.plataform | lowercase}}</td>
+                                <td>{{meal.version}}</td>
+                                <td>{{meal.grade}}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="empleado in emp.empleados | orderBy:ordenSeleccionado | filter:buscar">
-                                <td>{{empleado.rendering}}</td>
-                                <td>{{empleado.browser | uppercase}}</td>
-                                <td>{{empleado.plataform | lowercase}}</td>
-                                <td>{{empleado.version}}</td>
-                                <td>{{empleado.grade}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                      </tbody>
+                      </div>
+                  </table>
+                  <!--
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <ul>
+                        <li dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">{{ meal }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  -->
                 </div>
-                </form>
+                <!--Fin Tabla resposive -->
+                <div style="border : none" ng-controller="OtherController" class="row other-controller breadcrumb fluid text-center div-paginado" >
+                  <div class="col-xs-12 col-md-3">
+                    <h3><i class="fa fa-book"> Página: {{currentPage}}</i></h3>
+
+                  </div>
+                  <div class="col-xs-12 col-md-9">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="controllers/dirPagination.tpl.html"></dir-pagination-controls>
+                  </div>
+                  
+                </div>
+                
+              </div>
             </div>
-            <!-- /.panel-body -->
-        </div>
-    </div>
+          </div>
+          <!-- /.panel-body -->
+      </div>
+  </div>
 </section>
