@@ -1,14 +1,13 @@
 // Code goes here
+var app_paginado = angular.module('app_paginado', []);
 
-var app_paginado = angular.module('app_paginado', ['angularUtils.directives.dirPagination']);
-
-function MyController($scope) {
-
-  $scope.currentPage = 1;
-  $scope.pageSize = 10;
-  $scope.meals = [];
+app_paginado.controller('MyController', function MyController() {
+  var pag = this;
+  pag.currentPage = 1;
+  pag.pageSize = 10;
+  pag.meals = [];
   
-  $scope.meals = [
+  pag.meals = [
     {
         rendering: 'Trident', browser: 'Internet Explorer 4.0', plataform: 'Win 95+', version: '4',
         grade: 'X'
@@ -242,13 +241,28 @@ function MyController($scope) {
   for (var i = 1; i <= 100; i++) {
     var dish = dishes[Math.floor(Math.random() * dishes.length)];
     var side = sides[Math.floor(Math.random() * sides.length)];
-    $scope.meals.push({meal: 'meal ', id: i, dishh : dish, sidee: side});
+    pag.meals.push({meal: 'meal ', id: i, dishh : dish, sidee: side});
   }*/
   
-  $scope.pageChangeHandler = function(num) {
+  pag.pageChangeHandler = function(num) {
       console.log('meals page changed to ' + num);
   };
-}
+
+  pag.ascendente = true;
+  pag.ordenSeleccionado = '';
+  pag.ordenarPor = function(orden) {
+    if(pag.ordenSeleccionado != orden)
+        pag.ascendente = true;
+
+    if(pag.ascendente){
+        pag.ordenSeleccionado = orden;
+        pag.ascendente = false;
+    }
+    else{
+        pag.ascendente = true;
+    }
+  };
+});
 
 function OtherController($scope) {
   $scope.pageChangeHandler = function(num) {
@@ -256,5 +270,4 @@ function OtherController($scope) {
   };
 }
 
-app_paginado.controller('MyController', MyController);
 app_paginado.controller('OtherController', OtherController);

@@ -11,7 +11,7 @@
             </div>
             <div class="panel-body">              
               <div class="row">
-                <div ng-controller="MyController" class="my-controller col-xs-12">
+                <div ng-controller="MyController as pag" class="my-controller col-xs-12">
                   <div class="row fluid breadcrumb div-buscar">                    
                     <div class="col-xs-6 col-md-3">
                       <label for="search">General:</label>
@@ -19,15 +19,15 @@
                     </div>
                     <div class="col-xs-6 col-md-3">
                       <label for="search">Plataforma:</label>
-                      <input ng-model="q.plataform" id="search" class="form-control" placeholder="Buscar">
+                      <input ng-model="pag.q.plataform" id="search" class="form-control" placeholder="Buscar">
                     </div>
                     <div class="col-xs-6 col-md-3">
                       <label for="search">Version:</label>
-                      <input ng-model="q.version" id="search" class="form-control" placeholder="Buscar">
+                      <input ng-model="pag.q.version" id="search" class="form-control" placeholder="Buscar">
                     </div>
                     <div class="col-xs-6 col-md-3">
                       <label for="search">Elementos p/pag:</label>
-                      <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+                      <input type="number" min="1" max="100" class="form-control" ng-model="pag.pageSize">
                     </div>
                     <p class="col-xs-12">Optimize su busqueda con los filtros de la aplicación</p>
                   </div>
@@ -38,16 +38,21 @@
                   <table class="table table-striped table-bordered table-hover">
                       <thead>
                           <tr>
-                              <th>Rendering engine</th>
-                              <th>Browser</th>
+                              <th>
+                                Rendering engine
+                                <span class="fa fa-sort pull-right" style="cursor: pointer" ng-click="pag.ordenarPor('rendering')"></span>
+                              </th>
+                              <th>
+                                Browser
+                                <span class="fa fa-sort pull-right" style="cursor: pointer" ng-click="pag.ordenarPor('browser')"></span>
+                              </th>
                               <th>Platform(s)</th>
                               <th>Engine version</th>
                               <th>CSS grade</th>
                           </tr>
                       </thead>
-                      <div class="vertical-scroll">
-                        <tbody class="vertical-scroll">
-                            <tr dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+                        <tbody>
+                            <tr dir-paginate="meal in pag.meals | orderBy:pag.ordenSeleccionado:pag.ascendente |filter:pag.q | itemsPerPage: pag.pageSize" current-page="pag.currentPage">
                                 <td>{{meal.rendering}}</td>
                                 <td>{{meal.browser | uppercase}}</td>
                                 <td>{{meal.plataform | lowercase}}</td>
@@ -55,17 +60,7 @@
                                 <td>{{meal.grade}}</td>
                             </tr>
                       </tbody>
-                      </div>
                   </table>
-                  <!--
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <ul>
-                        <li dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">{{ meal }}</li>
-                      </ul>
-                    </div>
-                  </div>
-                  -->
                 </div>
                 <!--Fin Tabla resposive -->
                 <div style="border : none" ng-controller="OtherController" class="row other-controller breadcrumb fluid text-center div-paginado" >
@@ -74,7 +69,7 @@
 
                   </div>
                   <div class="col-xs-12 col-md-9">
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="controllers/dirPagination.tpl.html"></dir-pagination-controls>
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
                   </div>
                   
                 </div>

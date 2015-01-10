@@ -5,7 +5,6 @@ angular
 	[
 	 	'ngRoute',
 	 	'apEmpleados',
-	 	'app_paginado',
 	 	'miAp'
 	]
 )
@@ -95,5 +94,7 @@ angular
 		.when('/ajuste_salida/list', {
 			templateUrl: 'views/ajuste_salida_list.html'
 		})
-		
+		.otherwise({
+			redirectTo: '/'
+		})
 })

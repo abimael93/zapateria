@@ -396,7 +396,7 @@
     
     module.provider('paginationTemplate', function() {
 
-        var templatePath = 'controllers/dirPagination.tpl.html';
+        var templatePath = 'views/directives/dirPagination.tpl.html';
         
         this.setPath = function(path) {
             templatePath = path;
