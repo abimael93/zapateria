@@ -3,7 +3,7 @@
 class Tarea extends Eloquent {
     use Utiles;
     
-    protected $table = 'cliente';
+    protected $table = 'tarea';
 
     protected $primaryKey           = 'id_tarea';
     public    $timestamps           = false;

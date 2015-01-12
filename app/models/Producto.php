@@ -3,7 +3,7 @@
 class Producto extends Eloquent {
     use Utiles;
     
-    protected $table = 'modelo';
+    protected $table = 'producto';
 
     protected $primaryKey           = 'id_producto';
     public    $timestamps           = false;
