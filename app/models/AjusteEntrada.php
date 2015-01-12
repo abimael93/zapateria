@@ -61,7 +61,7 @@ class AjusteEntrada extends Eloquent {
      * @access public
      */
     public function producto () {
-        return $this->belongsToMany('Producto','ajuste_entrada_detalle','id_ajuste_entrada','id_producto')->withPivot('principal');
+        return $this->belongsToMany('Producto','ajuste_entrada_detalle','id_ajuste_entrada','id_producto')->withPivot('cantidad','precio_unitario','descuento');
     }
 }
 ?>
