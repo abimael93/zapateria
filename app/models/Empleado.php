@@ -70,7 +70,7 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function departamento () {
-		return $this->belongsTo('Departamento','');
+		return $this->belongsTo('Departamento','id_departamento');
 	}
 
 	public function cargo () {

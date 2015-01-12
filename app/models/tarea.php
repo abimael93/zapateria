@@ -34,15 +34,15 @@ class Tarea extends Eloquent {
     }
 
     public function proceso () {
-        return $this->belongsTo('Proceso','id_tarea');
+        return $this->belongsTo('Proceso','id_proceso');
     }
 
     public function empleado () {
-        return $this->belongsTo('Empleado','id_tarea');
+        return $this->belongsTo('Empleado','id_empleado');
     }
 
     public function produccion () {
-        return $this->belongsTo('Produccion','id_tarea');
+        return $this->belongsTo('Produccion','id_produccion');
     }
 }
 ?>

@@ -3,7 +3,7 @@
 class Produccion extends Eloquent {
     use Utiles;
     
-    protected $table = 'cliente';
+    protected $table = 'produccion';
 
     protected $primaryKey           = 'id_produccion';
     public    $timestamps           = false;
