@@ -42,16 +42,16 @@ class Modelo extends Eloquent {
         return $this->hasMany('AjusteSalida','id_modelo');
     }
 
-    public function proceso_rel_modelo () {
-        return $this->belongsToMany('ProcesoRelModelo','proceso_rel_modelo','id_modelo','id_proceso_rel_modelo');     
+    public function proceso () {
+        return $this->belongsToMany('Proceso','proceso_rel_modelo','id_modelo','id_proceso');     
     }
 
-    public function adjunto_rel_modelo () {
-        return $this->belongsToMany('AdjuntoRelModelo','adjunto_rel_modelo','id_modelo','id_adjunto_rel_modelo')->withPivot('principal');     
+    public function adjunto () {
+        return $this->belongsToMany('Adjunto','adjunto_rel_modelo','id_modelo','id_adjunto')->withPivot('principal');     
     }
 
-    public function modelo_rel_producto () {
-        return $this->belongsToMany('ModeloRelProducto','modelo_rel_producto','id_modelo','id_modelo_rel_producto')->withPivot('cantidad');     
+    public function producto () {
+        return $this->belongsToMany('Producto','modelo_rel_producto','id_modelo','id_producto')->withPivot('cantidad');     
     }
 }
 ?>

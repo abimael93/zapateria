@@ -39,8 +39,8 @@ class Proveedor extends Eloquent {
         return $this->hasMany('AjusteSalida','id_proveedor');
     }
 
-    public function info_proveedor () {
-        return $this->belongsToMany('InfoProveedor','info_proveedor','id_proveedor','id_info_proveedor')->withPivot('valor', 'principal','conjunto');     
+    public function metadato () {
+        return $this->belongsToMany('Metadato','info_proveedor','id_proveedor','id_metadato')->withPivot('valor', 'principal','conjunto');     
     }
 }
 ?>

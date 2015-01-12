@@ -34,6 +34,10 @@ class Cliente extends Eloquent {
         return $this->hasMany('Cliente','id_grupo_empresarial');
     }
 
+    public function cliente () {
+        return $this->belongsTo('Cliente','id_cliente');
+    }
+
     public function cliente_categoria () {
         return $this->belongsTo('ClienteCategoria','id_cliente_categoria');
     }
@@ -62,8 +66,8 @@ class Cliente extends Eloquent {
         return $this->hasMany('AjusteEntrada','id_cliente');
     }
 
-    public function info_cliente () {
-        return $this->belongsToMany('InfoCliente','info_cliente','id_cliente','id_info_cliente')->withPivot('valor', 'principal','conjunto');     
+    public function metadato () {
+        return $this->belongsToMany('Metadato','info_cliente','id_cliente','id_metadato')->withPivot('valor', 'principal','conjunto');     
     }
 }
 ?>
