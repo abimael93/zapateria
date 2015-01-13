@@ -6,6 +6,7 @@ class Metadato extends Eloquent {
     protected $primaryKey           = 'id_metadato';
     public    $timestamps           = false;
     protected $fillable             = array(
+                                                'nombre',
                                                 'singular',
                                                 'plural',
                                                 'tipo_dato',
