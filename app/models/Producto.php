@@ -39,6 +39,7 @@ class Producto extends Eloquent {
                                                 'adjunto',
                                                 'modelo',
                                                 'almacen',
+                                                'produccion',
                                             );
 
     public function producto_padre () {
@@ -111,6 +112,10 @@ class Producto extends Eloquent {
 
     public function almacen () {
         return $this->belongsToMany('Almacen','existencia','id_producto','id_almacen')->withPivot('valor', 'principal','conjunto');     
+    }
+
+    public function produccion () {
+        return $this->hasMany('Produccion','id_producto');
     }
 }
 ?>  

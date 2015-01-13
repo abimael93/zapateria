@@ -8,7 +8,7 @@ class Produccion extends Eloquent {
     protected $primaryKey           = 'id_produccion';
     public    $timestamps           = false;
     protected $fillable             = array(
-                                               'id_pedido_detalle',
+                                               'id_pedido',
                                                'id_supervisor',
                                                'folio',
                                                'cantidad',
@@ -18,6 +18,7 @@ class Produccion extends Eloquent {
                                            );
     protected static $relaciones    = array(
                                                 'empleado',
+                                                'producto',
                                                 'pedido',
                                                 'tarea',
                                             );
@@ -26,12 +27,16 @@ class Produccion extends Eloquent {
         return $this->belongsTo('Empleado','id_supervisor');
     }
 
+    public function producto () {
+        return $this->belongsTo('Producto','id_producto');
+    }
+
+    public function pedido () {
+        return $this->belongsTo('Pedido','id_pedido');
+    }
+
     public function tarea () {
         return $this->hasMany('Tarea','id_produccion');
-    }
-    
-    public function Pedido () {
-        return $this->belongsToMany('Pedido','pedido_detalle','id_produccion','id_pedido')->withPivot('cantidad', 'precio_unitario','descuento');     
     }
 }
 ?>

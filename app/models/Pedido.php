@@ -19,7 +19,8 @@ class Pedido extends Eloquent {
                                                 'cliente',
                                                 'empleado',
                                                 'pago_condicion',
-                                                'pedido_detalle'
+                                                'pedido_detalle',
+                                                'produccion',
                                             );
 
     public function cliente () {
@@ -36,6 +37,10 @@ class Pedido extends Eloquent {
 
     public function producto () {
         return $this->belongsToMany('Producto','pedido_detalle','id_pedido','id_producto');
+    }
+
+    public function produccion () {
+        return $this->hasMany('Produccion','id_pedido');
     }
 }
 ?>
