@@ -1,8 +1,5 @@
 <?php
-/**  
- * Modelo Agencia
- * @author Alejandro(alejandro.duarte@corb.mx)
- */
+
 class log extends Eloquent {
     use         Utiles;
     protected   $table              = 'log';
