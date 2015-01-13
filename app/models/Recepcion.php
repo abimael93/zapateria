@@ -40,7 +40,6 @@ class Recepcion extends Eloquent {
     public function proveedor_abono () {
         return $this->belongsToMany('ProveedorAbono','abono_rel_remision','id_recepcion','id_proveedor_abono')->withPivot('monto');     
     }
-
     public function producto () {
         return $this->belongsToMany('Producto','recepcion_detalle','id_recepcion','id_producto')->withPivot('cantidad', 'precio_unitario', 'descuento');     
     }
