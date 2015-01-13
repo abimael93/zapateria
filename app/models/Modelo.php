@@ -14,12 +14,14 @@ class Modelo extends Eloquent {
                                                'id_color',
                                                'id_unidad_medida',
                                                'id_producto_tipo',
+                                               'id_producto_grupo',
                                                'fecha_registro',              
                                            );
     protected static $relaciones    = array(
                                                 'color',
                                                 'unidad_medida',
                                                 'producto_tipo',
+                                                'producto_grupo',
                                                 'producto',
                                                 'proceso_rel_modelo',
                                                 'adjunto_rel_modelo',
@@ -36,6 +38,10 @@ class Modelo extends Eloquent {
 
     public function producto_tipo () {
         return $this->belongsTo('ProductoTipo','id_producto_tipo');
+    }
+
+    public function producto_grupo () {
+        return $this->belongsTo('ProductoGrupo','id_producto_grupo');
     }
 
     public function producto () {
