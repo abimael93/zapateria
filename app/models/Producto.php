@@ -65,6 +65,10 @@ class Producto extends Eloquent {
         return $this->belongsTo('ProductoTipo','id_producto_tipo');     
     }
 
+    public function producto_grupo () {
+        return $this->belongsTo('ProductoGrupo','id_producto_grupo');
+    }
+
     public function talla () {
         return $this->belongsTo('Talla','id_talla');     
     }
