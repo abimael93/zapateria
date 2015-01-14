@@ -9,13 +9,14 @@ class AjusteSalida extends Eloquent {
                                                 'folio',
                                                 'id_movimiento_almacen',
                                                 'id_ajuste_salida_tipo',
-                                                'id_cliente',
+                                                'id_proveedor',
                                                 'feha_registro',
                                             );
     protected static $relaciones    = array(
                                                 'movimiento_almacen',
                                                 'ajuste_salida_tipo',
-                                                'cliente',
+                                                'proveedor',
+                                                'producto',
                                             );
     
     public function movimiento_almacen () {
@@ -26,8 +27,8 @@ class AjusteSalida extends Eloquent {
         return $this->belongsTo('AjusteSalidaTipo','id_ajuste_salida_tipo');
     }
 
-    public function cliente () {
-        return $this->belongsTo('cliente','id_cliente');
+    public function proveedor () {
+        return $this->belongsTo('Proveedor','id_proveedor');
     }
 
     public function producto () {
