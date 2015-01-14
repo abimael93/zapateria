@@ -16,6 +16,7 @@ class AjusteEntrada extends Eloquent {
                                                 'movimiento_almacen',
                                                 'ajuste_entrada_tipo',
                                                 'cliente',
+                                                'producto',
                                             );
     
     public function movimiento_almacen () {
