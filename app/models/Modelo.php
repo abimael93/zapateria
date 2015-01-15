@@ -43,18 +43,18 @@ class Modelo extends Eloquent {
     }
 
     public function producto () {
-        return $this->hasMany('AjusteSalida','id_modelo');
+        return $this->hasMany('Producto','id_modelo');
     }
 
     public function proceso () {
-        return $this->belongsToMany('Proceso','proceso_rel_modelo','id_modelo','id_proceso');     
+        return $this->belongsToMany('Proceso','proceso_rel_modelo','id_modelo','id_proceso');
     }
 
     public function adjunto () {
         return $this->belongsToMany('Adjunto','adjunto_rel_modelo','id_modelo','id_adjunto')->withPivot('principal');     
     }
 
-    public function producto () {
+    public function modelo_rel_producto () {
         return $this->belongsToMany('Producto','modelo_rel_producto','id_modelo','id_producto')->withPivot('cantidad');     
     }
 }

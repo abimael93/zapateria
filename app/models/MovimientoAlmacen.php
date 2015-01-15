@@ -8,6 +8,9 @@ class MovimientoAlmacen extends Eloquent {
     protected   $fillable           = array(
                                                 'fecha_registro',
                                                 'referencia',
+                                                'id_empleado',
+                                                'id_movimiento_almacen_tipo',
+                                                'id_almacen',
                                             );
     protected static $relaciones    = array(
                                                 'empleado',

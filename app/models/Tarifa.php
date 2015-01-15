@@ -26,7 +26,7 @@ class Tarifa extends Eloquent {
     }
 
     public function cliente () {
-        return $this->belongsToMany('Cliente','cliente_rel_tarifa','id_tarifa','id_cliente');
+        return $this->belongsToMany('Cliente','cliente_rel_tarifa','id_tarifa','id_cliente')->withPivot('observaciones');
     }
 }
 ?>

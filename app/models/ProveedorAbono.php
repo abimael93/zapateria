@@ -15,7 +15,7 @@ class ProveedorAbono extends Eloquent {
     protected static $relaciones    = array(
                                                 'pago_tipo',
                                                 'proveedor',
-                                                'abono_rel_recepcion',
+                                                'recepcion',
                                             );
 
     public function pago_tipo () {

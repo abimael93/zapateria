@@ -9,6 +9,7 @@ class Adjunto extends Eloquent {
                                                 'nombre',
                                                 'ruta',
                                                 'fecha_registro',
+                                                'id_adjunto_tipo',
                                             );
     protected static $relaciones    = array(
                                                 'adjunto_tipo',

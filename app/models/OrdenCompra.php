@@ -10,6 +10,9 @@ class OrdenCompra extends Eloquent {
                                                 'iva',
                                                 'estatus',
                                                 'eliminado',
+                                                'id_proveedor',
+                                                'id_empleado',
+                                                'id_pago_condicion',
                                                 'fecha_registro',
                                             );
     protected static $relaciones    = array(
