@@ -1,0 +1,9 @@
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Rojo');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Amarillo');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Verde');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Azul');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Naranja');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Blanco');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Magenta');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Morado');
+INSERT INTO `zapateria`.`color` (`nombre`) VALUES ('Rosa');
