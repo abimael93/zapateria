@@ -37,21 +37,6 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `zapateria`.`municipio`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `zapateria`.`municipio` ;
-
-CREATE  TABLE IF NOT EXISTS `zapateria`.`municipio` (
-  `id_municipio` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`id_municipio`) ,
-  UNIQUE INDEX `idmunicipio_UNIQUE` (`id_municipio` ASC) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
-
-
--- -----------------------------------------------------
 -- Table `zapateria`.`pais`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `zapateria`.`pais` ;
@@ -68,6 +53,50 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
+-- Table `zapateria`.`estado`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `zapateria`.`estado` ;
+
+CREATE  TABLE IF NOT EXISTS `zapateria`.`estado` (
+  `id_estado` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(45) NOT NULL ,
+  `id_pais` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`id_estado`) ,
+  UNIQUE INDEX `idmunicipio_UNIQUE` (`id_estado` ASC) ,
+  INDEX `fk_estado_pais1` (`id_pais` ASC) ,
+  CONSTRAINT `fk_estado_pais1`
+    FOREIGN KEY (`id_pais` )
+    REFERENCES `zapateria`.`pais` (`id_pais` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `zapateria`.`municipio`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `zapateria`.`municipio` ;
+
+CREATE  TABLE IF NOT EXISTS `zapateria`.`municipio` (
+  `id_municipio` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(45) NOT NULL ,
+  `id_estado` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`id_municipio`) ,
+  UNIQUE INDEX `idmunicipio_UNIQUE` (`id_municipio` ASC) ,
+  INDEX `fk_municipio_estado1` (`id_estado` ASC) ,
+  CONSTRAINT `fk_municipio_estado1`
+    FOREIGN KEY (`id_estado` )
+    REFERENCES `zapateria`.`estado` (`id_estado` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+
+-- -----------------------------------------------------
 -- Table `zapateria`.`colonia`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `zapateria`.`colonia` ;
@@ -75,8 +104,15 @@ DROP TABLE IF EXISTS `zapateria`.`colonia` ;
 CREATE  TABLE IF NOT EXISTS `zapateria`.`colonia` (
   `id_colonia` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `id_municipio` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id_colonia`) ,
-  UNIQUE INDEX `id_colonia_UNIQUE` (`id_colonia` ASC) )
+  UNIQUE INDEX `id_colonia_UNIQUE` (`id_colonia` ASC) ,
+  INDEX `fk_colonia_municipio1` (`id_municipio` ASC) ,
+  CONSTRAINT `fk_colonia_municipio1`
+    FOREIGN KEY (`id_municipio` )
+    REFERENCES `zapateria`.`municipio` (`id_municipio` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -104,8 +140,9 @@ CREATE  TABLE IF NOT EXISTS `zapateria`.`empleado` (
   `celular` VARCHAR(30) NULL ,
   `id_cargo` INT UNSIGNED NOT NULL ,
   `id_departamento` INT UNSIGNED NOT NULL ,
-  `id_municipio` INT UNSIGNED NOT NULL ,
   `id_pais` INT UNSIGNED NOT NULL ,
+  `id_estado` INT UNSIGNED NOT NULL ,
+  `id_municipio` INT UNSIGNED NOT NULL ,
   `id_colonia` INT UNSIGNED NOT NULL ,
   `fecha_registro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   `estatus` TINYINT NOT NULL DEFAULT 0 ,
@@ -119,6 +156,7 @@ CREATE  TABLE IF NOT EXISTS `zapateria`.`empleado` (
   INDEX `fk_empleado_colonia1` (`id_colonia` ASC) ,
   UNIQUE INDEX `email_UNIQUE` (`correo` ASC) ,
   UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC) ,
+  INDEX `fk_empleado_estado1` (`id_estado` ASC) ,
   CONSTRAINT `fk_empleado_cargo`
     FOREIGN KEY (`id_cargo` )
     REFERENCES `zapateria`.`cargo` (`id_cargo` )
@@ -142,6 +180,11 @@ CREATE  TABLE IF NOT EXISTS `zapateria`.`empleado` (
   CONSTRAINT `fk_empleado_colonia1`
     FOREIGN KEY (`id_colonia` )
     REFERENCES `zapateria`.`colonia` (`id_colonia` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_empleado_estado1`
+    FOREIGN KEY (`id_estado` )
+    REFERENCES `zapateria`.`estado` (`id_estado` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
