@@ -1,7 +1,7 @@
 <?php
 
 class Departamento extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'departamento';
     protected $primaryKey           = 'id_departamento';
     public    $timestamps           = false;

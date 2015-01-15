@@ -1,10 +1,8 @@
 <?php
 
 class Producto extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'producto';
-
+    use       Utiles;
+    protected $table                = 'producto';
     protected $primaryKey           = 'id_producto';
     public    $timestamps           = false;
     protected $fillable             = array(

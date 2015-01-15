@@ -1,7 +1,7 @@
 <?php
 
 class Almacen extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'almacen';
     protected $primaryKey           = 'id_almacen';
     public    $timestamps           = false;

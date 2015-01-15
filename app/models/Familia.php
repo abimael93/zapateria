@@ -1,7 +1,7 @@
 <?php
 
 class Familia extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'familia';
     protected $primaryKey           = 'id_familia';
     public    $timestamps           = false;

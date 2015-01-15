@@ -1,7 +1,7 @@
 <?php
 
 class ProveedorAbono extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'proveedor_abono';
     protected $primaryKey           = 'id_proveedor_abono';
     public    $timestamps           = false;

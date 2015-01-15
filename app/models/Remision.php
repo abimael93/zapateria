@@ -1,10 +1,8 @@
 <?php
 
 class Remision extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'remision';
-
+    use       Utiles;
+    protected $table                = 'remision';
     protected $primaryKey           = 'id_remision';
     public    $timestamps           = false;
     protected $fillable             = array(

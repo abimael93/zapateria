@@ -1,10 +1,8 @@
 <?php
 
 class Recepcion extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'recepcion';
-
+    use       Utiles;
+    protected $table                = 'recepcion';
     protected $primaryKey           = 'id_recepcion';
     public    $timestamps           = false;
     protected $fillable             = array(

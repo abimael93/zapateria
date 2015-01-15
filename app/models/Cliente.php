@@ -1,10 +1,8 @@
 <?php
 
 class Cliente extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'cliente';
-
+    use       Utiles;
+    protected $table                = 'cliente';
     protected $primaryKey           = 'id_cliente';
     public    $timestamps           = false;
     protected $fillable             = array(

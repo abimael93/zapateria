@@ -1,10 +1,8 @@
 <?php
 
 class Modelo extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'modelo';
-
+    use       Utiles;
+    protected $table                = 'modelo';
     protected $primaryKey           = 'id_modelo';
     public    $timestamps           = false;
     protected $fillable             = array(

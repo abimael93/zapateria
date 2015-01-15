@@ -1,7 +1,7 @@
 <?php
 
 class ProductoTipo extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'producto_tipo';
     protected $primaryKey           = 'id_producto_tipo';
     public    $timestamps           = false;

@@ -1,7 +1,7 @@
 <?php
 
 class ClienteTipo extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'cliente_tipo';
     protected $primaryKey           = 'id_cliente_tipo';
     public    $timestamps           = false;

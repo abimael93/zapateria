@@ -1,10 +1,8 @@
 <?php
 
 class Proveedor extends Eloquent {
-    use Utiles;
-    
+    use       Utiles;
     protected $table = 'proveedor';
-
     protected $primaryKey           = 'id_proveedor';
     public    $timestamps           = false;
     protected $fillable             = array(

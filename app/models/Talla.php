@@ -1,7 +1,7 @@
 <?php
 
 class Talla extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'talla';
     protected $primaryKey           = 'id_talla';
     public    $timestamps           = false;

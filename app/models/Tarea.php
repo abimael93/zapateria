@@ -1,10 +1,8 @@
 <?php
 
 class Tarea extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'tarea';
-
+    use       Utiles;
+    protected $table                = 'tarea';
     protected $primaryKey           = 'id_tarea';
     public    $timestamps           = false;
     protected $fillable             = array(

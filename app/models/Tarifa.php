@@ -1,7 +1,7 @@
 <?php
 
 class Tarifa extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'tarifa';
     protected $primaryKey           = 'id_tarifa';
     public    $timestamps           = false;

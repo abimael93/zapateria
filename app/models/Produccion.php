@@ -1,10 +1,8 @@
 <?php
 
 class Produccion extends Eloquent {
-    use Utiles;
-    
-    protected $table = 'produccion';
-
+    use       Utiles;
+    protected $table                = 'produccion';
     protected $primaryKey           = 'id_produccion';
     public    $timestamps           = false;
     protected $fillable             = array(

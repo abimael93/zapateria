@@ -1,0 +1,13 @@
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('telefono', 'Teléfono', 'Teléfonos', 'tel');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('celular', 'Celular', 'Celulares', 'tel');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('correo', 'Correo Electrónico', 'Correos Electrónicos', 'mail');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('facebook', 'Facebook', 'Facebook', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('twitter', 'Twitter', 'Twitter', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('pais', 'País', 'Países', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('estado', 'Estado', 'Estados', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('municipio', 'Municipio', 'Municipios', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('colonia', 'Colonia', 'Colonias', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('codigo_postal', 'Código Postal', 'Codigos Postales', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('calle', 'Calle', 'Calles', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('n_exterior', 'N. Exterior', 'N. Exterior', 'text');
+INSERT INTO `zapateria`.`metadato` (`nombre`, `singular`, `plural`, `tipo_dato`) VALUES ('n_interior', 'N. Interior', 'N. Interior', 'text');

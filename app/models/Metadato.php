@@ -1,7 +1,7 @@
 <?php
 
 class Metadato extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'metadato';
     protected $primaryKey           = 'id_metadato';
     public    $timestamps           = false;

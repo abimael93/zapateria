@@ -1,7 +1,7 @@
 <?php
 
 class Colonia extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'colonia';
     protected $primaryKey           = 'id_colonia';
     public    $timestamps           = false;

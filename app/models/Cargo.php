@@ -1,7 +1,7 @@
 <?php
 
 class Cargo extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'cargo';
     protected $primaryKey           = 'id_cargo';
     public    $timestamps           = false;

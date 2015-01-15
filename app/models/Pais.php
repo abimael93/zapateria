@@ -1,7 +1,7 @@
 <?php
 
 class Pais extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'pais';
     protected $primaryKey           = 'id_pais';
     public    $timestamps           = false;

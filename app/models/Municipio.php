@@ -1,7 +1,7 @@
 <?php
 
 class Municipio extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'municipio';
     protected $primaryKey           = 'id_municipio';
     public    $timestamps           = false;

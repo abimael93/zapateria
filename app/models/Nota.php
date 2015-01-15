@@ -1,7 +1,7 @@
 <?php
 
 class Nota extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'nota';
     protected $primaryKey           = 'id_nota';
     public    $timestamps           = false;

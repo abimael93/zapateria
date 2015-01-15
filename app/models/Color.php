@@ -1,7 +1,7 @@
 <?php
 
 class Color extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'color';
     protected $primaryKey           = 'id_color';
     public    $timestamps           = false;

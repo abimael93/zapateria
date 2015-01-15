@@ -1,6 +1,6 @@
 <?php
 
-class log extends Eloquent {
+class Log extends Eloquent {
     use         Utiles;
     protected   $table              = 'log';
     protected   $primaryKey         = 'id_log';
@@ -15,6 +15,7 @@ class log extends Eloquent {
                                                 'datos_despues',
                                                 'agrupado',
                                                 'fecha_registro',
+                                                'version',
                                             );
     protected static $relaciones    = array(
                                             );

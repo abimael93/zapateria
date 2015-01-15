@@ -1,7 +1,7 @@
 <?php
 
 class PagoCondicion extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'pago_condicion';
     protected $primaryKey           = 'id_pago_condicion';
     public    $timestamps           = false;

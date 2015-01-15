@@ -1,7 +1,7 @@
 <?php
 
 class MovimientoAlmacenTipo extends Eloquent {
-    use Utiles;
+    use       Utiles;
     protected $table                = 'movimiento_almacen_tipo';
     protected $primaryKey           = 'id_movimiento_almacen_tipo';
     public    $timestamps           = false;
