@@ -7,6 +7,7 @@ class Estado extends Eloquent {
     public    $timestamps           = false;
     protected $fillable             = array(
                                                 'nombre',
+                                                'abrev',
                                                 'id_pais',
                                             );
     protected static $relaciones    = array(

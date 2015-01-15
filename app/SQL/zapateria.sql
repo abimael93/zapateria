@@ -44,7 +44,6 @@ DROP TABLE IF EXISTS `zapateria`.`pais` ;
 CREATE  TABLE IF NOT EXISTS `zapateria`.`pais` (
   `id_pais` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
-  `abrev` VARCHAR(20) NOT NULL ,
   PRIMARY KEY (`id_pais`) ,
   UNIQUE INDEX `id_pais_UNIQUE` (`id_pais` ASC) )
 ENGINE = InnoDB
@@ -60,6 +59,7 @@ DROP TABLE IF EXISTS `zapateria`.`estado` ;
 CREATE  TABLE IF NOT EXISTS `zapateria`.`estado` (
   `id_estado` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `abrev` VARCHAR(20) NOT NULL ,
   `id_pais` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id_estado`) ,
   UNIQUE INDEX `idmunicipio_UNIQUE` (`id_estado` ASC) ,

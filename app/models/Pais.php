@@ -7,7 +7,6 @@ class Pais extends Eloquent {
     public    $timestamps           = false;
     protected $fillable             = array(
                                                 'nombre',
-                                                'abrev',
                                             );
     protected static $relaciones    = array(
                                                 'empleado',
