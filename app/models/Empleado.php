@@ -41,8 +41,9 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 				                               'celular',
 				                               'id_cargo',
 				                               'id_departamento',
-				                               'id_municipio',
 				                               'id_pais',
+				                               'id_estado',
+				                               'id_municipio',
 				                               'id_colonia',
 				                               'fecha_registro',
 				                               'estatus',
@@ -61,6 +62,10 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 												'produccion',
 												'pedido',
 											);
+
+	public function estado () {
+		return $this->belongsTo('Estado','id_estado');
+	}
 
 	public function municipio () {
 		return $this->belongsTo('Municipio','id_municipio');
