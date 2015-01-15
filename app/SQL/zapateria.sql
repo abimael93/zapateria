@@ -336,7 +336,7 @@ COLLATE = utf8_unicode_ci;
 DROP TABLE IF EXISTS `zapateria`.`movimiento_almacen_tipo` ;
 
 CREATE  TABLE IF NOT EXISTS `zapateria`.`movimiento_almacen_tipo` (
-  `id_movimiento_almacen_tipo` INT UNSIGNED NOT NULL ,
+  `id_movimiento_almacen_tipo` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(60) NOT NULL ,
   `entrada_salida` ENUM('E','S') NOT NULL ,
   `descripcion` VARCHAR(100) NULL ,
