@@ -15,6 +15,7 @@ class Adjunto extends Eloquent {
                                                 'adjunto_tipo',
                                                 'producto',
                                                 'modelo',
+                                                'adjunto_rel_produccion',
                                             );
     
     public function adjunto_tipo () {
@@ -29,6 +30,10 @@ class Adjunto extends Eloquent {
     
     public function modelo () {
         return $this->belongsToMany('Modelo','adjunto_rel_modelo','id_adjunto','id_modelo')->withPivot('principal');
+    }
+
+    public function produccion () {
+        return $this->belongsToMany('Produccion','adjunto_rel_produccion','id_adjunto','id_produccion')->withPivot('principal');
     }
 }
 ?>

@@ -12,13 +12,11 @@ class Remision extends Eloquent {
                                                'estatus',
                                                'id_movimiennto_almacen',
                                                'id_cliente',
-                                               'id_empleado',
                                                'fecha_registro',              
                                            );
     protected static $relaciones    = array(
                                                 'movimiennto_almacen',
                                                 'cliente',
-                                                'empleado',
                                                 'cliente_abono',
                                                 'producto',
                                             );
@@ -29,10 +27,6 @@ class Remision extends Eloquent {
 
     public function cliente () {
         return $this->belongsTo('Cliente','id_cliente');
-    }
-
-    public function empleado () {
-        return $this->belongsTo('Empleado','id_empleado');
     }
     
     public function cliente_abono () {

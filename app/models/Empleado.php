@@ -55,9 +55,7 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 												'cargo',
 												'colonia',
 												'orden_compra',
-												'recepcion',
 												'movimiento_almacen',
-												'remision',
 												'tarea',
 												'produccion',
 												'pedido',
@@ -91,16 +89,8 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('OrdenCompra','id_empleado');
 	}
 
-	public function recepcion () {
-		return $this->hasMany('Recepcion','id_empleado');
-	}
-
 	public function movimiento_almacen () {
 		return $this->hasMany('MovimientoAlmacen','id_empleado');
-	}
-
-	public function remision () {
-		return $this->hasMany('Remision','id_empleado');
 	}
 
 	public function tarea () {
