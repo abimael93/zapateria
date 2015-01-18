@@ -32,7 +32,7 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 				                               'foto',
 				                               'correo',
 				                               'usuario',
-				                               'contrasena',
+				                               'password',
 				                               'eliminado',
 				                               'calle',
 				                               'num_int',

@@ -37,9 +37,15 @@ define('SERVIDOR',__DIR__);
 
 require(SERVIDOR.'/helpers/Utiles.php');
 
-Route::get('/', function()
+Route::get( '/' , function()
 {
 	return View::make('hello');
 });
 
-
+Route::group( array('prefix'=>'empleados'),function(){
+    Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
+    Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
+    Route::post( '/login' , array( 'uses' => 'EmpleadoController@acceder' ) );
+    Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
+    Route::put( '/changePassword' , array( 'uses' => 'EmpleadoController@cambiar_password' ) );
+});

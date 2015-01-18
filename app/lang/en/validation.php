@@ -75,6 +75,7 @@ return array(
     'alphanumeric_spaces_dots'   => 'The :attribute may only contain letters, numbers, spaces and dots.',
     'allow_all'   => 'The :attribute may contain any kind of characters',
     'alphanumeric_script' => 'The :attribute just allow letters, numbers, spaces and scripts',
+    'alpha_spaces' => 'The :attribute just allow letters, spaces',
 
 	/*
 	|--------------------------------------------------------------------------

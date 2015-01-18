@@ -74,7 +74,7 @@ return array(
     'alphanumeric_spaces_dots'   => 'El dato \':attribute\' solo puede tener caracteres alfanumericos, espacios y puntos',
     'allow_all'   => 'El dato \':attribute\' puede tener cualquier caracter',
     'alphanumeric_script' => 'El dato \':attribute\' solo permite letras, numeros, espacios y guiones',
-
+    'alpha_spaces' => 'El dato \':attribute\' solo permite letras, espacios',
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines
