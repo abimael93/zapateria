@@ -5,7 +5,7 @@
  */
 
 body {
-    background-color: #C5D3E4;
+    background-color: #34495E;
 }
 hr, .hrcolor {
    height: 1px;
@@ -23,16 +23,22 @@ hr, .hrcolor {
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
-    background-color: #EDF2F7;
+    background-color: #bfbfbf;
 }
 
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
         margin: 0 0 0 250px;
-        padding: 0 30px;
+        padding: 1px 30px;
         border-left: 1px solid #e7e7e7;
+        border-color: black;
     }
+}
+
+.container-wrapper {
+    margin-top: 5em;
+    margin-bottom: 1.5em;
 }
 
 .navbar-top-links {
@@ -392,3 +398,43 @@ table.dataTable thead .sorting:after {
     color: #fff;
 }
 
+/*Color nav */
+.navbar {
+    background-color: #2C3E50;
+    border-color: #4E6378;
+    box-shadow: inset -1px -1px 1px 0px rgba(50, 50, 50, 0.75);
+}
+
+.nav {
+    background-color: #34495E;
+    color: white;
+}
+
+.nav > li > a {
+    color: #f1f1f1;
+}
+
+.sidebar ul li a.active {
+    background-color: #162b48;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: #3d566e;
+}
+
+.sidebar ul li {
+    border-color: #4E6378;
+    box-shadow: inset -1px -1px 1px 0px rgba(50, 50, 50, 0.75);
+}
+
+.nav-second-level {
+    background-color: #7f94a9;
+}
+.nav-second-level ul li {
+    border-color: red;
+}
+.nav-default {
+    border-color: red;
+}

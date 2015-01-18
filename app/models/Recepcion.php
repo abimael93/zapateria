@@ -18,7 +18,6 @@ class Recepcion extends Eloquent {
     protected static $relaciones    = array(
                                                 'movimiennto_almacen',
                                                 'proveedor',
-                                                'empleado',
                                                 'proveedor_abono',
                                                 'producto',
                                             );
@@ -29,10 +28,6 @@ class Recepcion extends Eloquent {
 
     public function proveedor () {
         return $this->belongsTo('Proveedor','id_proveedor');
-    }
-
-    public function empleado () {
-        return $this->belongsTo('Empleado','id_empleado');
     }
     
     public function proveedor_abono () {

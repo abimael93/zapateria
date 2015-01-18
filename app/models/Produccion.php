@@ -19,6 +19,7 @@ class Produccion extends Eloquent {
                                                 'producto',
                                                 'pedido',
                                                 'tarea',
+                                                'adjunto_rel_produccion',
                                             );
 
     public function empleado () {
@@ -35,6 +36,10 @@ class Produccion extends Eloquent {
 
     public function tarea () {
         return $this->hasMany('Tarea','id_produccion');
+    }
+
+    public function adjunto () {
+        return $this->belongsToMany('Adjunto','adjunto_rel_produccion','id_produccion','id_adjunto')->withPivot('principal');
     }
 }
 ?>
