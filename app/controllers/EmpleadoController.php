@@ -4,15 +4,15 @@ class EmpleadoController extends BaseController{
     
     private $validaciones;
     private $validaciones_login;
-    function __construct(){
+    function __construct () {
         
-        $this->validaciones =array(
-                                'id_cargo'          => array( 'required' , 'integer'),
-                                'id_departamento'   => array( 'required' , 'integer'),
-                                'id_pais'           => array( 'required' , 'integer'),
-                                'id_estado'         => array( 'required' , 'integer'),
-                                'id_municipio'      => array( 'required' , 'integer'),
-                                'id_colonia'        => array( 'required' , 'integer'),
+        $this->validaciones = array(
+                                'id_cargo'          => array( 'required' , 'integer' ),
+                                'id_departamento'   => array( 'required' , 'integer' ),
+                                'id_pais'           => array( 'required' , 'integer' ),
+                                'id_estado'         => array( 'required' , 'integer' ),
+                                'id_municipio'      => array( 'required' , 'integer' ),
+                                'id_colonia'        => array( 'required' , 'integer' ),
                                 'nombre'            => array( 'required' , 'alpha_spaces' ),
                                 'apellidos'         => array( 'required' , 'alpha_spaces' ),
                                 'rfc'               => array( 'sometimes' , 'alpha_num' ),
@@ -28,7 +28,7 @@ class EmpleadoController extends BaseController{
                                 'celular'           => array( 'sometimes' , 'numeric' ),
                                 'estatus'           => array( 'sometimes' , 'boolean' ),
                             );
-        $this->validaciones_login =array(
+        $this->validaciones_login = array(
                                 'usuario'           => array( 'required' , 'alpha_dash' ),
                                 'password'          => array( 'required' ),
                             );
@@ -43,7 +43,7 @@ class EmpleadoController extends BaseController{
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados by post
     */
-    public function registrar(){
+    public function registrar () {
         Input::merge( 
                         array( 
                             'nombre'     => ucwords( strtolower( Input::get( 'nombre' ) ) ) , 
@@ -97,11 +97,12 @@ class EmpleadoController extends BaseController{
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados/login by post
     */
-    public function acceder(){
+    public function acceder () {
         $inputs    = Input::all();
         $validador = Validator::make( $inputs , $this->validaciones_login );
         if ( !$validador->fails() ) {
-            if( Auth::attempt( array( 'usuario' => $inputs['usuario'] , 'password' => $inputs['password'] ) ) ) {
+            if( Auth::attempt( array( 'usuario' => $inputs['usuario'] , 'password' => $inputs['password'] ) , 
+                true ) ) {
                 $status   = OK;
                 $data     = NULL;
                 $mensaje  = 'Login exitoso.';
@@ -134,6 +135,35 @@ class EmpleadoController extends BaseController{
     }
 
     /**
+    *   this function allows to logout the employee from the system
+    *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+    *   @since      01/18/2015
+    *   @version    1
+    *   @access     public
+    *   @return     json ( status = ? , data = ? , mensaje = ? )
+    *   @example    http://localhost/zapateria/public/empleados/logout by post
+    */
+    public function salir () {
+        if ( Auth::check() ) {
+            Auth::logout();
+            $status   = OK;
+            $data     = NULL;
+            $mensaje  = 'Logout exitoso.';
+        } else {
+            $status   = NO_PERMITIDO;
+            $data     = NULL;
+            $mensaje  = 'No has iniciado sesión.';
+        }
+        return Response::json(
+                        array(
+                            'status'    => $status,
+                            'data'      => $data,
+                            'message'   => $mensaje
+                        ),$status != 'OK' ? 500 : 200
+                    );
+    }
+
+    /**
     *   this function modify a employee the system already have
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/18/2015
@@ -142,7 +172,7 @@ class EmpleadoController extends BaseController{
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados by put
     */
-    public function modificar(){
+    public function modificar ( $id_empleado = NULL) {
         Input::merge( 
                         array( 
                             'nombre'     => ucwords( strtolower( Input::get( 'nombre' ) ) ) , 
@@ -153,7 +183,11 @@ class EmpleadoController extends BaseController{
         $validador = Validator::make( $inputs , $this->validaciones );
         if ( !$validador->fails() ) {
             try {
-                $empleado = Empleado::find( Auth::User()->id_empleado );
+                if( $id_empleado !== NULL ){
+                    $empleado = Empleado::find( $id_empleado );
+                } else {
+                    $empleado = Empleado::find( Auth::User()->id_empleado );
+                }
                 $empleado->update( $inputs );
                 $status   = OK;
                 $data     = NULL;
@@ -195,7 +229,7 @@ class EmpleadoController extends BaseController{
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados/changePassword by put
     */
-    public function cambiar_password(){
+    public function cambiar_password () {
         Input::merge( 
                         array( 
                             'password'   => Hash::make( Input::get( 'password' ) )
@@ -252,7 +286,7 @@ class EmpleadoController extends BaseController{
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados/4 by get
     */
-    public function mostrar( $id_empleado ){
+    public function mostrar ( $id_empleado ) {
         $validaciones = array( 'id_empleado' => array( 'required' , 'integer') );
         $validador    = Validator::make( array( 'id_empleado' => $id_empleado ) , $validaciones );
         if ( !$validador->fails() ) {
