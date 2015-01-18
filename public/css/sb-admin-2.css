@@ -365,7 +365,7 @@ table.dataTable thead .sorting:after {
 /* Vertical Scroll */
 .vertical-scroll {
     overflow-y: auto;
-    max-height: 60ex;
+    max-height: 30ex;
 }
 
 .margin-none { 

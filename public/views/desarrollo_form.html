@@ -1,147 +1,88 @@
 <section>
-    <h1>Desarrollo</h1> <!--Nombre  del Modulo -->
-    <ol class="breadcrumb">
-        <!-- Seguido de la accion que se va a realizar en este caso crear empleado-->
-        <h4><li class="active"><i class="fa fa-user"></i> Nuevo Modelo</li></h4>    
-    </ol>
+	<ol class="breadcrumb">
+        <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
+        <h2><li class="active"><i class="fa fa-paint-brush"></i> Desarrollo /<small>Nuevo Modelo </small></li></h1>
+    </ol>    
+    
     <div class="panel panel-primary">
         <div class="panel-heading">
             Registro
         </div>
-            <div class="panel-body">
+        <div class="panel-body">
             <!-- Contenido -->
-            	<form role="form">
-	                <div class="row">
-	                    <div class="col-md-6">
-	                        <div class="form-group">
-	                            <label>RFC:</label>
-	                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres">
-	                        </div>
-	                        <div class="form-group">
-	                            <label>Nombre:</label>
-	                            <input class="form-control" placeholder="Nombre" name="" id="">
-	                        </div>
-	                        <div class="form-group">
-	                            <label>Apellido Paterno:</label>
-	                            <input class="form-control" placeholder="Apellido Paterno" name="" id="">
-	                        </div>
-	                        <div class="form-group">
-	                            <label>Apellido Materno:</label>
-	                            <input class="form-control" placeholder="Apellido Materno" name="" id="">
-	                        </div>
-	                        <div class="form-group">
-	                        	<label>Fecha de Alta:</label>
-	                        	<input class="form-control" placeholder="dd/mm/yyyy" name="" id="">
-	                        	<!-- Agregar Datapiker y fecha por default -->                            
-	                        </div>
-	                        <div class="form-group">
-	                            <label>Calle:</label>
-	                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
-	                        </div>
-
-	                        <div class="row">
-	                        	<div class="col-md-6 form-group" border="0">
-	                                <label>Número Interior:</label>
-	                                <input class="form-control" placeholder="Número Interior" name="" id="">
-	                            </div>
-
-	                            <div class="col-md-6 form-group">
-	                                <label>Número Exterior:</label>
-	                                <input class="form-control" placeholder="Número Exterior" name="" id="">
-	                            </div>
-	                        </div>
-	        				
-	        				<div class="row">
-	                        	<div class="col-md-8 form-group" border="0">
-	                                <label>Colonia:</label>
-	                                <input class="form-control" placeholder="Colonia" name="" id="">
-	                            </div>
-
-	                            <div class="col-md-4 form-group">
-	                                <label>CP:</label>
-	                                <input class="form-control" placeholder="Codigo Postal" name="" id="">
-	                            </div>
-	                        </div>
-	                         <div class="form-group">
-	                            <label>Estado:</label>
-	                            <select class="form-control">
-	                                <option>Jalisco</option>
-	                                <option>2</option>
-	                                <option>3</option>
-	                                <option>4</option>
-	                                <option>5</option>
-	                            </select>
-	                        </div>
-	                        <div class="form-group">
-	                            <label>Municipio:</label>
-	                            <select class="form-control">
-	                                <option>Guadalajara</option>
-	                                <option>2</option>
-	                                <option>3</option>
-	                                <option>4</option>
-	                                <option>5</option>
-	                            </select>
-	                        </div>
-	                        
-	                    
+        	<div class="row">
+            	<div ng-controller="MyController as pag" class="my-controller col-xs-12">
+					<div class="row fluid breadcrumb div-buscar">                    
+					<div class="col-xs-6 col-md-3">
+						<label for="search">General:</label>
+						<input ng-model="q.$" id="search" class="form-control fa" placeholder="Buscar">                      
+					</div>
+					<div class="col-xs-6 col-md-3">
+						<label for="search">Plataforma:</label>
+						<input ng-model="pag.q.plataform" id="search" class="form-control fa" placeholder="Buscar">
+					</div>
+					<div class="col-xs-6 col-md-3">
+						<label for="search">Version:</label>
+						<input ng-model="pag.q.version" id="search" class="form-control fa" placeholder="Buscar">
+					</div>
+					<div class="col-xs-6 col-md-3">
+						<label for="search">Elementos p/pag:</label>
+						<input type="number" min="1" max="100" class="form-control fa" ng-model="pag.pageSize">
+					</div>
+					<p class="col-xs-12">Optimize su busqueda con los filtros de la aplicación</p>
+					</div>
+	            	<div class="table-responsive  margin-none vertical-scroll">
+	                	<table class="table table-striped table-bordered table-hover">
+							<thead>
+							  <tr>
+							      <th>
+							        Rendering engine
+							        <span class="fa fa-sort pull-right" style="cursor: pointer" ng-click="pag.ordenarPor('rendering')"></span>
+							      </th>
+							      <th>
+							        Browser
+							        <span class="fa fa-sort pull-right" style="cursor: pointer" ng-click="pag.ordenarPor('browser')"></span>
+							      </th>
+							      <th>Platform(s)</th>
+							      <th>Engine version</th>
+							      <th>CSS grade</th>
+							  </tr>
+							</thead>
+							<tbody>
+							    <tr dir-paginate="meal in pag.meals | orderBy:pag.ordenSeleccionado:pag.ascendente |filter:pag.q | itemsPerPage: pag.pageSize" current-page="pag.currentPage">
+							        <td>{{meal.rendering}}</td>
+							        <td>{{meal.browser | uppercase}}</td>
+							        <td>{{meal.plataform | lowercase}}</td>
+							        <td>{{meal.version}}</td>
+							        <td>{{meal.grade}}</td>
+							    </tr>
+							</tbody>
+						</table>
+					<!--Fin Tabla resposive -->
+	                </div>
+	                <!--Paginado de la tabla -->	                                
+	                <div style="border : none" ng-controller="OtherController" class="row other-controller  fluid" >                  
+	                  <div class="col-xs-12 text-center">
+	                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+	                  </div>                                        
 	                </div>
 
-	                <!-- /.col-md-6 (nested) -->
-	                <div class="col-md-6">
-	                    <div class="form-group">
-	                            <label for="btn_file">Elegir la fotografía del empleado:</label>
-	                            <input type="file"  id="btn_file">
-	                    </div>
-	                    
-	                    <div class="form-group">
-	                      <img class="img-responsive img-thumbnail" id='img_src' src="public/img/profile_man.jpg" alt="">
-	                      <hr>
-	                        <div class="form-group">
-	                            <p class="help-block"><i class="fa fa-warning"></i> La imagen no debe de ser mas grande 140x140 pixeles. <br>formato: JPG</p>
-	                        </div>
-	                    </div>
-
-	                   
-	                    <label>Correo electrónico:</label>
-	                    <div class="form-group input-group">                    		
-	                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-	                            <input type="text" class="form-control" placeholder="Email">
-	                    </div>	
-	                    <label>Teléfono:</label>
-	                    <div class="form-group input-group">
-	                            <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-	                            <input type="text" class="form-control" placeholder="Teléfono">
-	                    </div>
-
-	                    <div class="form-group">
-	                        <label>Departamento:</label>
-	                        <select class="form-control">
-	                            <option>Corte</option>
-	                            <option>Despunte</option>
-	                            <option>3</option>
-	                            <option>4</option>
-	                            <option>5</option>
-	                        </select>
-	                    </div>
-	                    <div class="form-group">
-	                            <label>Observaciones</label>
-	                            <textarea class="form-control" rows="3"></textarea>
-	                    </div>
-	                    <br>
-	                   
-	                </div>
-	                <!-- /.col-md-6 (nested) -->
-	            </div>
-	            
-	            <!-- /.row (nested) -->
+                </div>
+            </div>
+        	<form role="form">
+                <div class="row"> 
+                	
+                </div>
+                <!-- /.row (nested) -->
 	            <div class="pull-right row">
 	        		<div class="col-md-12">
 	           			<button type="reset"  class="btn btn-warning"><span class="fa fa-file-o"></span> Limpiar</button>
 	        			<button type="submit" class="btn btn-success"><span class="fa fa-save "></span> Guardar</button>
 	        		</div>        		
 	            </div>
-	        </form>
-	        </div>
-        	</div>
-	</div>
+	        </form>   
+        <!--Cierre de panel -body -->	        
+        </div>
+    <!--Cierre del panel-primary -->        
+    </div>
 </section>
