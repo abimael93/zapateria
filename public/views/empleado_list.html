@@ -1,5 +1,5 @@
 <section>
-    <div ng-controller="ControladorEmpleados as emp">
+    <div>
         <ol class="breadcrumb">
             <!-- Seguido de la accion que se va a realizar en este caso crear producto-->
             <h2><li class="active"><i class="fa fa-user"></i> Empleados /<small>Lista de Empleados </small></li></h1>
@@ -11,7 +11,7 @@
             </div>
             <div class="panel-body">              
               <div class="row">
-                <div ng-controller="MyController as pag" class="my-controller col-xs-12">
+                <div class="my-controller col-xs-12">
                   <div class="row fluid breadcrumb div-buscar">                    
                     <div class="col-xs-6 col-md-3">
                       <label for="search">General:</label>
@@ -63,7 +63,7 @@
                   </table>
                 </div>
                 <!--Fin Tabla resposive -->
-                <div style="border : none" ng-controller="OtherController" class="row other-controller breadcrumb fluid text-center div-paginado" >
+                <div style="border : none" class="row other-controller breadcrumb fluid text-center div-paginado" >
                   <div class="col-xs-12 col-md-3">
                     <h3><i class="fa fa-book"> Página: {{pag.currentPage}}</i></h3>
 

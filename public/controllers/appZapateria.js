@@ -15,13 +15,19 @@ angular
 		.when('/', {
 			templateUrl: 'views/home.html'
 		})
+		//Inicio
+		.when('/login', {
+			templateUrl: 'views/login.html'
+		})
 		//Módulo Empleado
 		.when('/empleado/create', {
 			templateUrl: 'views/empleado_form.html'
 		})
 		.when('/empleado/list', {
-			//controller: 'ControladorEmpleados',
-			templateUrl: 'views/empleado_list.html'
+			//controller: 'ControladorEmpleados',pag
+			controller: 'MyController',
+			controllerAs: 'pag',
+			templateUrl: 'views/empleado_list.html',
 		})
 		//Módulo Cliente
 		.when('/cliente/create', {

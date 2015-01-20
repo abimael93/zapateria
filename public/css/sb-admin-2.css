@@ -21,7 +21,7 @@ hr, .hrcolor {
 }
 
 #page-wrapper {
-    padding: 0 15px;
+    padding: 6ex 15px;
     min-height: 568px;
     background-color: #bfbfbf;
 }
@@ -35,6 +35,8 @@ hr, .hrcolor {
         border-color: black;
     }
 }
+
+
 
 .container-wrapper {
     margin-top: 5em;
@@ -398,7 +400,7 @@ table.dataTable thead .sorting:after {
     color: #fff;
 }
 
-/*Color nav */
+/*Color nav menu*/
 .navbar {
     background-color: #2C3E50;
     border-color: #4E6378;
@@ -437,4 +439,10 @@ table.dataTable thead .sorting:after {
 }
 .nav-default {
     border-color: red;
+}
+
+/* Color nav user */
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #162b48;
+    border-color: #337ab7;
 }
