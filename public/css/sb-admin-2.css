@@ -16,18 +16,19 @@ hr, .hrcolor {
 .breadcrumb{
     background-color: #C4D3D9;
 }
+
 #wrapper {
     width: 100%;
 }
 
-#page-wrapper {
+.page-wrapper {
     padding: 6ex 15px;
     min-height: 568px;
     background-color: #bfbfbf;
 }
 
 @media(min-width:768px) {
-    #page-wrapper {
+    .page-wrapper {
         position: inherit;
         margin: 0 0 0 250px;
         padding: 1px 30px;
@@ -445,4 +446,16 @@ table.dataTable thead .sorting:after {
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: #162b48;
     border-color: #337ab7;
+}
+
+.blanco-font {
+    color: #fff;
+}
+
+.nav-colap {
+    position: inherit;
+    margin: 0 0 0 0px;
+    padding: 1px 30px;
+    border-left: 1px solid #e7e7e7;
+    border-color: black;
 }
