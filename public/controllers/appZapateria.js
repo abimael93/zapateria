@@ -5,7 +5,8 @@ angular
 	[
 	 	'ngRoute',
 	 	'apEmpleados',
-	 	'miAp'
+	 	'miAp',
+	 	'navbar_ctrl',
 	]
 )
 
