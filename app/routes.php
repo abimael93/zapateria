@@ -42,12 +42,17 @@ Route::get( '/' , function()
 	return View::make('hello');
 });
 
-Route::group( array('prefix'=>'empleados'),function(){
+Route::post( '/login' , array( 'uses' => 'EmpleadoController@acceder' ) );
+Route::post( '/logout' , array( 'uses' => 'EmpleadoController@salir' ) );
+
+Route::group( array( 'prefix' => 'empleados' ) , function () {
     Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
     Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
-    Route::post( '/login' , array( 'uses' => 'EmpleadoController@acceder' ) );
-    Route::post( '/logout' , array( 'uses' => 'EmpleadoController@salir' ) );
     Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/changePassword' , array( 'uses' => 'EmpleadoController@cambiar_password' ) );
+});
+
+Route::group( array( 'prefix' => 'catalogos' ) , function () {
+    Route::get( '/{tipo}' , array( 'uses' => 'CatalogoController@catalogos' ) );
 });
