@@ -92,7 +92,7 @@
                         </li>
                         <li>
                             <a ng-class="{active: nav.modulo[0].nombreBase == 'empleado'}" href="#"><i class="fa fa-user"></i> Empleados<span class="fa arrow"></span></a>
-                            <ul ng-class="{'collapse in': nav.modulo[0].nombreBase == 'empleado'}" class="nav nav-second-level" aria-expanded="{{nav.modulo[0].nombreBase == 'empleado'}}">
+                            <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/empleado/create">   Alta</a>
                                 </li>
@@ -105,7 +105,7 @@
                         
                         <li>
                             <a ng-class="{active: nav.modulo[0].nombreBase == 'cliente'}" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
-                            <ul ng-class="{'collapse in': nav.modulo[0].nombreBase == 'cliente'}" class="nav nav-second-level" aria-expanded="{{nav.modulo[0].nombreBase == 'cliente'}}">
+                            <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/cliente/create"> Alta</a>
                                 </li>
@@ -118,14 +118,14 @@
 
                         <li>
                             <a ng-class="{active: nav.modulo[0].nombreBase == 'proveedor'}" href="#"><i class="fa fa-table fa-fw"></i> Proveedores<span class="fa arrow"></span></a>
-                            <ul ng-class="{'collapse in': nav.modulo[0].nombreBase == 'proveedor'}" class="nav nav-second-level" aria-expanded="{{nav.modulo[0].nombreBase == 'proveedor'}}">
+                            <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/proveedor/create"> Alta</a>
                                 </li>
                                 <li>
                                     <a class="fa fa-list-ul" href="#/proveedor/list"> Listar</a>
                                 </li>
-                            </ul>   
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         
