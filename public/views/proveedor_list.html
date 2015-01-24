@@ -1,31 +1,27 @@
-<div class="container">
-  <h1>Compartir Metodos entre controladores utilizando Fabricas</h1>
-  <hr>
-  <span class="lead text-info">Controlador Uno</span>
-  <div ng-controller="ControladorUno">
-    <input type="text" size="50" ng-model="nuevoMensaje">
-    <button class="btn btn-success" ng-click="nuevo()">Guardar</button>
-    <h3 class="text-info">{{dato.mensaje}}</h3>
-  </div>
-
-  <hr>
-
-  <span class="lead text-warning">Controlador Dos</span>
-  <div ng-controller="ControladorDos">
-    <input type="text" size="50" ng-model="nuevoMensaje">
-    <button class="btn btn-success" ng-click="nuevo()">Guardar</button>
-    <h3 class="text-warning ">{{dato.mensaje}}</h3>
-  </div>
-
-  <hr>
-  <div ng-controller="ControladorTres">
-    <button class="btn btn-primary" ng-click="resetear()">Mensaje Inicial</button>
-  </div>
-</div>
-</div>
-<hr>
 <div>
-	  <a class="btn btn-lg btn-warning" href="https://www.youtube.com/watch?v=VWAuSU3WPTQ" target="_blank">
-	    ir al Video-Tutorial
-    </a>
-	</div>
+    <h4>Default</h4>
+
+    <pagination total-items="prov.totalItems" ng-model="prov.currentPage" ng-change="prov.pageChanged()"></pagination>
+
+    <pagination boundary-links="true" total-items="prov.totalItems" ng-model="prov.currentPage" max-size="prov.maxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"  rotate="false"></pagination>
+
+    <pagination direction-links="false" boundary-links="true" total-items="prov.totalItems" ng-model="prov.currentPage" ></pagination>
+
+    <pagination direction-links="false" total-items="prov.totalItems" ng-model="prov.currentPage" num-pages="prov.smallnumPages"></pagination>
+
+    <pre>The selected page no: {{prov.currentPage}}</pre>
+    <button class="btn btn-info" ng-click="prov.setPage(3)">Set current page to: 3</button>
+
+    <hr />
+    <h4>Pager</h4>
+    <pager total-items="prov.totalItems" ng-model="prov.currentPage"></pager>
+
+    <hr />
+    <h4>Limit the maximum visible buttons</h4>
+
+    <pagination total-items="prov.bigTotalItems" ng-model="prov.bigCurrentPage" max-size="prov.maxSize" class="pagination-sm" boundary-links="true"></pagination>
+
+    <pagination total-items="prov.bigTotalItems" ng-model="prov.bigCurrentPage" max-size="prov.maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="prov.numPages" items-per-page="prov.itemsPerPage"></pagination>
+
+    <pre>Page: {{prov.bigCurrentPage}} / {{prov.numPages}}</pre>
+</div>

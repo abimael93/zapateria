@@ -7,6 +7,8 @@ angular
 	 	'apEmpleados',
 	 	'miAp',
 	 	'navbar_ctrl',
+	 	'ui.bootstrap',
+	 	'proveedor_ctrl',
 	]
 )
 
@@ -43,7 +45,9 @@ angular
 			templateUrl: 'views/proveedor_form.html'
 		})
 		.when('/proveedor/list', {
-			templateUrl: 'views/proveedor_list.html'
+			controller: 'ProveedorCtrl',
+			controllerAs: 'prov',
+			templateUrl: 'views/proveedor_list.html',
 		})
 		//Módulo Producto
 		.when('/producto/create', {
