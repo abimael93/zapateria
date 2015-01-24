@@ -449,7 +449,7 @@ table.dataTable thead .sorting:after {
 }
 
 .blanco-font {
-    color: #fff;
+    color: white;
 }
 
 .nav-colap {
@@ -462,5 +462,5 @@ table.dataTable thead .sorting:after {
 
 /* Títulos del nav-top */
 .nav-modulo {
-    margin-right: 12ex;
+    margin-right: 115px;
 }

@@ -57,10 +57,9 @@
                 
                 <a class="navbar-brand visible-sm visible-md visible-lg" href="" ng-click="nav.isCollapsed = !nav.isCollapsed"><i class="fa fa-th-list blanco-font"> Menú</i></a>
 
-                 <a class="navbar-brand" ng-bind="nav.ubicacion()"><i class="fa fa-th-list blanco-font"></i></a>
+                 <a class="navbar-brand nav-modulo visible-sm visible-md visible-lg" ng-bind="nav.ubicacion()"></a>
 
-                <a class="navbar-brand blanco-font"><i class="{{nav.modulo[0].icon}} blanco-font"></i> {{nav.modulo[0].nombre}} {{nav.modulo[0].separador}} <small class="blanco-font">{{nav.modulo[0].accion}}</small></a>
-
+                <a class="navbar-brand blanco-font"><i class="{{nav.modulo[0].icon}} blanco-font"></i> <strong class="blanco-font" ng-bind="nav.modulo[0].nombre"> </strong> <span ng-bind="nav.separador" class="blanco-font"> </span> <small class="blanco-font" ng-bind="nav.modulo[0].accion"> </small></a>
             </div>
             <!-- /.navbar-header -->
 

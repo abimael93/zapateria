@@ -10,6 +10,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
     };
 
     nav.ubicacion = function() {
+        nav.separador = '|';
         switch($location.path()){
             case '/empleado/create':
                 nav.modulo = [
@@ -17,8 +18,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'empleado',
                                     nombre: 'Empleados',
                                     icon: 'fa fa-user',
-                                    separador: '/',
-                                    accion: 'Nuevo Empleado',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -28,8 +28,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'empleado',
                                     nombre: 'Empleados',
                                     icon: 'fa fa-user',
-                                    separador: '/',
-                                    accion: 'Lista de Empleados',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -39,8 +38,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'cliente',
                                     nombre: 'Clientes',
                                     icon: 'fa fa-bar-chart-o',
-                                    separador: '/',
-                                    accion: 'Nuevo Cliente',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -50,8 +48,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'cliente',
                                     nombre: 'Clientes',
                                     icon: 'fa fa-bar-chart-o',
-                                    separador: '/',
-                                    accion: 'Lista de Clientes',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -61,8 +58,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'proveedor',
                                     nombre: 'Proveedores',
                                     icon: 'fa fa-table',
-                                    separador: '/',
-                                    accion: 'Nuevo Proveedor',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -72,8 +68,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'proveedor',
                                     nombre: 'Proveedores',
                                     icon: 'fa fa-table',
-                                    separador: '/',
-                                    accion: 'Lista de Proveedores',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -83,8 +78,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'producto',
                                     nombre: 'Productos',
                                     icon: 'fa fa-shopping-cart',
-                                    separador: '/',
-                                    accion: 'Nuevo Producto',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -94,8 +88,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'producto',
                                     nombre: 'Productos',
                                     icon: 'fa fa-shopping-cart',
-                                    separador: '/',
-                                    accion: 'Lista de Productos',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -105,8 +98,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'pedido',
                                     nombre: 'Pedidos',
                                     icon: 'fa fa-truck',
-                                    separador: '/',
-                                    accion: 'Nuevo Pedido',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -116,8 +108,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'pedido',
                                     nombre: 'Pedidos',
                                     icon: 'fa fa-truck',
-                                    separador: '/',
-                                    accion: 'Lista de Pedidos',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -127,8 +118,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'desarrollo',
                                     nombre: 'Desarrollo',
                                     icon: 'fa fa-cogs',
-                                    separador: '/',
-                                    accion: 'Nuevo Modelo',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -138,8 +128,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'desarrollo',
                                     nombre: 'Desarrollo',
                                     icon: 'fa fa-cogs',
-                                    separador: '/',
-                                    accion: 'Lista de Modelos',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -149,7 +138,6 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'produccion',
                                     nombre: 'Produccion',
                                     icon: 'fa fa-line-chart',
-                                    separador: '/',
                                     accion: 'Nueva Orden de Producción',
                                 }
                             ];
@@ -160,8 +148,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'produccion',
                                     nombre: 'Produccion',
                                     icon: 'fa fa-line-chart',
-                                    separador: '/',
-                                    accion: 'Lista de Ordenes de Producción',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -171,7 +158,6 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'remision',
                                     nombre: 'Ventas',
                                     icon: 'fa fa-money',
-                                    separador: '/',
                                     accion: 'Nueva Venta',
                                 }
                             ];
@@ -182,8 +168,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'remision',
                                     nombre: 'Ventas',
                                     icon: 'fa fa-money',
-                                    separador: '/',
-                                    accion: 'Lista de Ventas',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -193,7 +178,6 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'recepcion',
                                     nombre: 'Compras',
                                     icon: 'fa fa-credit-card',
-                                    separador: '/',
                                     accion: 'Nueva Compra',
                                 }
                             ];
@@ -204,8 +188,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'recepcion',
                                     nombre: 'Compras',
                                     icon: 'fa fa-credit-card',
-                                    separador: '/',
-                                    accion: 'Lista de Compras',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -215,8 +198,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'ajuste_entrada',
                                     nombre: 'Ajustes de Entrada',
                                     icon: 'fa fa-arrow-circle-right',
-                                    separador: '/',
-                                    accion: 'Nuevo Ajuste de Entrada',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -226,8 +208,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'ajuste_entrada',
                                     nombre: 'Ajustes de Entrada',
                                     icon: 'fa fa-arrow-circle-right',
-                                    separador: '/',
-                                    accion: 'Lista de Ajustes de Entrada',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -237,8 +218,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'ajuste_salida',
                                     nombre: 'Ajustes de Salida',
                                     icon: 'fa fa-arrow-circle-left',
-                                    separador: '/',
-                                    accion: 'Nuevo Ajuste de Salida',
+                                    accion: 'Nuevo',
                                 }
                             ];
                 break;
@@ -248,8 +228,7 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                                     nombreBase: 'ajuste_salida',
                                     nombre: 'Ajustes de Salida',
                                     icon: 'fa fa-arrow-circle-left',
-                                    separador: '/',
-                                    accion: 'Lista de Ajustes de Salida',
+                                    accion: 'Listado',
                                 }
                             ];
                 break;
@@ -257,12 +236,12 @@ navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
                 nav.modulo = [
                                 {
                                     nombreBase: 'inicio',
-                                    nombre: '',
-                                    icon: '',
-                                    separador: '',
+                                    nombre: 'Inicio',
+                                    icon: 'fa fa-home',
                                     accion: '',
                                 }
                             ];
+                nav.separador = '';
                 break;
         }
     }
