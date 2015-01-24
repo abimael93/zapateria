@@ -21,7 +21,7 @@ class Empleado extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
+	protected $hidden = array('password', 'remember_token','usuario');
 
 	protected $primaryKey    		= 'id_empleado';
     public 	  $timestamps		 	= false;

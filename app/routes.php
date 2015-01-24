@@ -35,6 +35,8 @@ define('USUARIO_LOGUEADO',                  20);
 
 define('SERVIDOR',__DIR__);
 
+define('NUM_RESULTADOS', 10);
+
 require(SERVIDOR.'/helpers/Utiles.php');
 
 Route::get( '/' , function()
@@ -45,14 +47,23 @@ Route::get( '/' , function()
 Route::post( '/login' , array( 'uses' => 'EmpleadoController@acceder' ) );
 Route::post( '/logout' , array( 'uses' => 'EmpleadoController@salir' ) );
 
-Route::group( array( 'prefix' => 'empleados' ) , function () {
+Route::put( '/empleados/changePassword' , array( 'uses' => 'EmpleadoController@cambiar_password' , 
+            'before' => array ( 'auth_empleado' , 'able_empleado' ) ) );
+
+Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
+                     'able_empleado' ) ) , 
+    function () {
+    Route::get( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
+    Route::get( '/recuperar/{id_empleado}' , array( 'uses' => 'EmpleadoController@recuperar' ) );
     Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
     Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
     Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@modificar' ) );
-    Route::put( '/changePassword' , array( 'uses' => 'EmpleadoController@cambiar_password' ) );
+    Route::delete( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@eliminar' ) );
 });
 
-Route::group( array( 'prefix' => 'catalogos' ) , function () {
+Route::group( array( 'prefix' => 'catalogos' , 'before' => array ( 'auth_empleado' , 'activated_empleado' , 
+                     'able_empleado' ) ) ,
+    function () {
     Route::get( '/{tipo}' , array( 'uses' => 'CatalogoController@catalogos' ) );
 });

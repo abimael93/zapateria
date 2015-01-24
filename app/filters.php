@@ -115,3 +115,67 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+/**
+*   this filter checks if a employee is already login in the system
+*   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+*   @since      01/24/2015
+*   @version    1
+*   @access     public
+*   @return     json ( status = ? , data = ? , mensaje = ? )
+*   @example    
+*/
+Route::filter ( 'auth_empleado' , function () {
+    if( !Auth::check() ) {
+        return Response::json(
+                array(
+                    'status'    => NO_PERMITIDO,
+                    'data'      => NULL,
+                    'message'   => 'Necesitas iniciar sesion para poder ver la pagina solicitada.'
+                ), 500
+        );
+    }
+} ); 
+
+/**
+*   this filter checks if a employee has activated his account in the system changing his password
+*   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+*   @since      01/24/2015
+*   @version    1
+*   @access     public
+*   @return     json ( status = ? , data = ? , mensaje = ? )
+*   @example    
+*/
+Route::filter ( 'activated_empleado' , function () {
+    if( Auth::User()->estatus == 0 ) {
+        return Response::json(
+                array(
+                    'status'    => NO_PERMITIDO,
+                    'data'      => NULL,
+                    'message'   => 'Necesitas establecer una nueva contraseña para poder continuar.'
+                ), 500
+        );
+    }
+} );
+
+/**
+*   this filter checks if a employee is able to go in the system
+*   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+*   @since      01/24/2015
+*   @version    1
+*   @access     public
+*   @return     json ( status = ? , data = ? , mensaje = ? )
+*   @example    
+*/
+Route::filter ( 'able_empleado' , function () {
+    if( Auth::User()->eliminado != 'F' ) {
+        return Response::json(
+                array(
+                    'status'    => NO_PERMITIDO,
+                    'data'      => NULL,
+                    'message'   => 'Ya no puedes utilizar el sistema.'
+                ), 500
+        );
+    }
+} );
