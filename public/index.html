@@ -38,10 +38,10 @@
     <!--[if IE 7 ]> 
     <div id="system" class="ie7"> <![endif]-->
     <!--[if IE 7]> <script type="text/javascript"> $('#system').addClass('ie7'); </script> <![endif]-->
-
+    
 </head>
 
-<body ng-app="Rutas">
+<body ng-app="appZapateria">
 
     <div id="wrapper" ng-controller="NavbarCtrl as nav">
 
@@ -83,7 +83,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-           <div class="navbar-default sidebar " role="navigation" ng-show="nav.isCollapsed">
+           <div class="navbar-default sidebar navbar-scroll" role="navigation" ng-show="nav.isCollapsed">
                 <div class="sidebar-nav navbar-collapse ">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -281,18 +281,48 @@
     <!-- UI-Bootstrap -->
     <script src="js/ui-bootstrap-tpls-0.12.0.min.js"></script>
 
+    <!-- Angular Resource -->
+
     <script src="controllers/paginado.js"></script>
     <script src="controllers/dirPagination.js"></script>
     
     <!-- Controllers -->
     <script src="controllers/navbar_ctrl.js"></script>    
-    <script src="controllers/proveedor_ctrl.js"></script>    
+    <script src="controllers/proveedor_ctrl.js"></script>
+
+    <!-- Services -->
+    <script src="controllers/appZapateria_services.js"></script>
+
+    <script src="controllers/dirPagination.js"></script>
 
     <script src="controllers/empleado_ctrl.js"></script>
     <script src="controllers/factory.js"></script>
     <script src="controllers/appZapateria.js"></script>
     <script src="js/angular-route.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var tam;
+            var menu_tam;
 
+            menu_tam = 639-52;
+
+            if( $(window).width() <= $(window).height() ) {
+                tam = $(window).width();
+            } else {
+                tam = $(window).height();
+            }
+
+            tam -= 52;
+
+            if( menu_tam > tam){
+                $('.navbar-scroll').css({
+                    'overflow-y': 'auto',
+                    'max-height': tam+'px',
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

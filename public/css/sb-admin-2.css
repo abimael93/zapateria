@@ -37,8 +37,6 @@ hr, .hrcolor {
     }
 }
 
-
-
 .container-wrapper {
     margin-top: 5em;
     margin-bottom: 1.5em;
@@ -371,6 +369,8 @@ table.dataTable thead .sorting:after {
     max-height: 30ex;
 }
 
+/* Navbar Vertical Scroll */
+
 .margin-none { 
      margin: 0px;    
      margin-bottom: 0px;
@@ -458,6 +458,10 @@ table.dataTable thead .sorting:after {
     padding: 1px 30px;
     border-left: 1px solid #e7e7e7;
     border-color: black;
+}
+
+.navbar-default {
+    background-color: #34495E;
 }
 
 /* Títulos del nav-top */

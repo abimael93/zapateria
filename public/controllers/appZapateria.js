@@ -1,7 +1,7 @@
 angular
 .module
 (
-	'Rutas',
+	'appZapateria',
 	[
 	 	'ngRoute',
 	 	'apEmpleados',
