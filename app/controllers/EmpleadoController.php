@@ -492,6 +492,7 @@ class EmpleadoController extends BaseController{
                                   ); 
                 $empleados = Empleado::select( $this->campos )
                                      ->where( 'eliminado' , '=' , ( $eliminado == 0 ) ? 'F' : 'P' )
+                                     ->where( 'id_empleado' , '<>' , Auth::User()->id_empleado )
                                      ->take( NUM_RESULTADOS )
                                      ->skip( NUM_RESULTADOS*$offset )
                                      ->get()
