@@ -1,6 +1,4 @@
-var proveedor = angular.module('proveedor_ctrl',[])
-
-proveedor.controller('ProveedorCtrl',['$log', function ($log) {
+angular.module('appZapateria').controller('ProveedorCtrl',['$log', function ($log) {
   var prov = this;
   prov.totalItems = 64;
   prov.currentPage = 4;

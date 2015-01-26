@@ -1,16 +1,4 @@
-angular
-.module
-(
-	'appZapateria',
-	[
-	 	'ngRoute',
-	 	'apEmpleados',
-	 	'miAp',
-	 	'navbar_ctrl',
-	 	'ui.bootstrap',
-	 	'proveedor_ctrl',
-	]
-)
+angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap',])
 
 .config(function($routeProvider){
 	$routeProvider
@@ -29,7 +17,6 @@ angular
 		.when('/empleado/list', {
 			//controller: 'ControladorEmpleados',pag
 			controller: 'MyController',
-			controllerAs: 'pag',
 			templateUrl: 'views/empleado_list.html',
 		})
 		//Módulo Cliente

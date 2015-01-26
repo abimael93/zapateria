@@ -1,6 +1,4 @@
-var navbar = angular.module('navbar_ctrl',[]);
-
-navbar.controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
+angular.module('appZapateria').controller('NavbarCtrl', ['$location',function NavbarCtrl($location) {
     var nav = this;
 
     nav.isCollapsed = true;
