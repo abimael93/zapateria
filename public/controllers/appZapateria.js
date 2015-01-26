@@ -1,4 +1,4 @@
-angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap',])
+angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap','ngResource',])
 
 .config(function($routeProvider){
 	$routeProvider
