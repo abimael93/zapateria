@@ -4,11 +4,15 @@ angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap','ng
 	$routeProvider
 		//Inicio
 		.when('/', {
+			controller: 'appController',
+			//controllerAs: 'login',
 			templateUrl: 'views/home.html'
 		})
 		//Inicio
 		.when('/login', {
-			templateUrl: 'views/login.html'
+			controller: 'LoginCtrl',
+			controllerAs: 'login',
+			templateUrl: 'views/login.html',
 		})
 		//Módulo Empleado
 		.when('/empleado/create', {

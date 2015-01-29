@@ -246,28 +246,47 @@ angular.module('appZapateria').controller('NavbarCtrl', ['$location',function Na
 }]);
 //para hacer uso de $resource debemos colocarlo al crear el modulo
 //con dataResource inyectamos la factoría
-angular.module('appZapateria').controller("appController", function ($scope, $http, dataResource) {
+angular.module('appZapateria').controller("appController", function ($scope, $http, $location,  dataResource) {
     //hacemos uso de $http para obtener los datos del json
-    $http.get('views/data.json').success(function (data) {
+    /*$http.post('http://localhost/zapateria/public/login',{usuario: '', password: ''}).success(function (data) {
         //Convert data to array.
         //datos lo tenemos disponible en la vista gracias a $scope
-        $scope.datos = data;
-    });
+        //$scope.datos = data;
+        //if( !$scope.datos.status )
+            //$location.path('empleado/list');
+    })
+    .error( function( data ) {
+        alert( data.message );
+        alert( data.status );
+        //$location.path('empleado/create');
+    });*/
+    //alert($scope.datos.status);
     //datosResource lo tenemos disponible en la vista gracias a $scope
     $scope.datosResource = dataResource.get();
+    
+    /*$scope.direcciona = function( estado ) {
+        if( estado == 0 ) {
+            alert('holi!');
+        }
+    }*/
+
+    //alert($scope.dataResource.status);
+    //if( estado == 0 )
+            //$location.path('empleado/list');
 })
  
 //de esta forma tan sencilla consumimos con $resource en AngularJS
 angular.module('appZapateria').factory("dataResource", function ($resource) {
-    return $resource("views/data.json", //la url donde queremos consumir
-        {}, //aquí podemos pasar variables que queramos pasar a la consulta
-        //a la función get le decimos el método, y, si es un array lo que devuelve
+
+    return $resource("http://localhost/zapateria/public/empleados/1", //la url donde queremos consumir
+        { }, //aquí podemos pasar variables que queramos pasar a la consulta
+        //a la función post le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
-        { get: { method: "GET", isArray: true }
+        { get: { method: "GET", isArray: false }
     })
 })
 
-navbar.factory('Fabrica', function() {
+angular.module('appZapateria').factory('Fabrica', function() {
   var servicio = {
     objeto: {mensaje: 'Saludos desde la Fabrica desde Controlador Empleados!'},
     msjInicial: function() {

@@ -1,17 +1,16 @@
-<h1>Inicio</h1>
+<section>
+    <div class="row">
+        <h1 class="subheader">Consumir un json con $http en AngularJS</h1>
+        <ul class="panel callout radius">
+                <p>Login: {{ datos }}</p>
+        </ul>
 
-<div class="row" ng-controller="appController">
-<h1 class="subheader">Consumir un json con $http en AngularJS</h1>
-<ul class="panel callout radius">
-    <li ng-repeat="data in datos">
-        <p>Id: {{ data.id }} Nombre: {{ data.nombre }} Profesión: {{ data.profesion }}</p>
-    </li>
-</ul>
-
-<h1 class="subheader">Consumir un json con resource en AngularJS</h1>
-<ul class="panel callout radius">
-    <li ng-repeat="data in datosResource">
-        <p>Id: {{ data.id }} Nombre: {{ data.nombre }} Profesión: {{ data.profesion }}</p>
-    </li>
-</ul>
-</div>
+        <h1 class="subheader">Consumir un json con resource en AngularJS</h1>
+        <ul class="panel callout radius">
+            <!-- <li ng-repeat="data in datosResource"> -->
+            <p>{{datosResource}}{{datosResource.status}}</p>
+            <p>{{datosResource.status}}</p>
+            <!-- </li> -->
+        </ul>
+    </div>
+</section>
