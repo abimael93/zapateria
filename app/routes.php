@@ -44,7 +44,7 @@ Route::get( '/' , function()
 	return View::make('hello');
 });
 
-Route::post( '/login' , array( 'uses' => 'EmpleadoController@acceder' ) );
+Route::post( '/login' , array( 'uses' => 'EmpleadoController@acceder' , 'before' => array( 'login_empleado' ) ) );
 Route::post( '/logout' , array( 'uses' => 'EmpleadoController@salir' ) );
 
 Route::put( '/empleados/changePassword' , array( 'uses' => 'EmpleadoController@cambiar_password' , 
@@ -66,4 +66,6 @@ Route::group( array( 'prefix' => 'catalogos' , 'before' => array ( 'auth_emplead
                      'able_empleado' ) ) ,
     function () {
     Route::get( '/{tipo}' , array( 'uses' => 'CatalogoController@catalogos' ) );
+    Route::get( '/dependientes/{tipo}' , array( 'uses' => 'CatalogoController@catalogosDepandientes' ) );
+    Route::get( '/dependientes/{tipo}/{id}' , array( 'uses' => 'CatalogoController@catalogosDepandientes' ) );
 });

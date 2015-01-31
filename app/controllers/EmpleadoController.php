@@ -194,6 +194,7 @@ class EmpleadoController extends BaseController{
     *   @since      01/18/2015
     *   @version    1
     *   @access     public
+    *   @param      Integer [$id_empleado] it's the id_empleado that reference which employee wants to modify
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados by put
     */

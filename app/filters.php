@@ -179,3 +179,33 @@ Route::filter ( 'able_empleado' , function () {
         );
     }
 } );
+
+/**
+*   this filters is used for maintaining the employee's session
+*   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+*   @since      01/31/2015
+*   @version    1
+*   @access     public
+*   @return     json ( status = ? , data = ? , mensaje = ? )
+*   @example    
+*/
+Route::filter ( 'login_empleado' , function () {
+    if( Auth::check() ) {
+        $empleado = Empleado::where( 'id_empleado' , '=' , Auth::User()->id_empleado )
+                            ->first(array(
+                                    'id_empleado',
+                                    'nombre',
+                                    'apellidos',
+                                    'foto',
+                                    'estatus',
+                                    'fecha_registro'
+                                ));
+        return Response::json(
+                array(
+                    'status'    => OK,
+                    'data'      => $empleado,
+                    'message'   => ''
+                ), 200
+        );
+    }
+} );

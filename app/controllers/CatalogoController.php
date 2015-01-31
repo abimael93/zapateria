@@ -8,6 +8,7 @@ class CatalogoController extends BaseController{
     *   @since      01/22/2015
     *   @version    1
     *   @access     public
+    *   @param      String [$tipo] it's the type of set tha you want to get
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/catalogos/producto_grupo by get
     */
@@ -66,6 +67,48 @@ class CatalogoController extends BaseController{
                 break;
             case 'unidad_medida':
                 $query = UnidadMedida::all();
+                break;
+            default:
+                # code...
+                break;
+        }
+        return Response::json(
+                        array(
+                            'status'    => $status,
+                            'data'      => $query,
+                            'message'   => $mensaje
+                        ),$status != 'OK' ? 500 : 200
+                    );
+    }
+
+    /**
+    *   this function returns a list of values depend on the type that someone has selected
+    *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+    *   @since      01/22/2015
+    *   @version    1
+    *   @access     public
+    *   @param      String [$tipo] it's the type of set tha you want to get
+    *   @param      Integer [$id] it's the filter for the differents kind of catalogs
+    *   @return     json ( status = ? , data = ? , mensaje = ? )
+    *   @example    http://localhost/zapateria/public/catalogos/dependientes/pais by get
+    *   @example    http://localhost/zapateria/public/catalogos/dependientes/estado/1 by get
+    */
+    public function catalogosDepandientes ( $tipo , $id = NULL ) {
+        $query   = NULL;
+        $status  = OK;
+        $mensaje = '';
+        switch ( $tipo ) {
+            case 'pais':
+                $query = Pais::all();
+                break;
+            case 'estado':
+                $query = Estado::where( 'id_pais' , '=' , $id )->get();
+                break;
+            case 'municipio':
+                $query = Municipio::where( 'id_estado' , '=' , $id )->get();
+                break;
+            case 'colonia':
+                $query = Colonia::where( 'id_municipio' , '=' , $id )->get();
                 break;
             default:
                 # code...
