@@ -59,7 +59,7 @@ class EmpleadoController extends BaseController{
     }
 
     /**
-    *   this function registers a employee to the system
+    *   this function registers an employee to the system
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/18/2015
     *   @version    1
@@ -189,7 +189,7 @@ class EmpleadoController extends BaseController{
     }
 
     /**
-    *   this function modify a employee the system already have
+    *   this function modify an employee the system already have
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/18/2015
     *   @version    1
@@ -304,7 +304,7 @@ class EmpleadoController extends BaseController{
     }
 
     /**
-    *   this function changes the employee's password
+    *   this function shows the complete information from an employee
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/18/2015
     *   @version    1

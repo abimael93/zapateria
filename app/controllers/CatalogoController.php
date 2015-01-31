@@ -68,6 +68,9 @@ class CatalogoController extends BaseController{
             case 'unidad_medida':
                 $query = UnidadMedida::all();
                 break;
+            case 'pais':
+                $query = Pais::all();
+                break;
             default:
                 # code...
                 break;
@@ -98,9 +101,6 @@ class CatalogoController extends BaseController{
         $status  = OK;
         $mensaje = '';
         switch ( $tipo ) {
-            case 'pais':
-                $query = Pais::all();
-                break;
             case 'estado':
                 $query = Estado::where( 'id_pais' , '=' , $id )->get();
                 break;
