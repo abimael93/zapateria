@@ -74,7 +74,7 @@
                         <li><a href=""><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li ng-controller="SesionCtrl as sesion"><a ng-click="sesion.logout()" href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -290,14 +290,15 @@
 
     <!-- Aplicación -->
     <script src="controllers/appZapateria.js"></script>
-
-    <!-- Services -->
-    <script src="controllers/appZapateria_services.js"></script>
     
     <!-- Controllers -->
     <script src="controllers/navbar_ctrl.js"></script>
     <script src="controllers/proveedor_ctrl.js"></script>
-    <script src="controllers/login_ctrl.js"></script>
+    <script src="controllers/sesion_ctrl.js"></script>
+
+    <!-- Services -->
+    <script src="controllers/appZapateria_services.js"></script>
+    <script src="controllers/route_services.js"></script>
 
     <script src="controllers/paginado.js"></script>
     <script src="controllers/dirPagination.js"></script>

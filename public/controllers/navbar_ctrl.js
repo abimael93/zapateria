@@ -276,7 +276,7 @@ angular.module('appZapateria').controller("appController", function ($scope, $ht
 })
  
 //de esta forma tan sencilla consumimos con $resource en AngularJS
-angular.module('appZapateria').factory("dataResource", function ($resource) {
+angular.module('appZapateria').factory('dataResource', function ($resource) {
 
     return $resource("http://localhost/zapateria/public/empleados/1", //la url donde queremos consumir
         { }, //aquí podemos pasar variables que queramos pasar a la consulta

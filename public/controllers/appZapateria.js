@@ -10,8 +10,8 @@ angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap','ng
 		})
 		//Inicio
 		.when('/login', {
-			controller: 'LoginCtrl',
-			controllerAs: 'login',
+			controller: 'SesionCtrl',
+			controllerAs: 'sesion',
 			templateUrl: 'views/login.html',
 		})
 		//Módulo Empleado
