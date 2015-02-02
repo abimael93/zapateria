@@ -24,7 +24,7 @@ hr, .hrcolor {
 .page-wrapper {
     padding: 6ex 15px;
     min-height: 568px;
-    background-color: #DEDEDE;
+    background-color: #f9f9f9;
 }
 
 @media(min-width:768px) {

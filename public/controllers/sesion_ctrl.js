@@ -1,12 +1,14 @@
 //para hacer uso de $resource debemos colocarlo al crear el modulo
 //con dataResource inyectamos la factoría
-angular.module('appZapateria').controller('SesionCtrl',['$http','LoginResource','routeServices', function ( $http, dataResource, routeServices ) {
+angular.module('appZapateria').controller('SesionCtrl',['$http','routeServices', function ( $http, dataResource, routeServices ) {
     var sesion = this;
     //hacemos uso de $http para obtener los datos del json
     sesion.loguear = function() {
-        alert(routeServices.PathServer()+'login');
+        //alert(routeServices.PathServer()+'login');
         var ruta_api = routeServices.PathServer() + "login";
-        $http.post(ruta_api, {usuario: sesion.user, password: sesion.pass}).success(function (data) {
+
+        $http.post(ruta_api, {usuario: sesion.user, password: sesion.pass})
+        .success(function (data) {
             sesion.datos = data;
             routeServices.rutaInicio();
         })
@@ -19,9 +21,11 @@ angular.module('appZapateria').controller('SesionCtrl',['$http','LoginResource',
     }
 
     sesion.logout = function() {
-        alert(routeServices.PathServer()+'logout');
+        //alert(routeServices.PathServer()+'logout');
         var ruta_api = routeServices.PathServer() + "logout";
-        $http.post(ruta_api, { }).success(function (data) {
+        
+        $http.post(ruta_api, { })
+        .success(function (data) {
             sesion.datos = data;
             routeServices.rutaLogin();
         })
