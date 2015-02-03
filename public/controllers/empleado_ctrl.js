@@ -1,36 +1,21 @@
-var empleado = angular.module('apEmpleados',['app_paginado','angularUtils.directives.dirPagination']);
+angular.module('appZapateria').controller('empleadoCtrl', ['$location','$modal','catalogosServices','routeServices','$http', function( $location, $modal, catalogosServices, routeServices, $http) {
+    var empleado = this;
 
-empleado.controller('ControladorEmpleados', function empleado_ControladorDos() {
-	var emp = this;
-	emp.empleados = [
-		{
-		    rendering: 'Trident', browser: 'Internet Explorer 4.0', plataform: 'Win 95+', version: '4',
-		    grade: 'X'
-		},
-		{
-		    rendering: 'Trident', browser: 'Internet Explorer 5.0', plataform: 'Win 95+', version: '5',
-		    grade: 'C'
-		},
-		{
-		    rendering: 'Trident', browser: 'Internet Explorer 5.5', plataform: 'Win 95+', version: '5.5',
-		    grade: 'A'
-		},
-		{
-		    rendering: 'Trident', browser: 'Internet Explorer 6', plataform: 'Win 98+', version: '6',
-		    grade: 'A'
-		}
-	];
-});
+    var ruta_api = routeServices.PathServer() + "catalogos/departamento";
 
-angular.module('apEmpleados').factory('Fabrica', function() {
-  var servicio = {
-    objeto: {mensaje: 'Saludos desde la Fabrica desde Controlador Empleados!'},
-    msjInicial: function() {
-      servicio.objeto['mensaje'] = 'Saludos desde la Fabrica!';
-    },
-    msjNuevo: function(msj) {
-      servicio.objeto.mensaje = msj;
+    empleado.departamentos = function(){
+        $http.get(ruta_api, {})
+            .success(function (data) {
+                return empleado.datos = data;
+                //routeServices.rutaInicio();
+            })
+            .error( function( data ) {
+                return empleado.respuesta = data;
+                alert( data.message );
+                //alert( data.status );
+                //$location.path('empleado/create');
+            });    
     }
-  };
-  return servicio;
-});
+    empleado.datos = catalogosServices.getDepartamentos();
+    //alert(empleado.departamentos);
+}]);

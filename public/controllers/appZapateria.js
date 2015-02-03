@@ -1,4 +1,4 @@
-angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap','ngResource',])
+angular.module('appZapateria',['ngRoute','miAp','ui.bootstrap','ngResource',])
 
 .config(function($routeProvider){
 	$routeProvider
@@ -16,6 +16,8 @@ angular.module('appZapateria',['ngRoute','apEmpleados','miAp','ui.bootstrap','ng
 		})
 		//Módulo Empleado
 		.when('/empleado/create', {
+			controller: 'empleadoCtrl',
+			controllerAs: 'empleado',
 			templateUrl: 'views/empleado_form.html'
 		})
 		.when('/empleado/list', {
