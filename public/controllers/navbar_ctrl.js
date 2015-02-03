@@ -246,35 +246,45 @@ angular.module('appZapateria').controller('NavbarCtrl', ['$location',function Na
 }]);
 //para hacer uso de $resource debemos colocarlo al crear el modulo
 //con dataResource inyectamos la factoría
-angular.module('appZapateria').controller("appController", function ($scope, $http, $location,  dataResource) {
-    //hacemos uso de $http para obtener los datos del json
-    /*$http.post('http://localhost/zapateria/public/login',{usuario: '', password: ''}).success(function (data) {
-        //Convert data to array.
-        //datos lo tenemos disponible en la vista gracias a $scope
-        //$scope.datos = data;
-        //if( !$scope.datos.status )
-            //$location.path('empleado/list');
-    })
-    .error( function( data ) {
-        alert( data.message );
-        alert( data.status );
-        //$location.path('empleado/create');
-    });*/
-    //alert($scope.datos.status);
-    //datosResource lo tenemos disponible en la vista gracias a $scope
+angular.module('appZapateria').controller("appController", function ($scope, $http, $location,  dataResource, $modal) {
     $scope.datosResource = dataResource.get();
+    $scope.openModal = function (size)
+    {
+        var modalInstance = $modal.open({
+            templateUrl: 'myModal.html',
+            controller: 'myModalController',
+            controllerAs: 'modal',
+            size: size,
+            resolve: {
+                Items: function() //scope del modal
+                {
+                      return $scope.datosResource;
+                }
+            }
+        });
+    } 
     
-    /*$scope.direcciona = function( estado ) {
-        if( estado == 0 ) {
-            alert('holi!');
-        }
-    }*/
-
-    //alert($scope.dataResource.status);
-    //if( estado == 0 )
-            //$location.path('empleado/list');
 })
+/**
+* @description Controlador para la modal
+* @param $scope
+* @param $modalInstance
+* @param Items
+*/
+angular.module('appZapateria').controller('myModalController', ['$scope','$modalInstance','Items', function($scope, $modalInstance,Items) {
+    
+    $scope.items = Items;
  
+    $scope.save = function (param)
+    {
+        console.log(param)
+    };
+ 
+    $scope.cancel = function ()
+    {
+        $modalInstance.dismiss('cancel');
+    };
+}]); 
 //de esta forma tan sencilla consumimos con $resource en AngularJS
 angular.module('appZapateria').factory('dataResource', function ($resource) {
 

@@ -364,7 +364,19 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+.panel-black .panel-heading {
+    border-color: #19170D;
+    color: #fff;
+    background-color: #19170D;
+}
 
+.panel-black a {
+    color: #fff;
+}
+
+.panel-black a:hover {
+    color: #3d8b3d;
+}
 /* Vertical Scroll */
 .vertical-scroll {
     overflow-y: auto;
