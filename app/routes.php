@@ -77,5 +77,5 @@ Route::group( array( 'prefix' => 'catalogos' , 'before' => array ( 'auth_emplead
                      'able_empleado' ) ) ,
     function () {
     Route::get( '/{tipo}' , array( 'uses' => 'CatalogoController@catalogos' ) );
-    Route::get( '/dependientes/{tipo}/{id}' , array( 'uses' => 'CatalogoController@catalogosDepandientes' ) );
+    Route::get( '/dependientes/{tipo}/{id}' , array( 'uses' => 'CatalogoController@catalogosDependientes' ) );
 });

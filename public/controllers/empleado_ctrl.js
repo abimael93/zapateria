@@ -1,21 +1,14 @@
 angular.module('appZapateria').controller('empleadoCtrl', ['$location','$modal','catalogosServices','routeServices','$http', function( $location, $modal, catalogosServices, routeServices, $http) {
-    var empleado = this;
+    var empleado = this;    
+    //Aqui llamo a mi funcion que esta en el service para traer los datos
+    catalogosServices.getDep(function(data){
+        empleado.departamentos = data;
+    });
 
-    var ruta_api = routeServices.PathServer() + "catalogos/departamento";
-
-    empleado.departamentos = function(){
-        $http.get(ruta_api, {})
-            .success(function (data) {
-                return empleado.datos = data;
-                //routeServices.rutaInicio();
-            })
-            .error( function( data ) {
-                return empleado.respuesta = data;
-                alert( data.message );
-                //alert( data.status );
-                //$location.path('empleado/create');
-            });    
-    }
-    empleado.datos = catalogosServices.getDepartamentos();
-    //alert(empleado.departamentos);
+    catalogosServices.getAlm(function(data){
+        empleado.almacenes = data;
+    });
+    catalogosServices.getEst(function(data){
+        empleado.estados = data;
+    });
 }]);

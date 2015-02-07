@@ -1,6 +1,6 @@
 <?php
 
-class CatalogoController extends BaseController{
+class CatalogoController extends BaseController {
 
     /**
     *   this function returns a list of values depend on the type that someone had selected
@@ -96,12 +96,12 @@ class CatalogoController extends BaseController{
     *   @example    http://localhost/zapateria/public/catalogos/dependientes/pais by get
     *   @example    http://localhost/zapateria/public/catalogos/dependientes/estado/1 by get
     */
-    public function catalogosDepandientes ( $tipo , $id = NULL ) {
+    public function catalogosDependientes ( $tipo , $id = NULL ) {
         $query   = NULL;
         $status  = OK;
         $mensaje = '';
         switch ( $tipo ) {
-            case 'estado':
+            case 'estado':                
                 $query = Estado::where( 'id_pais' , '=' , $id )->get();
                 break;
             case 'municipio':
