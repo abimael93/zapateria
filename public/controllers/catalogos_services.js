@@ -195,13 +195,51 @@ angular.module( 'appZapateria' ).service( 'catalogosServices' , [ '$location' , 
      
 }]);
 
-angular.module( 'appZapateria' ).service( 'Departamentos' , [ '$resource' , '$location' , 'catalogosServices' , function( $resource , $location , catalogosServices ) {
+
+/**
+    *   this service allows us to bring the catalogs' information
+    *   @author     Cesar Herrera <kyele936@gmail.com>
+    *   @since      02/06/2015
+    *   @version    1
+    *   @access     public
+    *   @param      Service [$http]
+    *   @param      Service [$q]
+    *   @param      Service [$location]
+    *   @return     
+    *   @example    catalogosServices.getDep(function(data){.....}
+*/
+angular.module( 'appZapateria' ).service( 'catalogos' , [ '$resource' , '$location' , 'catalogosServices' , function( $resource , $location , catalogosServices ) {
     var path_angular , path_server;
     path_angular = $location.absUrl();
     path_server  = path_angular.substring( 0 , path_angular.indexOf( 'index.html' ) != -1 ? path_angular.indexOf( 'index.html' ):path_angular.indexOf( '#' ) );
-    path_server += 'catalogos/';
+    path_server += 'catalogos';
 
-    return $resource ( path_server + 'departamento' , null , {
-        'get': { method:'GET' }
+    var catalogos_resource = $resource( path_server + '/:tipo', {}, {
+        get: {
+            method: 'GET'
+        }
     });
+
+    return {
+        /**
+        *   this function returns the promise that contains a json
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/08/2015
+        *   @version    1
+        *   @access     public
+        *   @param      String [tipo]
+        *   @param      Callbacks [callback]
+        *   @return     promise
+        *   @example    Departamentos.tipo( 'departamento' , function(data){....} )
+        */
+        tipo: function( tipo , callback ) {
+            return catalogos_resource.get( {
+                    tipo: tipo,
+                },
+                function( data ) {
+                    callback( data.data );
+                }
+            );
+        },
+    }
 }])
