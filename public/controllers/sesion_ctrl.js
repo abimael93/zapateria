@@ -21,19 +21,21 @@ angular.module('appZapateria').controller('SesionCtrl',['$http','routeServices',
     *   @since      02/08/2015
     *   @version    1
     *   @access     public
-    *   @return     promise
-    *   @example    sessionServices.loguear()
+    *   @return     void
+    *   @example    session.loguear()
     */
     session.loguear = function() {
-        session.empleado.usuario = session.user;
-        session.empleado.password = session.pass;
+        session.empleado.usuario    = session.user;
+        session.empleado.password   = session.pass;
 
-        sessionServices.loguear(session.empleado, function(data){
-            session.datos = data;
-            routeServices.rutaInicio();
-        }, function(data){
-            console.log(data.data.message);
-        });
+        sessionServices.loguear( session.empleado ,
+            function( data ) {
+                session.datos = data;
+                routeServices.rutaInicio();
+            }, function( data ) {
+                console.log( data.data.message );
+            }
+        );
     }
 
     session.logout = function() {
