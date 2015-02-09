@@ -16,7 +16,7 @@ angular.module( 'appZapateria' ).controller( 'empleadoCtrl' , [ '$location' , '$
         var empleado = this;
 
         //Aqui llamo a mi funcion que esta en el service para traer los datos
-        catalogosServices.tipo( 'departamento', function( data ) {
+        catalogosServices.tipo( 'pais', function( data ) {
             empleado.departamentos = data;
         });
 

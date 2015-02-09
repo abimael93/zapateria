@@ -1,36 +1,52 @@
-//para hacer uso de $resource debemos colocarlo al crear el modulo
-//con dataResource inyectamos la factoría
-angular.module('appZapateria').controller('SesionCtrl',['$http','routeServices', function ( $http, routeServices ) {
-    var sesion = this;
-    //hacemos uso de $http para obtener los datos del json
-    sesion.loguear = function() {
-        //alert(routeServices.PathServer()+'login');
-        var ruta_api = routeServices.PathServer() + "login";
+/**
+    *   This controller allows us to manipulate information of the sessions.
+    *   @author     Christian Velázquez <chris.abimael93@gmail.com>
+    *   @since      02/08/2015
+    *   @version    1
+    *   @access     public
+    *   @param      Service [$http]
+    *   @param      Service [routeServices]
+    *   @param      Service [sessionServices]
+    *   @return     
+    *   @example    session.loguear( .... )
+*/
+angular.module('appZapateria').controller('SesionCtrl',['$http','routeServices','sessionServices', function ( $http, routeServices, sessionServices ) {
+    var session = this;
 
-        $http.post(ruta_api, {usuario: sesion.user, password: sesion.pass})
-        .success(function (data) {
-            sesion.datos = data;
+    session.empleado = {};
+
+    /**
+    *   This function is used for a user logs on.
+    *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+    *   @since      02/08/2015
+    *   @version    1
+    *   @access     public
+    *   @return     promise
+    *   @example    sessionServices.loguear()
+    */
+    session.loguear = function() {
+        session.empleado.usuario = session.user;
+        session.empleado.password = session.pass;
+
+        sessionServices.loguear(session.empleado, function(data){
+            session.datos = data;
             routeServices.rutaInicio();
-        })
-        .error( function( data ) {
-            sesion.respuesta = data;
-            alert( data.message );
-            //alert( data.status );
-            //$location.path('empleado/create');
+        }, function(data){
+            console.log(data.data.message);
         });
     }
 
-    sesion.logout = function() {
+    session.logout = function() {
         //alert(routeServices.PathServer()+'logout');
         var ruta_api = routeServices.PathServer() + "logout";
 
         $http.post(ruta_api, { })
         .success(function (data) {
-            sesion.datos = data;
+            session.datos = data;
             routeServices.rutaLogin();
         })
         .error( function( data ) {
-            sesion.respuesta = data;
+            session.respuesta = data;
             alert( data.message );
             //alert( data.status );
             //$location.path('empleado/create');

@@ -1,16 +1,15 @@
 /**
-    *   this service allows us to bring the catalogs' information
+    *   this service allows us to bring the catalogs information
     *   @author     Christian Velázquez <chris.abimael93@gmail.com>
-    *   @since      02/06/2015
+    *   @since      02/08/2015
     *   @version    1
     *   @access     public
     *   @param      Service [$resource]
-    *   @param      Service [$location]
     *   @param      Service [routeServices]
     *   @return     
     *   @example    catalogosServices.getDep(function(data){.....}
 */
-angular.module( 'appZapateria' ).service( 'catalogosServices' , [ '$resource' , '$location' , 'routeServices' , function( $resource , $location, routeServices ) {
+angular.module( 'appZapateria' ).service( 'catalogosServices' , [ '$resource' , 'routeServices' , function( $resource , routeServices ) {
 
         var path_server = routeServices.PathServer() + "catalogos";
 
@@ -35,7 +34,7 @@ angular.module( 'appZapateria' ).service( 'catalogosServices' , [ '$resource' , 
             *   @param      String [tipo]
             *   @param      Callbacks [callback]
             *   @return     promise
-            *   @example    Departamentos.tipo( 'departamento' , function(data){....} )
+            *   @example    catalogosServices.tipo( 'departamento' , function(data){....} )
             */
             tipo: function( tipo , callback ) {
                 return catalogos_resource.get( {
@@ -46,6 +45,17 @@ angular.module( 'appZapateria' ).service( 'catalogosServices' , [ '$resource' , 
                     }
                 );
             },
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      02/08/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    catalogosServices.tipo( { tipo:'municipio', id_padre: 1 } , function(data){....} )
+            */
             tipoDependiente: function( parametros , callback ) {
                 return catalogos_resource_dependiente.get( parametros, 
                     function( data ) {
