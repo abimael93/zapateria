@@ -14,16 +14,4 @@ angular.module('appZapateria').factory('routeServices', ['$location', function($
             return $location.path('/login');
         },
     };
-    /*
-    var servicio = {
-    objeto: {mensaje: 'Saludos desde la Fabrica desde Controlador Empleados!'},
-    msjInicial: function() {
-      servicio.objeto['mensaje'] = 'Saludos desde la Fabrica!';
-    },
-    msjNuevo: function(msj) {
-      servicio.objeto.mensaje = msj;
-    }
-  };
-
-  return servicio;*/
 }]);
