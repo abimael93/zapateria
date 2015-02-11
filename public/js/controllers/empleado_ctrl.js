@@ -15,13 +15,26 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoCtrl' , [ '$location' , '$
 
         var empleado = this;
 
-        //Aqui llamo a mi funcion que esta en el service para traer los datos
+        empleado.agregar = function( ) {
+            if (empleado.empleado_form.$valid) {
+                // Submit as normal
+            } else {
+                empleado.empleado_form.submitted = true;
+            }
+        }
+
         catalogosServices.tipo( 'pais', function( data ) {
             empleado.departamentos = data;
         });
 
-        catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: 1 } , function( data ) {
-            empleado.cargos = data;
+        catalogosServices.tipoDependiente( { tipo: 'estado', id_padre: 1 } , function( data ) {
+            empleado.estados = data;
         });
+
+        empleado.cargaMunicipios = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: empleado.estado.id_estado } , function( data ) {
+                empleado.municipios = data;
+            });
+        }
     }
 ]);

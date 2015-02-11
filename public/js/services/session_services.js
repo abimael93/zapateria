@@ -41,7 +41,7 @@ angular.module( 'appZapateria' ).service( 'sessionServices' , [ '$resource' , 'r
                 return session_resource.login( 
                     session,
                     function( data ) {
-                        success( data.data );
+                        success( data );
                     }, function( data ) {
                         fail( data.data );
                     }

@@ -32,6 +32,7 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
             function( data ) {
                 session.datos = data;
                 routeServices.rutaInicio();
+                console.log( data.message );
             }, function( data ) {
                 console.log( data.message );
             }
@@ -48,7 +49,6 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
     *   @example    session.logout();
     */
     session.logout = function() {
-        //alert(routeServices.PathServer()+'logout');
 
         sessionServices.logout( 
             function( data ) {
@@ -57,19 +57,5 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
                 console.log( data.message );
             }
         );
-        /*
-        var ruta_api = routeServices.PathServer() + "logout";
-
-        $http.post(ruta_api, { })
-        .success(function (data) {
-            session.datos = data;
-            routeServices.rutaLogin();
-        })
-        .error( function( data ) {
-            session.respuesta = data;
-            alert( data.message );
-            //alert( data.status );
-            //$location.path('empleado/create');
-        });*/
     }       
 }]);

@@ -4,41 +4,46 @@
     	    Registro
     	</div>
         <div class="panel-body">
-            <form role="form">
+            <form role="form" name="empleado_form" ng-submit="empleado.agregar()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>RFC <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres">
+                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" required ng-model="empleado.rfc">
                         </div>
                         <div class="form-group">
                             <label>Nombres <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Nombre(s)" name="" id="">
+                            <input class="form-control" placeholder="Nombre(s)" name="" id="" required ng-model="empleado.nombre">
                         </div>
                         <div class="form-group">
                             <label>Apellidos <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Apellido(s)" name="" id="">
+                            <input class="form-control" placeholder="Apellido(s)" name="" id="" required ng-model="empleado.apellidos">
                         </div>                                                
                        <label>Correo electrónico :</label>
                         <div class="form-group input-group">                            
                                 <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                <input type="text" class="form-control" placeholder="Email">
+                                <input type="email" class="form-control" placeholder="Email" ng-model="empleado.correo">
                         </div>  
                         <label>Teléfono <FONT color="red">* </FONT>:</label>
                         <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                                <input type="text" class="form-control" placeholder="Teléfono">
+                                <input type="text" class="form-control" placeholder="Teléfono" ng-model="empleado.telefono" required>
                         </div>
                         <label>Celular :</label>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
-                            <input type="text" class="form-control" placeholder="Celular">
+                            <input type="text" class="form-control" placeholder="Celular" ng-model="empleado.celular">
                         </div>
                         {{empleado.cargos}}
                         {{empleado.departamentos}} 
 
                         <div class="form-group">
                             <label>Departamento <FONT color="red">* </FONT>:</label>
+                            <select class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo <FONT color="red">* </FONT>:</label>
                             <select class="form-control">
                             </select>
                         </div>
@@ -66,22 +71,14 @@
 
                         <div class="form-group">
                             <label>Estado <FONT color="red">* </FONT>:</label>
-                            <select class="form-control">
-                                <option>Jalisco</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" ng-change="empleado.cargaMunicipios()" ng-model="empleado.estado" ng-options="estado.nombre for estado in empleado.estados">
+                                <option value="">Selecciona un estado</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Municipio <FONT color="red">* </FONT>:</label>
-                            <select class="form-control">
-                                <option>Guadalajara</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" ng-model="empleado.municipio" ng-options="municipio.nombre for municipio in empleado.municipios">
+                                <option value="">Selecciona un municipio</option>
                             </select>
                         </div>
                         <div class="form-group">
