@@ -1,18 +1,28 @@
-angular.module('appZapateria').controller('ProveedorCtrl',['$log', function ($log) {
-  var prov = this;
-  prov.totalItems = 64;
-  prov.currentPage = 4;
+/**
+    *   This controller allows us to manipulate information of provider.
+    *   @author     César Herrera <kyele936@gmail.com>
+    *   @since      02/10/2015
+    *   @version    1
+    *   @access     public
+    *   @param      Service [$resource]
+    *   @param      Service [$location]
+    *   @param      Service [routeServices]
+    *   @return     
+    *   @example    proveedor.registrar( .... )
+*/
+angular.module( 'appZapateria' ).controller( 'ProveedorCtrl' , [ '$location' , '$modal' , 'catalogosServices' ,
+    function( $location , $modal , catalogosServices ) {
 
-  prov.setPage = function (pageNo) {
-    prov.currentPage = pageNo;
-  };
+    var proveedor = this;       
+        
+    catalogosServices.tipoDependiente( { tipo: 'estado', id_padre: 1 } , function( data ) {
+        proveedor.estados = data;
+    });
 
-  prov.pageChanged = function() {
-    $log.log('Page changed to: ' + prov.currentPage);
-  };
-
-  prov.maxSize = 5;
-  prov.bigTotalItems = 175;
-  prov.bigCurrentPage = 1;
-  prov.itemsPerPage = 50;
-}]);
+    proveedor.cargaMunicipios = function() {
+        catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: proveedor.estado } , function( data ) {
+            proveedor.municipios = data;
+        });
+    }
+    }
+]);
