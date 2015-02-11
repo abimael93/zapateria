@@ -3,99 +3,101 @@ angular.module( 'appZapateria' , [ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , ]
 .config( function( $routeProvider ) {
 	$routeProvider
 		//Inicio
-		.when('/', {
-			controller: 'appController',
-			//controllerAs: 'login',
+		.when( '/' , {
+			controller: 'appController' ,
+			//controllerAs: 'login' ,
 			templateUrl: 'views/home.html'
 		})
 		//Login
-		.when('/login', {
-			controller: 'SessionCtrl',
-			controllerAs: 'sesion',
-			templateUrl: 'views/login.html',
+		.when( '/login' , {
+			controller: 'SessionCtrl' ,
+			controllerAs: 'sesion' ,
+			templateUrl: 'views/login.html' ,
 		})
 		//Módulo Empleado
-		.when('/empleado/create', {
-			controller: 'EmpleadoCtrl',
-			controllerAs: 'empleado',
+		.when( '/empleado/create' , {
+			controller: 'EmpleadoCtrl' ,
+			controllerAs: 'empleado' ,
 			templateUrl: 'views/empleado_form.html'
 		})
-		.when('/empleado/list', {
-			//controller: 'ControladorEmpleados',pag
-			//controller: 'MyController',
-			templateUrl: 'views/empleado_list.html',
+		.when( '/empleado/list' , {
+			//controller: 'ControladorEmpleados' ,pag
+			//controller: 'MyController' ,
+			templateUrl: 'views/empleado_list.html' ,
 		})
 		//Módulo Cliente
-		.when('/cliente/create', {
-			//controller: 'TabsDemoCtrl',
+		.when( '/cliente/create' , {
+			//controller: 'TabsDemoCtrl' ,
 			templateUrl: 'views/cliente_form.html'
 		})
-		.when('/cliente/list', {
+		.when( '/cliente/list' , {
 			templateUrl: 'views/cliente_list.html'
 		})
 		//Módulo Proveedor
-		.when('/proveedor/create', {
+		.when( '/proveedor/create' , {
+			controller: 'ProveedorCtrl' ,
+			controllerAs: 'proveedor' ,
 			templateUrl: 'views/proveedor_form.html'
 		})
-		.when('/proveedor/list', {
-			controller: 'ProveedorCtrl',
-			controllerAs: 'prov',
-			templateUrl: 'views/proveedor_list.html',
+		.when( '/proveedor/list' , {
+			controller: 'ProveedorCtrl' ,
+			controllerAs: 'prov' ,
+			templateUrl: 'views/proveedor_list.html' ,
 		})
 		//Módulo Producto
-		.when('/producto/create', {
+		.when( '/producto/create' , {
 			templateUrl: 'views/producto_form.html'
 		})
-		.when('/producto/list', {
+		.when( '/producto/list' , {
 			templateUrl: 'views/producto_list.html'
 		})
 		//Módulo pedido
-		.when('/pedido/create', {
+		.when( '/pedido/create' , {
 			templateUrl: 'views/pedido_form.html'
 		})
-		.when('/pedido/list', {
+		.when( '/pedido/list' , {
 			templateUrl: 'views/pedido_list.html'
 		})
 		//Módulo Desarrollo
-		.when('/desarrollo/create', {
+		.when( '/desarrollo/create' , {
 			templateUrl: 'views/desarrollo_form.html'
 		})
-		.when('/desarrollo/list', {
+		.when( '/desarrollo/list' , {
 			templateUrl: 'views/desarrollo_list.html'
 		})
 		//Módulo Producción
-		.when('/produccion/create', {
+		.when( '/produccion/create' , {
 			templateUrl: 'views/produccion_form.html'
 		})
-		.when('/produccion/list', {
+		.when( '/produccion/list' , {
 			templateUrl: 'views/produccion_list.html'
 		})
 		//Módulo Remisión
-		.when('/remision/create', {
+		.when( '/remision/create' , {
 			templateUrl: 'views/remision_form.html'
 		})
-		.when('/remision/list', {
+		.when( '/remision/list' , {
 			templateUrl: 'views/remision_list.html'
 		})
 		//Módulo Recepción
-		.when('/recepcion/create', {
+		.when( '/recepcion/create' , {
 			templateUrl: 'views/recepcion_form.html'
 		})
-		.when('/recepcion/list', {
+		.when( '/recepcion/list' , {
 			templateUrl: 'views/recepcion_list.html'
 		})
 		//Módulo Ajuste Entrada
-		.when('/ajuste_entrada/create', {
+		.when( '/ajuste_entrada/create' , {
 			templateUrl: 'views/ajuste_entrada_form.html'
 		})
-		.when('/ajuste_entrada/list', {
+		.when( '/ajuste_entrada/list' , {
 			templateUrl: 'views/ajuste_entrada_list.html'
 		})
 		//Módulo Ajuste Salida
-		.when('/ajuste_salida/create', {
+		.when( '/ajuste_salida/create' , {
 			templateUrl: 'views/ajuste_salida_form.html'
 		})
-		.when('/ajuste_salida/list', {
+		.when( '/ajuste_salida/list' , {
 			templateUrl: 'views/ajuste_salida_list.html'
 		})
 		.otherwise({

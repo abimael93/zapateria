@@ -36,27 +36,22 @@
                             <input type="text" class="form-control" placeholder="Celular">
                         </div>
                     </div>
-
+                
                 <!-- /.col-lg-6 (nested) -->
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Estado <FONT color="red">* </FONT>:</label>
-                        <select class="form-control">
-                            <option>Jalisco</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <select class="form-control" ng-change="proveedor.cargaMunicipios()" ng-model="proveedor.estado">
+                            <option value="">Seleccione un estado</option>
+                            <option value="{{estado.id_estado}}" ng-repeat="estado in proveedor.estados">{{estado.nombre}}</option>                            
                         </select>
                     </div>
+
                     <div class="form-group">
-                        <label>Municipio <FONT color="red">* </FONT>:</label>
+                        <label>Municipio<FONT color="red">* </FONT>:</label>
                         <select class="form-control">
-                            <option>Guadalajara</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option value="">Seleccione un municipio</option>
+                            <option value="{{municipio.id_municipio}}" ng-repeat="municipio in proveedor.municipios">{{municipio.nombre}}</option>
                         </select>
                     </div>  
                     <div class="form-group">
