@@ -59,7 +59,7 @@
 
                  <a class="navbar-brand nav-modulo visible-sm visible-md visible-lg" ng-bind="nav.ubicacion()"></a>
 
-                <a class="navbar-brand blanco-font"><i class="{{nav.modulo[0].icon}} blanco-font"></i> <strong class="blanco-font" ng-bind="nav.modulo[0].nombre"> </strong> <span ng-bind="nav.separador" class="blanco-font"> </span> <small class="blanco-font" ng-bind="nav.modulo[0].accion"> </small></a>
+                <a class="navbar-brand blanco-font"><i class="{{nav.modulo.icon}} blanco-font"></i> <strong class="blanco-font" ng-bind="nav.modulo.nombre"> </strong> <span ng-bind="nav.separador" class="blanco-font"> </span> <small class="blanco-font" ng-bind="nav.modulo.accion"> </small></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -74,7 +74,7 @@
                         <li><a href=""><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li ng-controller="SesionCtrl as sesion"><a ng-click="sesion.logout()" href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li ng-controller="SessionCtrl as session"><a ng-click="session.logout()" href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -87,10 +87,10 @@
                 <div class="sidebar-nav navbar-collapse ">
                     <ul class="nav navbar-scroll" id="side-menu">
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'inicio'}" href="#/"><i class="fa fa-home"></i> Inicio</a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'inicio'}" href="#/"><i class="fa fa-home"></i> Inicio</a>
                         </li>
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'empleado'}" href="#"><i class="fa fa-user"></i> Empleados<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'empleado'}" href="#"><i class="fa fa-user"></i> Empleados<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/empleado/create">   Alta</a>
@@ -103,7 +103,7 @@
                         </li>
                         
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'cliente'}" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'cliente'}" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/cliente/create"> Alta</a>
@@ -116,7 +116,7 @@
                         </li>
 
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'proveedor'}" href="#"><i class="fa fa-table fa-fw"></i> Proveedores<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'proveedor'}" href="#"><i class="fa fa-table fa-fw"></i> Proveedores<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/proveedor/create"> Alta</a>
@@ -129,7 +129,7 @@
                         </li>
                         
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'producto'}" href="#"><i class="fa fa-shopping-cart"></i> Productos<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'producto'}" href="#"><i class="fa fa-shopping-cart"></i> Productos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/producto/create"> Alta</a>
@@ -141,7 +141,7 @@
                         </li>
 
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'pedido'}" href="#"><i class="fa fa-truck"></i> Pedidos<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'pedido'}" href="#"><i class="fa fa-truck"></i> Pedidos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/pedido/create"> Alta</a>
@@ -153,7 +153,7 @@
                         </li>
 
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'desarrollo'}" href="#"><i class="fa fa-cogs"></i> Desarrollo<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'desarrollo'}" href="#"><i class="fa fa-cogs"></i> Desarrollo<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/desarrollo/create"> Crear</a>
@@ -166,7 +166,7 @@
                         </li>
 
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'produccion'}" href="#"><i class="fa fa-line-chart"></i> Producción<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'produccion'}" href="#"><i class="fa fa-line-chart"></i> Producción<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/produccion/create"> Crear</a>
@@ -179,7 +179,7 @@
                         </li>
 
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'remision'}" href="#"><i class="fa fa-money"></i> Ventas<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'remision'}" href="#"><i class="fa fa-money"></i> Ventas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/remision/create"> Crear</a>
@@ -192,7 +192,7 @@
                         </li>
 
                         <li>
-                            <a ng-class="{active: nav.modulo[0].nombreBase == 'recepcion'}" href="#"><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
+                            <a ng-class="{active: nav.modulo.nombreBase == 'recepcion'}" href="#"><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a class="fa fa-plus-square" href="#/recepcion/create"> Crear</a>
@@ -289,25 +289,19 @@
     <script src="js/angular-route.min.js"></script>
 
     <!-- Aplicación -->
-    <script src="controllers/appZapateria.js"></script>
+    <script src="js/controllers/appZapateria.js"></script>
     
     <!-- Controllers -->
-    <script src="controllers/navbar_ctrl.js"></script>
-    <script src="controllers/proveedor_ctrl.js"></script>
-    <script src="controllers/sesion_ctrl.js"></script>
-    <script src="controllers/empleado_ctrl.js"></script>
+    <script src="js/controllers/navbar_ctrl.js"></script>
+    <script src="js/controllers/proveedor_ctrl.js"></script>
+    <script src="js/controllers/sesion_ctrl.js"></script>
+    <script src="js/controllers/empleado_ctrl.js"></script>
 
     <!-- Services -->
-    <script src="controllers/appZapateria_services.js"></script>
-    <script src="controllers/route_services.js"></script>
-    <script src="controllers/catalogos_services.js"></script>
-    <script src="controllers/session_services.js"></script>
-
-    <script src="controllers/paginado.js"></script>
-    <script src="controllers/dirPagination.js"></script>
-    <script src="controllers/factory.js"></script>
-    <script src="controllers/dirPagination.js"></script>
-    <script type="text/javascript" src="views/data.json"></script>   
+    <script src="js/services/appZapateria_services.js"></script>
+    <script src="js/services/route_services.js"></script>
+    <script src="js/services/catalogos_services.js"></script>
+    <script src="js/services/session_services.js"></script>
     
     <script type="text/javascript">
         $(document).ready(function() {

@@ -1,6 +1,6 @@
-angular.module('appZapateria',['ngRoute','miAp','ui.bootstrap','ngResource',])
+angular.module( 'appZapateria' , [ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , ] )
 
-.config(function($routeProvider){
+.config( function( $routeProvider ) {
 	$routeProvider
 		//Inicio
 		.when('/', {
@@ -8,21 +8,21 @@ angular.module('appZapateria',['ngRoute','miAp','ui.bootstrap','ngResource',])
 			//controllerAs: 'login',
 			templateUrl: 'views/home.html'
 		})
-		//Inicio
+		//Login
 		.when('/login', {
-			controller: 'SesionCtrl',
+			controller: 'SessionCtrl',
 			controllerAs: 'sesion',
 			templateUrl: 'views/login.html',
 		})
 		//Módulo Empleado
 		.when('/empleado/create', {
-			controller: 'empleadoCtrl',
+			controller: 'EmpleadoCtrl',
 			controllerAs: 'empleado',
 			templateUrl: 'views/empleado_form.html'
 		})
 		.when('/empleado/list', {
 			//controller: 'ControladorEmpleados',pag
-			controller: 'MyController',
+			//controller: 'MyController',
 			templateUrl: 'views/empleado_list.html',
 		})
 		//Módulo Cliente
@@ -101,4 +101,4 @@ angular.module('appZapateria',['ngRoute','miAp','ui.bootstrap','ngResource',])
 		.otherwise({
 			redirectTo: '/'
 		})
-})
+});

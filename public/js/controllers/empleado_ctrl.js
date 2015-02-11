@@ -10,7 +10,7 @@
     *   @return     
     *   @example    empleado.registrar( .... )
 */
-angular.module( 'appZapateria' ).controller( 'empleadoCtrl' , [ '$location' , '$modal' , 'catalogosServices' ,
+angular.module( 'appZapateria' ).controller( 'EmpleadoCtrl' , [ '$location' , '$modal' , 'catalogosServices' ,
     function( $location , $modal , catalogosServices ) {
 
         var empleado = this;
