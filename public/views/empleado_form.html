@@ -40,18 +40,18 @@
                         </div>
                         <div class="form-group">
                             <label>Departamento <span class="text-danger">* </span>:</label>
-                            <select class="form-control" name="departamento" ng-model="empleado.departamento" ng-options="departamento.nombre for departamento in empleado.departamentos">
+                            <select class="form-control" required name="departamento" ng-model="empleado.departamento" ng-options="departamento.nombre for departamento in empleado.departamentos">
                                 <option value="">Selecciona un departamento</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Cargo <span class="text-danger">* </span>:</label>
-                            <select class="form-control" name="cargo" ng-model="empleado.cargo" ng-options="cargo.nombre for cargo in empleado.cargos">
+                            <select class="form-control" required name="cargo" ng-model="empleado.cargo" ng-options="cargo.nombre for cargo in empleado.cargos">
                                 <option value="">Selecciona un cargo</option>
                             </select>
                         </div>
                         <div class="form-group">
-                                <label>Observaciones <span class="text-danger">* </span>:</label>
+                                <label>Observaciones :</label>
                                 <textarea class="form-control" rows="5" name="observaciones"></textarea>
                         </div>
                         <br>
@@ -74,38 +74,40 @@
 
                         <div class="form-group">
                             <label>Estado <span class="text-danger">* </span>:</label>
-                            <select class="form-control" ng-change="empleado.cargaMunicipios()" name="" ng-model="empleado.estado" ng-options="estado.nombre for estado in empleado.estados">
+                            <select class="form-control" ng-change="empleado.cargaMunicipios()" required name="" ng-model="empleado.estado" ng-options="estado.nombre for estado in empleado.estados">
                                 <option value="">Selecciona un estado</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Municipio <span class="text-danger">* </span>:</label>
-                            <select class="form-control" name="" ng-model="empleado.municipio" ng-options="municipio.nombre for municipio in empleado.municipios">
+                            <select class="form-control" ng-change="empleado.cargaColonias()" required name="municipio" ng-model="empleado.municipio" ng-options="municipio.nombre for municipio in empleado.municipios">
                                 <option value="">Selecciona un municipio</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Colonia <span class="text-danger">* </span>:</label>
-                            <input class="form-control" placeholder="Colonia" name="colonia" required name="colonia" ng-model="empleado.colonia">
+                            <select class="form-control" name="colonia" ng-model="empleado.colonia" required ng-options="colonia.nombre for colonia in empleado.colonias">
+                                <option value="">Selecciona un colonia</option>
+                            </select>
                         </div>
                         <div class="row">
                             <div class="col-md-8 form-group">
                                 <label>Calle <span class="text-danger">* </span>:</label>
-                                <input class="form-control" placeholder="Nombre de la calle" name="calle" ng-model="empleado.calle">
+                                <input class="form-control" placeholder="Nombre de la calle" required name="calle" ng-model="empleado.calle">
                              </div>
                             <div class="col-md-4 form-group">
                                 <label>CP <span class="text-danger">* </span>:</label>
-                                <input class="form-control" placeholder="Codigo Postal" name="codigo_postal" ng-model="empleado.codigo_postal">
+                                <input class="form-control" placeholder="Codigo Postal" required name="codigo_postal" ng-model="empleado.codigo_postal">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 form-group" border="0">
-                                <label>Número Interior :</label>
-                                <input class="form-control" placeholder="Número Interior" name="num_int" ng-model="empleado.num_int">
-                            </div>
                             <div class="col-md-6 form-group">
                                 <label>Número Exterior <span class="text-danger">*</span>:</label>
                                 <input class="form-control" placeholder="Número Exterior" name="num_ext" ng-model="empleado.num_ext" required>
+                            </div>
+                            <div class="col-md-6 form-group" border="0">
+                                <label>Número Interior :</label>
+                                <input class="form-control" placeholder="Número Interior" name="num_int" ng-model="empleado.num_int">
                             </div>
                         </div>
                     </div>
@@ -116,7 +118,7 @@
                 <div class="pull-right row">
             		<div class="col-md-12">
                			<!-- <button type="reset"  class="btn btn-warning"><span class="fa fa-file-o"></span> Limpiar</button>-->
-            			<button type="submit" class="btn btn-success"><span class="fa fa-save "></span> Guardar</button>
+            			<button type="submit" class="btn btn-success"><span class="fa fa-save " ng-disabled='!empleado_form.$valid'></span> Guardar</button>
             		</div>        		
                 </div>
             </form>

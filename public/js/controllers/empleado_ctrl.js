@@ -38,42 +38,37 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoCtrl' , [ '$location' , '$
 
         empleado.cargaColonias = function( ) {
             catalogosServices.tipoDependiente( { tipo: 'colonia', id_padre: empleado.municipio.id_municipio } , function( data ) {
-                empleado.municipios = data;
+                empleado.colonias = data;
             });
         };
 
         empleado.agregar = function( ) {
-            if (empleado.empleado_form.$valid) {
-                empleado.datos_form.id_cargo        = empleado.cargo.id_cargo;
-                empleado.datos_form.id_departamento = empleado.departamento.id_departamento;
-                empleado.datos_form.id_pais         = 1;
-                empleado.datos_form.id_estado       = empleado.estado.id_estado;
-                empleado.datos_form.id_colonia      = empleado.colonia.id_colonia;
-                empleado.datos_form.nombre          = empleado.nombre;
-                empleado.datos_form.apellidos       = empleado.apellidos;
-                empleado.datos_form.rfc             = empleado.rfc;
-                empleado.datos_form.foto            = empleado.foto;
-                empleado.datos_form.correo          = empleado.correo;
-                empleado.datos_form.usuario         = empleado.usuario;
-                //empleado.datos_form.password      = empleado.password;
-                empleado.datos_form.calle           = empleado.calle;
-                empleado.datos_form.num_ext         = empleado.num_ext;
-                empleado.datos_form.num_int         = empleado.num_int;
-                empleado.datos_form.telefono        = empleado.telefono;
-                empleado.datos_form.celular         = empleado.celular;
+            empleado.datos_form.id_cargo        = empleado.cargo.id_cargo;
+            empleado.datos_form.id_departamento = empleado.departamento.id_departamento;
+            empleado.datos_form.id_pais         = 1;
+            empleado.datos_form.id_estado       = empleado.estado.id_estado;
+            empleado.datos_form.id_municipio    = empleado.municipio.id_municipio;
+            empleado.datos_form.id_colonia      = empleado.colonia.id_colonia;
+            empleado.datos_form.nombre          = empleado.nombre;
+            empleado.datos_form.apellidos       = empleado.apellidos;
+            empleado.datos_form.rfc             = empleado.rfc;
+            empleado.datos_form.foto            = empleado.foto;
+            empleado.datos_form.correo          = empleado.correo;
+            empleado.datos_form.usuario         = empleado.usuario;
+            //empleado.datos_form.password      = empleado.password;
+            empleado.datos_form.calle           = empleado.calle;
+            empleado.datos_form.num_ext         = empleado.num_ext;
+            empleado.datos_form.num_int         = empleado.num_int;
+            empleado.datos_form.telefono        = empleado.telefono;
+            empleado.datos_form.celular         = empleado.celular;
 
-                empleadoServices.agregar( empleado.datos_form ,
-                    function( data ) {
-                        console.log( data.message );
-                    }, function( ) {
-                        console.log( data.message );
-                    }
-                );
-                // Submit as normal
-            } else {
-                console.log('Formulario Incompleto!');
-                //empleado.empleado_form.submitted = true;
-            }
+            empleadoServices.agregar( empleado.datos_form ,
+                function( data ) {
+                    console.log( data.message );
+                }, function( data ) {
+                    console.log( data.message );
+                }
+            );
         };
     }
 ]);
