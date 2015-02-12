@@ -1,45 +1,45 @@
 /**
-    *   This service allows us controllar sessions system users.
+    *   this service allows us to manipulate the employees information
     *   @author     Christian Velázquez <chris.abimael93@gmail.com>
-    *   @since      02/08/2015
+    *   @since      02/11/2015
     *   @version    1
     *   @access     public
     *   @param      Service [$resource]
     *   @param      Service [routeServices]
     *   @return     
-    *   @example    sessionServices.getDep(function(data){.....}
+    *   @example    catalogosServices.getDep(function(data){.....}
 */
-angular.module( 'appZapateria' ).service( 'sessionServices' , [ '$resource' , 'routeServices' , function( $resource , routeServices ) {
+angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , 'routeServices' , function( $resource , routeServices ) {
 
-        var path_server = routeServices.PathServer;
+        var path_server = routeServices.PathServer + 'empleados';
 
-        var session_resource = $resource( path_server + 'login' , {}, {
-                login: {
+        var empleado_resource = $resource( path_server , {}, {
+                agregar: {
                     method: 'POST'
                 }
-            }),
+            });
+            /*
             logout_reource   = $resource( path_server + 'logout' , {}, {
                 logout: {
                     method: 'POST'
                 }
-            });
+            });*/
 
         return {
             /**
             *   this function returns the promise that contains a json
             *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-            *   @since      02/08/2015
+            *   @since      02/11/2015
             *   @version    1
             *   @access     public
-            *   @param      jsonObject [session]
+            *   @param      jsonObject [empleado]
             *   @param      Callbacks [success]
             *   @param      Callbacks [fail]
             *   @return     promise
-            *   @example    sessionServices.loguear( {usuario: 'kyele', password: '1414'} , function( data ){ .... }, function( data ) { .... } )
+            *   @example    empleadoServices.loguear( {usuario: 'kyele', password: '1414'} , function( data ){ .... }, function( data ) { .... } )
             */
-            loguear: function( session , success, fail ) {
-                return session_resource.login( 
-                    session,
+            agregar: function( empleado , success, fail ) {
+                return empleado_resource.agregar( empleado ,
                     function( data ) {
                         success( data );
                     }, function( data ) {
@@ -60,6 +60,7 @@ angular.module( 'appZapateria' ).service( 'sessionServices' , [ '$resource' , 'r
             *   @return     promise
             *   @example    sessionServices.logout( function( data ){ .... }, function( data ) { .... } );
             */
+            /*
             logout: function( success, fail ) {
                 return logout_reource.logout(
                     function( data ) {
@@ -68,6 +69,6 @@ angular.module( 'appZapateria' ).service( 'sessionServices' , [ '$resource' , 'r
                         fail( data.data );
                     }
                 )
-            }
+            }*/
         };
 }]);

@@ -31,7 +31,7 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
         sessionServices.loguear( session.empleado ,
             function( data ) {
                 session.datos = data;
-                routeServices.rutaInicio();
+                routeServices.goInicio();
                 console.log( data.message );
             }, function( data ) {
                 console.log( data.message );
@@ -53,6 +53,7 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
         sessionServices.logout( 
             function( data ) {
                 console.log( data.message );
+                routeServices.goLogin();
             }, function( data ) {
                 console.log( data.message );
             }

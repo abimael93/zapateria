@@ -8,48 +8,51 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>RFC <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" required ng-model="empleado.rfc">
+                            <label>RFC:</label>
+                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" name="rfc" ng-model="empleado.rfc">
                         </div>
                         <div class="form-group">
-                            <label>Nombres <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Nombre(s)" name="" id="" required ng-model="empleado.nombre">
+                            <label>Usuario <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre de usuario" required name="usuario" ng-model="empleado.usuario">
                         </div>
                         <div class="form-group">
-                            <label>Apellidos <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Apellido(s)" name="" id="" required ng-model="empleado.apellidos">
-                        </div>                                                
+                            <label>Nombres <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre(s)" required name="nombre" ng-model="empleado.nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Apellido(s)" name="apellidos" required name="" ng-model="empleado.apellidos">
+                        </div>
                        <label>Correo electrónico :</label>
                         <div class="form-group input-group">                            
                                 <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                <input type="email" class="form-control" placeholder="Email" ng-model="empleado.correo">
+                                <input type="email" class="form-control" placeholder="Email" name="correo" ng-model="empleado.correo">
                         </div>  
-                        <label>Teléfono <FONT color="red">* </FONT>:</label>
+                        <label>Teléfono <span class="text-danger">* </span>:</label>
                         <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                                <input type="text" class="form-control" placeholder="Teléfono" ng-model="empleado.telefono" required>
+                                <input type="text" class="form-control" placeholder="Teléfono" name="tlefono" ng-model="empleado.telefono" required>
                         </div>
                         <label>Celular :</label>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
-                            <input type="text" class="form-control" placeholder="Celular" ng-model="empleado.celular">
+                            <input type="text" class="form-control" placeholder="Celular" name="celular" ng-model="empleado.celular">
                         </div>
-                        {{empleado.cargos}}
-                        {{empleado.departamentos}} 
-
                         <div class="form-group">
-                            <label>Departamento <FONT color="red">* </FONT>:</label>
-                            <select class="form-control">
+                            <label>Departamento <span class="text-danger">* </span>:</label>
+                            <select class="form-control" name="departamento" ng-model="empleado.departamento" ng-options="departamento.nombre for departamento in empleado.departamentos">
+                                <option value="">Selecciona un departamento</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Cargo <FONT color="red">* </FONT>:</label>
-                            <select class="form-control">
+                            <label>Cargo <span class="text-danger">* </span>:</label>
+                            <select class="form-control" name="cargo" ng-model="empleado.cargo" ng-options="cargo.nombre for cargo in empleado.cargos">
+                                <option value="">Selecciona un cargo</option>
                             </select>
                         </div>
                         <div class="form-group">
-                                <label>Observaciones <FONT color="red">* </FONT>:</label>
-                                <textarea class="form-control" rows="5"></textarea>
+                                <label>Observaciones <span class="text-danger">* </span>:</label>
+                                <textarea class="form-control" rows="5" name="observaciones"></textarea>
                         </div>
                         <br>
                     </div>
@@ -57,8 +60,8 @@
                 <!-- /.col-md-6 (nested) -->
                     <div class="col-md-6">
                         <div class="form-group">
-                                <label for="btn_file">Elegir la fotografía del empleado <FONT color="red">* </FONT>:</label>
-                                <input type="file"  id="btn_file">
+                                <label for="btn_file">Elegir la fotografía del empleado <span class="text-danger">* </span>:</label>
+                                <input type="file"  id="btn_file" name="" ng-model="empleado.fotografia">
                         </div>
                         
                         <div class="form-group">
@@ -70,46 +73,39 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Estado <FONT color="red">* </FONT>:</label>
-                            <select class="form-control" ng-change="empleado.cargaMunicipios()" ng-model="empleado.estado" ng-options="estado.nombre for estado in empleado.estados">
+                            <label>Estado <span class="text-danger">* </span>:</label>
+                            <select class="form-control" ng-change="empleado.cargaMunicipios()" name="" ng-model="empleado.estado" ng-options="estado.nombre for estado in empleado.estados">
                                 <option value="">Selecciona un estado</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Municipio <FONT color="red">* </FONT>:</label>
-                            <select class="form-control" ng-model="empleado.municipio" ng-options="municipio.nombre for municipio in empleado.municipios">
+                            <label>Municipio <span class="text-danger">* </span>:</label>
+                            <select class="form-control" name="" ng-model="empleado.municipio" ng-options="municipio.nombre for municipio in empleado.municipios">
                                 <option value="">Selecciona un municipio</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Colonia <FONT color="red">* </FONT>:</label>
-                            <select class="form-control">
-                                <option>Alameda</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                            <label>Colonia <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Colonia" name="colonia" required name="colonia" ng-model="empleado.colonia">
                         </div>
                         <div class="row">
                             <div class="col-md-8 form-group">
-                                <label>Calle <FONT color="red">* </FONT>:</label>
-                                <input class="form-control" placeholder="Nombre de la calle" name="" id="">
+                                <label>Calle <span class="text-danger">* </span>:</label>
+                                <input class="form-control" placeholder="Nombre de la calle" name="calle" ng-model="empleado.calle">
                              </div>
                             <div class="col-md-4 form-group">
-                                <label>CP <FONT color="red">* </FONT>:</label>
-                                <input class="form-control" placeholder="Codigo Postal" name="" id="">
+                                <label>CP <span class="text-danger">* </span>:</label>
+                                <input class="form-control" placeholder="Codigo Postal" name="codigo_postal" ng-model="empleado.codigo_postal">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-group" border="0">
                                 <label>Número Interior :</label>
-                                <input class="form-control" placeholder="Número Interior" name="" id="">
+                                <input class="form-control" placeholder="Número Interior" name="num_int" ng-model="empleado.num_int">
                             </div>
-
                             <div class="col-md-6 form-group">
-                                <label>Número Exterior :</label>
-                                <input class="form-control" placeholder="Número Exterior" name="" id="">
+                                <label>Número Exterior <span class="text-danger">*</span>:</label>
+                                <input class="form-control" placeholder="Número Exterior" name="num_ext" ng-model="empleado.num_ext" required>
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
 */
 angular.module( 'appZapateria' ).service( 'catalogosServices' , [ '$resource' , 'routeServices' , function( $resource , routeServices ) {
 
-        var path_server = routeServices.PathServer() + "catalogos";
+        var path_server = routeServices.PathServer + "catalogos";
 
         var catalogos_resource = $resource( path_server + '/:tipo', {}, {
                 get: {
