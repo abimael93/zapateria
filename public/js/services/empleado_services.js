@@ -36,7 +36,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             *   @param      Callbacks [success]
             *   @param      Callbacks [fail]
             *   @return     promise
-            *   @example    empleadoServices.loguear( {usuario: 'kyele', password: '1414'} , function( data ){ .... }, function( data ) { .... } )
+            *   @example    empleadoServices.agregar( {usuario: 'kyele', nombre: '1414', ....} , function( data ){ .... }, function( data ) { .... } )
             */
             agregar: function( empleado , success, fail ) {
                 return empleado_resource.agregar( empleado ,

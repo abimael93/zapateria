@@ -30,18 +30,45 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoCtrl' , [ '$location' , '$
             empleado.estados = data;
         });
 
+        /**
+        *   Esta función carga el catálogo de municipios
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.cargaMunicipios( );
+        */
         empleado.cargaMunicipios = function( ) {
             catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: empleado.estado.id_estado } , function( data ) {
                 empleado.municipios = data;
             });
         };
 
+        /**
+        *   Esta función carga el catálogo de colonias
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.cargaColonias( );
+        */
         empleado.cargaColonias = function( ) {
             catalogosServices.tipoDependiente( { tipo: 'colonia', id_padre: empleado.municipio.id_municipio } , function( data ) {
                 empleado.colonias = data;
             });
         };
 
+        /**
+        *   Esta función crea un nuevo empleado
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.agregar( );
+        */
         empleado.agregar = function( ) {
             empleado.datos_form.id_cargo        = empleado.cargo.id_cargo;
             empleado.datos_form.id_departamento = empleado.departamento.id_departamento;
