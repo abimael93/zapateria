@@ -41,7 +41,7 @@ angular.module( 'appZapateria' , [ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , ]
 		})
 		.when( '/proveedor/list' , {
 			controller: 'ProveedorCtrl' ,
-			controllerAs: 'prov' ,
+			controllerAs: 'proveedor' ,
 			templateUrl: 'views/proveedor_list.html' ,
 		})
 		//Módulo Producto
