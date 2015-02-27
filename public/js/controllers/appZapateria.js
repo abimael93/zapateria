@@ -1,43 +1,47 @@
-angular.module( 'appZapateria' , [ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , ] )
+angular.module( 'appZapateria' , 
+	[ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , 'ui.select', 'ngSanitize' ,
+	  'modelOptions' , 'infinite-scroll' , ] )
 
 .config( function( $routeProvider ) {
 	$routeProvider
 		//Inicio
 		.when( '/' , {
-			controller: 'appController' ,
+			controller: 	'appController' ,
 			//controllerAs: 'login' ,
-			templateUrl: 'views/home.html'
+			templateUrl: 	'views/home.html'
 		})
 		//Login
 		.when( '/login' , {
-			controller: 'SessionCtrl' ,
-			controllerAs: 'sesion' ,
-			templateUrl: 'views/login.html' ,
+			controller: 	'SessionCtrl' ,
+			controllerAs: 	'sesion' ,
+			templateUrl: 	'views/login.html' ,
 		})
 		//Módulo Empleado
 		.when( '/empleado/create' , {
-			controller: 'EmpleadoCtrl' ,
-			controllerAs: 'empleado' ,
-			templateUrl: 'views/empleado_form.html'
+			controller: 	'EmpleadoAltaCtrl' ,
+			controllerAs: 	'empleado' ,
+			templateUrl: 	'views/empleado_form.html'
 		})
 		.when( '/empleado/list' , {
 			//controller: 'ControladorEmpleados' ,pag
 			//controller: 'MyController' ,
-			templateUrl: 'views/empleado_list.html' ,
+			controller: 	'EmpleadoListCtrl',
+			controllerAs: 	'empleado_list',
+			templateUrl: 	'views/empleado_list.html' ,
 		})
 		//Módulo Cliente
 		.when( '/cliente/create' , {
 			//controller: 'TabsDemoCtrl' ,
-			templateUrl: 'views/cliente_form.html'
+			templateUrl: 	'views/cliente_form.html'
 		})
 		.when( '/cliente/list' , {
-			templateUrl: 'views/cliente_list.html'
+			templateUrl: 	'views/cliente_list.html'
 		})
 		//Módulo Proveedor
 		.when( '/proveedor/create' , {
-			controller: 'ProveedorCtrl' ,
-			controllerAs: 'proveedor' ,
-			templateUrl: 'views/proveedor_form.html'
+			controller: 	'ProveedorCtrl' ,
+			controllerAs: 	'proveedor' ,
+			templateUrl: 	'views/proveedor_form.html'
 		})
 		.when( '/proveedor/list' , {
 			controller: 'ProveedorCtrl' ,

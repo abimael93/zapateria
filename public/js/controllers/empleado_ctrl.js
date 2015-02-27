@@ -10,7 +10,7 @@
     *   @return     
     *   @example    empleado.registrar( .... )
 */
-angular.module( 'appZapateria' ).controller( 'EmpleadoCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
+angular.module( 'appZapateria' ).controller( 'EmpleadoAltaCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
     function( $location , $modal , catalogosServices , empleadoServices ) {
 
         var empleado = this;
@@ -97,5 +97,90 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoCtrl' , [ '$location' , '$
                 }
             );
         };
+
+        empleadoServices.listar( { offset: 0 , eliminado: 0 } , 
+            function( data ) {
+                console.log( data );
+            }
+        );
+    }
+]);
+
+/**
+    *   This controller allows us to manipulate information of employees.
+    *   @author     Christian Velázquez <chris.abimael93@gmail.com>
+    *   @since      02/07/2015
+    *   @version    1
+    *   @access     public
+    *   @param      Service [$resource]
+    *   @param      Service [$location]
+    *   @param      Service [routeServices]
+    *   @return     
+    *   @example    empleado.registrar( .... )
+*/
+angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
+    function( $location , $modal , catalogosServices , empleadoServices ) {
+
+        var empleado_list       = this;
+
+        empleado_list.empleados = [];
+        empleado_list.offset    = 0;
+        empleado_list.estatus   = 0;
+
+
+        empleadoServices.listar( { offset: empleado_list.offset , eliminado: empleado_list.estatus } , 
+            function( data ) {
+                empleado_list.empleados = data.data;
+                console.log( empleado_list.empleados.nombre );
+                //console.log( data );
+            }
+        );
+
+        empleado_list.buscar    = function( ) {
+            empleadoServices.listar( 
+            {
+                offset: empleado_list.offset,
+                eliminado: empleado_list.estatus,
+            }, function( data ) {
+                empleado_list.empleados = data.data;
+                //console.log( empleado_list.empleados.nombre );
+                //console.log( data );
+            });
+        }
+
+        /**
+        *   Esta función carga el catálogo de municipios
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.cargaMunicipios( );
+        */
+        
+
+        /**
+        *   Esta función carga el catálogo de colonias
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.cargaColonias( );
+        */
+        
+
+        /**
+        *   Esta función crea un nuevo empleado
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.agregar( );
+        */
+        
+
+        
     }
 ]);

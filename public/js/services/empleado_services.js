@@ -13,9 +13,18 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
 
         var path_server = routeServices.PathServer + 'empleados';
 
-        var empleado_resource = $resource( path_server , {}, {
+        var empleado_resource   = $resource( path_server , {}, {
                 agregar: {
                     method: 'POST'
+                }
+            }),
+            empleado_listar     = $resource( path_server + "/listar/:offset/:eliminado" , {}, {
+                listar: {
+                    method: 'GET',
+                    params: {
+                        offset:     '@offset',
+                        eliminado:  '@eliminado',
+                    }
                 }
             });
             /*
@@ -51,24 +60,20 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             /**
             *   this function returns the promise that contains a json
             *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-            *   @since      02/08/2015
+            *   @since      02/24/2015
             *   @version    1
             *   @access     public
-            *   @param      jsonObject [session]
-            *   @param      Callbacks [success]
-            *   @param      Callbacks [fail]
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
             *   @return     promise
-            *   @example    sessionServices.logout( function( data ){ .... }, function( data ) { .... } );
+            *   @example    empleadoServices.listar( { offset: 0 , eliminado: 0 } function( data ){ .... });
             */
-            /*
-            logout: function( success, fail ) {
-                return logout_reource.logout(
+            listar: function( parametros , callback ) {
+                return empleado_listar.listar( parametros ,
                     function( data ) {
-                        success( data );
-                    }, function( data ) {
-                        fail( data.data );
+                        callback( data );
                     }
-                )
-            }*/
+                );
+            },
         };
 }]);
