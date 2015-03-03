@@ -1,8 +1,9 @@
 {
-  "name": "Kimanta",
+  "name": "Zapateria",
   "version": "1.0",
   "authors": [
-    "Abimael Velázquez <chris.abimael93@gmail.com>"
+    "Abimael Velázquez <chris.abimael93@gmail.com>",
+    "Cesar Augusto Herrera de la Torre <kyele936@gmail.com>"
   ],
   "dependencies": {
     "jquery": "~2.1.3",
