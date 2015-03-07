@@ -53,9 +53,9 @@ Route::put( '/empleados/changePassword' , array( 'uses' => 'EmpleadoController@c
 Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
                      'able_empleado' ) ) , 
     function () {
-    Route::get( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
     Route::get( '/recuperar/{id_empleado}' , array( 'uses' => 'EmpleadoController@recuperar' ) );
     Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
+    Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
     Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
     Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@modificar' ) );
