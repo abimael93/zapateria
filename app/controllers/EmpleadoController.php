@@ -50,6 +50,8 @@ class EmpleadoController extends BaseController{
                           );
         $this->campos_root = array(
                                     'id_empleado',
+                                    DB::raw('(SELECT nombre FROM cargo WHERE empleado.id_cargo = 
+                                    cargo.id_cargo) AS cargo'),
                                     'nombre',
                                     'apellidos',
                                     'foto',
@@ -491,16 +493,7 @@ class EmpleadoController extends BaseController{
                                         );
         if ( !$validador->fails() ) {
             try {
-                $campos    = array(
-                                    'id_empleado',
-                                    'cargo',
-                                    'nombre',
-                                    'apellidos',
-                                    'foto',
-                                    'estatus',
-                                    'fecha_registro'
-                                  ); 
-                $empleados = Empleado::select( $this->campos )
+                $empleados = Empleado::select( $this->campos_root )
                                      ->where( 'eliminado' , '=' , ( $eliminado == 0 ) ? 'F' : 'P' )
                                      ->where( 'id_empleado' , '<>' , Auth::User()->id_empleado );
                 if( isset( $palabra_clave ) && $palabra_clave != '' ) {
@@ -508,15 +501,7 @@ class EmpleadoController extends BaseController{
                 }
                 $empleados = $empleados->take( NUM_RESULTADOS )
                                       ->skip( NUM_RESULTADOS*$offset )
-                                      ->get()
-                                      ->each( function ( &$empleado ) use ( $campos ) {
-                                         $arreglo = $empleado->toArray();
-                                         foreach ($arreglo as $key => $value) {
-                                             if ( !in_array($key, $campos) ){
-                                                 unset( $empleado[$key] );
-                                             }
-                                         }
-                                      } );
+                                      ->get();
                 $status   = OK;
                 $data     = $empleados;
                 $mensaje  = '';

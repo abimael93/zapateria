@@ -300,23 +300,35 @@ class ProveedorController extends BaseController{
     *   @access     public
     *   @param      Integer [$offset] it's the page in the table of the db that you want to show depending on result number
     *   @param      Integer [$eliminado] it's a boolean flat that talks the function what kind of suppliers you want to show
+    *   @param      String [palabra_clave] it's word that works as a filter to the set of the records
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/proveedores/listar/0/1 eliminados by get
     *   @example    http://localhost/zapateria/public/proveedores/listar/0/0 no eliminados by get
     */
     public function listar ( $offset , $eliminado ) {
-        $validaciones = array( 
-                               'offset'    => array( 'required' , 'integer' ),
-                               'eliminado' => array( 'required' , 'integer' )
+        $palabra_clave = Input::get('palabra_clave');
+        $validaciones  = array( 
+                               'offset'         => array( 'required' , 'integer' ),
+                               'eliminado'      => array( 'required' , 'integer' ),
+                               'palabra_clave'  => array( 'sometimes' , 'allow_all' )
                              );
-        $validador    = Validator::make( array( 'offset' => $offset , 'eliminado' => $eliminado ) , $validaciones );
+        $validador    = Validator::make( 
+                                        array( 
+                                                'offset'        => $offset , 
+                                                'eliminado'     => $eliminado , 
+                                                'palabra_clave' => $palabra_clave 
+                                            ) , $validaciones 
+                                        );
         if ( !$validador->fails() ) {
             try {
                 $proveedores = Proveedor::select( $this->campos_root )
-                                        ->where( 'eliminado' , '=' , ( $eliminado == 0 ) ? 'F' : 'P' )
-                                        ->take( NUM_RESULTADOS )
-                                        ->skip( NUM_RESULTADOS*$offset )
-                                        ->get();
+                                        ->where( 'eliminado' , '=' , ( $eliminado == 0 ) ? 'F' : 'P' );
+                if( isset($palabra_clave) && $palabra_clave != '' ){
+                    $proveedores->where( DB::raw( "CONCAT(nombre,' ',apellidos)" ) , 'LIKE' , "%$palabra_clave%" );
+                }
+                $proveedores = $proveedores->take( NUM_RESULTADOS )
+                                           ->skip( NUM_RESULTADOS*$offset )
+                                           ->get();
                 $status   = OK;
                 $data     = $proveedores;
                 $mensaje  = '';

@@ -65,9 +65,9 @@ Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_emplead
 Route::group( array( 'prefix' => 'proveedores' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
                      'able_empleado' ) ) , 
     function () {
-    Route::get( '/listar/{offset}/{eliminado}' , array( 'uses' => 'ProveedorController@listar' ) );
     Route::get( '/recuperar/{id_proveedor}' , array( 'uses' => 'ProveedorController@recuperar' ) );
     Route::get( '/{id_proveedor}' , array( 'uses' => 'ProveedorController@mostrar' ) );
+    Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'ProveedorController@listar' ) );
     Route::post( '' , array( 'uses' => 'ProveedorController@registrar' ) );
     Route::put( '/{id_proveedor}' , array( 'uses' => 'ProveedorController@modificar' ) );
     Route::delete( '/{id_proveedor}' , array( 'uses' => 'ProveedorController@eliminar' ) );
