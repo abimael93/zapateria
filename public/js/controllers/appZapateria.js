@@ -108,3 +108,26 @@ angular.module( 'appZapateria' ,
 			redirectTo: '/'
 		})
 });
+
+/*
+angular.module( 'appZapateria' ,
+	[ "ui.router" , 'ui.bootstrap' , 'ngResource' , 'ui.select', 'ngSanitize' ,
+	  'modelOptions' , 'infinite-scroll' , ] )
+	
+	.config(function( $stateProvider , $urlRouterProvider ){
+    
+    // For any unmatched url, send to /route1
+    $urlRouterProvider.otherwise( "/home" )
+    
+    $stateProvider
+		.state( 'login' , {
+			url: "/login" , //nombre que aparecera en la url
+			templateUrl: "views/login.html" , //Direccion del archivo que sera llamado
+			controller: 'SessionCtrl as sesion'
+		})        
+		.state('route2', {
+			url: "/views/route2",
+			templateUrl: "views/route2.html"
+		})        
+})
+*/
