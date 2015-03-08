@@ -9,7 +9,7 @@
  *
  */
 
-namespace abeautifulsite;
+//namespace abeautifulsite;
 use Exception;
 
 /**
@@ -18,7 +18,7 @@ use Exception;
  * @package SimpleImage
  *
  */
-class SimpleImage {
+class SimpleImage extends BaseController {
 
 	/**
 	 * @var int Default output image quality
@@ -1262,3 +1262,4 @@ class SimpleImage {
 	}
 	
 }
+?>

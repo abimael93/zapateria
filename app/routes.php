@@ -37,6 +37,8 @@ define('SERVIDOR',__DIR__);
 
 define('NUM_RESULTADOS', 10);
 
+define('ARCHIVOS', 'cargas');
+
 require(SERVIDOR.'/helpers/Utiles.php');
 
 Route::get( '/' , function()
@@ -89,4 +91,10 @@ Route::group( array( 'prefix' => 'catalogos' , 'before' => array ( 'auth_emplead
     function () {
     Route::get( '/{tipo}' , array( 'uses' => 'CatalogoController@catalogos' ) );
     Route::get( '/dependientes/{tipo}/{id}' , array( 'uses' => 'CatalogoController@catalogosDependientes' ) );
+});
+
+Route::group( array( 'prefix' => 'adjuntos' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
+                     'able_empleado' ) ) , 
+    function () {
+    Route::post( '' , array( 'uses' => 'AdjuntoController@subir' ) );
 });
