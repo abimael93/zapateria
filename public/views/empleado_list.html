@@ -10,19 +10,11 @@
                   <div class="row fluid breadcrumb div-buscar">                    
                     <div class="col-xs-6 col-md-3">
                       <label for="search">General:</label>
-                      <input ng-model="pag.q.$" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar">                      
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                      <label for="search">Plataforma:</label>
-                      <input ng-model="pag.q.plataform" id="search" class="form-control" placeholder="Buscar">
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                      <label for="search">Version:</label>
-                      <input ng-model="pag.q.version" id="search" class="form-control" placeholder="Buscar">
+                      <input ng-change="empleado_list.listar()" ng-model="empleado_list.palabra_clave" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar" ng-model-options="{ debounce: 600 }">                      
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <label for="search">Estatus:</label>
-                        <select class="form-control" required name="estatus" ng-model="empleado_list.estatus" ng-change="empleado_list.buscar()">
+                        <select class="form-control" required name="estatus" ng-model="empleado_list.estatus" ng-change="empleado_list.listar()">
                           <option value="0">Activo</option>
                           <option value="1">Eliminado</option>
                         </select>
