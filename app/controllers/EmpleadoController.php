@@ -50,6 +50,8 @@ class EmpleadoController extends BaseController{
                           );
         $this->campos_root = array(
                                     'id_empleado',
+                                    DB::raw('(SELECT nombre FROM cargo WHERE empleado.id_cargo = 
+                                    cargo.id_cargo) AS cargo'),
                                     'nombre',
                                     'apellidos',
                                     'foto',
@@ -468,43 +470,38 @@ class EmpleadoController extends BaseController{
     *   @since      01/24/2015
     *   @version    1
     *   @access     public
-    *   @param      Integer [$offset] it's the page in the table of the db that you want to show depending on result number
-    *   @param      Integer [$eliminado] it's a boolean flat that talks the function what kind of employees you want to show
+    *   @param      Integer [$offset] it's the page in the table of the db that you want to show depending on result number by GET
+    *   @param      Integer [$eliminado] it's a boolean flat that talks the function what kind of employees you want to show by GET
+    *   @param      String [palabra_clave] it's word that works as a filter to the set of the records
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/empleados/listar/0/1 eliminados by get
-    *   @example    http://localhost/zapateria/public/empleados/listar/0/0 no eliminados by get
+    *   @example    http://localhost/zapateria/public/empleados/listar/0/1 eliminados by post
+    *   @example    http://localhost/zapateria/public/empleados/listar/0/0 no eliminados by post
     */
     public function listar ( $offset , $eliminado ) {
-        $validaciones = array( 
-                               'offset'    => array( 'required' , 'integer' ),
-                               'eliminado' => array( 'required' , 'integer' )
+        $palabra_clave = Input::get('palabra_clave');
+        $validaciones  = array( 
+                               'offset'         => array( 'required' , 'integer' ),
+                               'eliminado'      => array( 'required' , 'integer' ),
+                               'palabra_clave'  => array( 'sometimes' , 'allow_all' )
                              );
-        $validador    = Validator::make( array( 'offset' => $offset , 'eliminado' => $eliminado ) , $validaciones );
+        $validador    = Validator::make( 
+                                        array( 
+                                                'offset'        => $offset , 
+                                                'eliminado'     => $eliminado , 
+                                                'palabra_clave' => $palabra_clave 
+                                            ) , $validaciones 
+                                        );
         if ( !$validador->fails() ) {
             try {
-                $campos    = array(
-                                    'id_empleado',
-                                    'cargo',
-                                    'nombre',
-                                    'apellidos',
-                                    'foto',
-                                    'estatus',
-                                    'fecha_registro'
-                                  ); 
-                $empleados = Empleado::select( $this->campos )
+                $empleados = Empleado::select( $this->campos_root )
                                      ->where( 'eliminado' , '=' , ( $eliminado == 0 ) ? 'F' : 'P' )
-                                     ->where( 'id_empleado' , '<>' , Auth::User()->id_empleado )
-                                     ->take( NUM_RESULTADOS )
-                                     ->skip( NUM_RESULTADOS*$offset )
-                                     ->get()
-                                     ->each( function ( &$empleado ) use ( $campos ) {
-                                        $arreglo = $empleado->toArray();
-                                        foreach ($arreglo as $key => $value) {
-                                            if ( !in_array($key, $campos) ){
-                                                unset( $empleado[$key] );
-                                            }
-                                        }
-                                     } );
+                                     ->where( 'id_empleado' , '<>' , Auth::User()->id_empleado );
+                if( isset( $palabra_clave ) && $palabra_clave != '' ) {
+                    $empleados->where( DB::raw( "CONCAT(nombre,' ',apellidos)" ) , 'LIKE' , "%$palabra_clave%");
+                }
+                $empleados = $empleados->take( NUM_RESULTADOS )
+                                      ->skip( NUM_RESULTADOS*$offset )
+                                      ->get();
                 $status   = OK;
                 $data     = $empleados;
                 $mensaje  = '';
