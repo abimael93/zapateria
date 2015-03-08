@@ -17,6 +17,15 @@ angular.module( 'appZapateria' ).service( 'proveedorServices' , [ '$resource' , 
                 agregar: {
                     method: 'POST'
                 }
+            }),
+            proveedor_listar     = $resource( path_server + "/listar/:offset/:eliminado" , {}, {
+                listar: {
+                    method: 'POST',
+                    params: {
+                        offset:         '@offset',
+                        eliminado:      '@eliminado',
+                    }
+                }
             });
 
         return {
@@ -41,5 +50,24 @@ angular.module( 'appZapateria' ).service( 'proveedorServices' , [ '$resource' , 
                     }
                 );
             },
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      02/24/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    empleadoServices.listar( { offset: 0 , eliminado: 0 } function( data ){ .... });
+            */
+            listar: function( parametros , callback ) {
+                return proveedor_listar.listar( parametros ,
+                    function( data ) {
+                        callback( data );
+                    }
+                );
+            },
         };
+            
 }]);

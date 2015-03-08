@@ -1,27 +1,70 @@
-<div>
-    <h4>Default</h4>
+<section>
+    <div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Registro
+            </div>
+            <div class="panel-body">              
+              <div class="row">
+                <div class="my-controller col-xs-12">
+                  <div class="row fluid breadcrumb div-buscar">                    
+                    <div class="col-xs-6 col-md-3">
+                      <label for="search">General:</label>
+                      <input ng-change="proveedor_list.listar()" ng-model="proveedor_list.palabra_clave" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar" ng-model-options="{ debounce: 600 }">                      
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <label for="search">Estatus:</label>
+                        <select class="form-control" required name="estatus" ng-model="proveedor_list.estatus" ng-change="proveedor_list.listar()">
+                          <option value="0">Activo</option>
+                          <option value="1">Eliminado</option>
+                        </select>
+                    </div>
+                    <p class="col-xs-12 text-info">Optimize su busqueda con los filtros de la aplicación</p>
+                  </div>
 
-    <pagination total-items="prov.totalItems" ng-model="prov.currentPage" ng-change="prov.pageChanged()"></pagination>
-
-    <pagination boundary-links="true" total-items="prov.totalItems" ng-model="prov.currentPage" max-size="prov.maxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"  rotate="false"></pagination>
-
-    <pagination direction-links="false" boundary-links="true" total-items="prov.totalItems" ng-model="prov.currentPage" ></pagination>
-
-    <pagination direction-links="false" total-items="prov.totalItems" ng-model="prov.currentPage" num-pages="prov.smallnumPages"></pagination>
-
-    <pre>The selected page no: {{prov.currentPage}}</pre>
-    <button class="btn btn-info" ng-click="prov.setPage(3)">Set current page to: 3</button>
-
-    <hr />
-    <h4>Pager</h4>
-    <pager total-items="prov.totalItems" ng-model="prov.currentPage"></pager>
-
-    <hr />
-    <h4>Limit the maximum visible buttons</h4>
-
-    <pagination total-items="prov.bigTotalItems" ng-model="prov.bigCurrentPage" max-size="prov.maxSize" class="pagination-sm" boundary-links="true"></pagination>
-
-    <pagination total-items="prov.bigTotalItems" ng-model="prov.bigCurrentPage" max-size="prov.maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="prov.numPages" items-per-page="prov.itemsPerPage"></pagination>
-
-    <pre>Page: {{prov.bigCurrentPage}} / {{prov.numPages}}</pre>
-</div>
+                  <br>
+                  <!--Comienzo de la Div que contiene la tabla resposiva -->
+                  <div class="table-responsive  margin-none ">
+                  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                          <tr>
+                              <th class="text-center">
+                                ID
+                                <span class="fa fa-sort pull-right"></span>
+                              </th>
+                              <th class="text-center">
+                                Razón Social
+                                <span class="fa fa-sort pull-right" style="cursor: pointer" ng-click="pag.ordenarPor('browser')"></span>
+                              </th>
+                              <th class="text-center">Representante</th>
+                              <th class="text-center">Fecha de Registro</th>
+                              <th class="text-center">&nbsp;&nbsp;&nbsp;Ver&nbsp;&nbsp;&nbsp;</th>
+                              <th class="text-center">Eliminar</th>
+                          </tr>
+                      </thead>
+                        <tbody>
+                            <tr ng-repeat="proveedor in proveedor_list.proveedors">
+                                <td class="text-center" ng-bind="proveedor.id_proveedor"></td>
+                                <td class="text-center" ng-bind="proveedor.razon_social"></td>
+                                <td ng-bind="proveedor.nombre + '&nbsp;' + proveedor.apellidos"></td>
+                                <td class="text-center" ng-bind="proveedor.fecha_registro"></td>
+                                <td class="text-center">
+                                  <i class="fa fa-edit fa fa-2x"
+                                    ng-click="proveedor_list.proveedor_details( proveedor.id_proveedor )">
+                                  </i>
+                                </td>
+                                <td class="text-center">
+                                  <i class="fa fa-close fa-2x" ng-click="proveedor_list.proveedor_eliminar()"></i>
+                                </td>
+                            </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <!--Fin Tabla resposive -->               
+              </div>
+            </div>
+          </div>
+          <!-- /.panel-body -->
+      </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+<script type="text/ng-template" id="empleadoUpdate.html">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Registro
+        </div>
+        <div class="panel-body">
+            <form role="form" name="empleado_form" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': empleado_form.rfc.$invalid}">
+                            <label>RFC:</label>
+                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" name="rfc" ng-model="empleado.rfc" ng-pattern="/[A-Za-z]{3,4}[\d]{6}[A-Za-z\d]{3}/" maxlength="13">
+                            <p ng-show="empleado_form.rfc.$invalid && empleado_form.rfc.$error" class="help-block">El formato del RFC es incorrecto, ejemplo: XXX000000X0X</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.usuario.$invalid && !empleado_form.usuario.$pristine}">
+                            <label>Usuario <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre de usuario" required name="usuario" ng-model="empleado.usuario">
+                            <p ng-show="empleado_form.usuario.$invalid && !empleado_form.usuario.$pristine" class="help-block">El nombre de usuario es requerido</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.nombre.$invalid && !empleado_form.nombre.$pristine}">
+                            <label>Nombres <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre(s)" required name="nombre" ng-model="empleado.nombre">
+                            <p ng-show="empleado_form.nombre.$invalid && !empleado_form.nombre.$pristine" class="help-block">El nombre es requerido</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.apellidos.$invalid && !empleado_form.apellidos.$pristine}">
+                            <label>Apellidos <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Apellido(s)" name="apellidos" required ng-model="empleado.apellidos">
+                            <p ng-show="empleado_form.apellidos.$invalid && !empleado_form.apellidos.$pristine" class="help-block">Los apellidos son requeridos</p>
+                        </div>
+                        <label>Correo electrónico :</label>
+                        <div class="form-group input-group" ng-class="{'has-error': empleado_form.correo.$invalid && !empleado_form.correo.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email" class="form-control" placeholder="Email" name="correo" ng-model="empleado.correo">
+                        </div>
+                        <p ng-show="empleado_form.correo.$invalid" class="help-block"><span class="text-danger ">El formato del correo es incorrecto</span></p>
+                        <label>Teléfono <span class="text-danger">* </span>:</label>
+                        <div class="form-group input-group" ng-class="{'has-error': empleado_form.telefono.$invalid && !empleado_form.telefono.$pristine}">
+                            <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
+                            <input type="text" class="form-control" placeholder="Teléfono" name="telefono" ng-model="empleado.telefono" required maxlength="10" ng-pattern="/[\d]{8,10}/">
+                        </div>
+                        <p ng-show="empleado_form.telefono.$error.required && !empleado_form.telefono.$pristine" class="help-block"><span class="text-danger">El teléfono es requerido</span></p>
+                        <p ng-show="empleado_form.telefono.$error.pattern" class="help-block"><span class="text-danger">El formato de teléfono es incorrecto</span></p>
+                        <label>Celular :</label>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                            <input type="text" class="form-control" placeholder="Celular" name="celular" ng-model="empleado.celular">
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.departamento.$invalid && !empleado_form.departamento.$pristine}">
+                            <label>Departamento <span class="text-danger">* </span>:</label>
+                            <select class="form-control" required name="departamento" ng-model="empleado.departamento" ng-options="departamento.nombre for departamento in empleado.departamentos">
+                                <option value="">Selecciona un departamento</option>
+                            </select>
+                            <p ng-show="empleado_form.departamento.$invalid && !empleado_form.departamento.$pristine" class="help-block">El departamento es requerido</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.cargo.$invalid && !empleado_form.cargo.$pristine}">
+                            <label>Cargo <span class="text-danger">* </span>:</label>
+                            <select class="form-control" required name="cargo" ng-model="empleado.cargo" ng-options="cargo.nombre for cargo in empleado.cargos">
+                                <option value="">Selecciona un cargo</option>
+                            </select>
+                            <p ng-show="empleado_form.cargo.$invalid && !empleado_form.cargo.$pristine" class="help-block">El cargo es requerido</p>
+                        </div>
+                        <div class="form-group">
+                                <label>Observaciones :</label>
+                                <textarea class="form-control" rows="5" name="observaciones"></textarea>
+                        </div>
+                        <br>
+                    </div>
+                    <!-- /.col-md-6 (nested) -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="btn_file">Elegir la fotografía del empleado <span class="text-danger">* </span>:</label>
+                                <input type="file"  id="btn_file" ng-model="empleado.fotografia" accept=".jpg">
+                        </div>
+                        
+                        <div class="form-group">
+                          <img class="img-responsive img-thumbnail" id='img_src' src="img/profile_man.jpg" alt="">
+                          <hr>
+                            <div class="form-group">
+                                <p class="help-block"><i class="fa fa-warning"></i> La imagen no debe de ser mas grande 140x140 pixeles. <br>formato: JPG</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': empleado_form.estado.$invalid && !empleado_form.estado.$pristine}">
+                            <label>Estado <span class="text-danger">* </span>:</label>
+                            <select class="form-control" ng-change="empleado.cargaMunicipios()" required name="estado" ng-model="empleado.estado" ng-options="estado.nombre for estado in empleado.estados">
+                                <option value="">Selecciona un estado</option>
+                            </select>
+                            <p ng-show="empleado_form.estado.$invalid && !empleado_form.estado.$pristine" class="help-block">El estado es requerido</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.municipio.$invalid && !empleado_form.municipio.$pristine}">
+                            <label>Municipio <span class="text-danger">* </span>:</label>
+                            <select class="form-control" ng-change="empleado.cargaColonias()" required name="municipio" ng-model="empleado.municipio" ng-options="municipio.nombre for municipio in empleado.municipios">
+                                <option value="">Selecciona un municipio</option>
+                            </select>
+                            <p ng-show="empleado_form.municipio.$invalid && !empleado_form.municipio.$pristine" class="help-block">El municipio es requerido</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': empleado_form.colonia.$invalid && !empleado_form.colonia.$pristine}">
+                            <label>Colonia <span class="text-danger">* </span>:</label>
+                            <select class="form-control" name="colonia" ng-model="empleado.colonia" required ng-options="colonia.nombre for colonia in empleado.colonias">
+                                <option value="">Selecciona un colonia</option>
+                            </select>
+                            <p ng-show="empleado_form.colonia.$invalid && !empleado_form.colonia.$pristine" class="help-block">La colonia es requerida</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 form-group" ng-class="{'has-error': empleado_form.calle.$invalid && !empleado_form.calle.$pristine}">
+                                <label>Calle <span class="text-danger">* </span>:</label>
+                                <input class="form-control" placeholder="Nombre de la calle" required name="calle" ng-model="empleado.calle">
+                                <p ng-show="empleado_form.calle.$invalid && !empleado_form.calle.$pristine" class="help-block">La calle es requerida</p>
+                             </div>
+                            <div class="col-md-4 form-group" ng-class="{'has-error': empleado_form.codigo_postal.$invalid && !empleado_form.codigo_postal.$pristine}">
+                                <label>CP <span class="text-danger">* </span>:</label>
+                                <input class="form-control" placeholder="Codigo Postal" required name="codigo_postal" ng-model="empleado.codigo_postal">
+                                <p ng-show="empleado_form.codigo_postal.$invalid && !empleado_form.codigo_postal.$pristine" class="help-block">El código postal es requerido</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group" ng-class="{'has-error': empleado_form.num_ext.$invalid && !empleado_form.num_ext.$pristine}">
+                                <label>Número Exterior <span class="text-danger">*</span>:</label>
+                                <input class="form-control" placeholder="Número Exterior" name="num_ext" ng-model="empleado.num_ext" required>
+                                <p ng-show="empleado_form.num_ext.$invalid && !empleado_form.num_ext.$pristine" class="help-block">El número exterior es requerido</p>
+                            </div>
+                            <div class="col-md-6 form-group" border="0">
+                                <label>Número Interior :</label>
+                                <input class="form-control" placeholder="Número Interior" name="num_int" ng-model="empleado.num_int">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-md-6 (nested) -->
+                </div>            
+                <!-- /.row (nested) -->
+                <div class="pull-right row">
+                    <div class="col-md-12">
+                        <!-- <button type="reset"  class="btn btn-warning"><span class="fa fa-file-o"></span> Limpiar</button>-->
+                        <button type="submit" class="btn btn-success" ng-disabled='empleado_form.$invalid' ng-click="empleado.agregar()"><span class="fa fa-save"></span> Guardar</button>
+                    </div>              
+                </div>
+            </form>
+        </div>
+            <!-- /.panel-body -->
+    </div>
+</script>
