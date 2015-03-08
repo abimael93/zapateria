@@ -116,7 +116,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             *   @example    empleadoServices.modificar( datos_empleado , function( data ){ .... });
             */
             modificar: function( empleado , success , fail ) {
-                return empleado_resource.actualizar( empleado ,
+                return empleado_resource.modificar( empleado ,
                     function( data ) {
                         success( data );
                     }, function( data ) {

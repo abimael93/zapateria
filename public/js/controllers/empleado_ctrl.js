@@ -156,7 +156,7 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
         /**
         *   Esta función crea un modal donde se cargan los datos de un empleado
         *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-        *   @since      07/03/2015
+        *   @since      08/03/2015
         *   @version    1
         *   @access     public
         *   @param      int [id_empleado]
@@ -171,17 +171,26 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
                     controllerAs:   'empleado',
                     size:           'lg',
                     resolve: {
-                    id_empleado: function() {
-                        return id_empleado;
+                        id_empleado: function( ) {
+                            return id_empleado;
+                        }
                     }
                 }
-            });
+            );
+
+            instancia_modal.result.then(
+                function () {
+                    empleado_list.listar( );
+                }, function () {
+                    console.log( 'Los datos del empleado no fueron modificados' );
+                }
+            );
         };
 
         /**
         *   Esta función permite eliminar un empleado activo
         *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-        *   @since      07/03/2015
+        *   @since      08/03/2015
         *   @version    1
         *   @access     public
         *   @param      int [id_empleado]
@@ -202,7 +211,7 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
         /**
         *   Esta función permite recuperar un empleado eliminado
         *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-        *   @since      07/03/2015
+        *   @since      08/03/2015
         *   @version    1
         *   @access     public
         *   @param      int [id_empleado]
@@ -224,10 +233,12 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
     }
 ]);
 
-angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'id_empleado' , 'empleadoServices' , '$state' , 'catalogosServices' , 
-    function( id_empleado , empleadoServices , $state , catalogosServices ) {
+angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'id_empleado' , 'empleadoServices' , '$state' , 'catalogosServices' , '$modalInstance' ,
+    function( id_empleado , empleadoServices , $state , catalogosServices , $modalInstance ) {
 
         var empleado = this;
+
+        empleado.datos_form = {};
 
         //Carga de catálogos
         catalogosServices.tipo( 'departamento' , function( data ) {
@@ -241,7 +252,7 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'id_
         catalogosServices.tipoDependiente( { tipo: 'estado', id_padre: 1 } , function( data ) {
             empleado.estados = data;
         });
-        
+
         empleadoServices.mostrar( id_empleado , 
             function( data ) {
                 console.log( data.data );
@@ -249,19 +260,76 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'id_
             }
         );
 
-        empleado.actualizar = function( ) {
-            empleado.datos_form.id_empleado = id_empleado;
+        /**
+        *   Esta función carga el catálogo de municipios
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.cargaMunicipios( );
+        */
+        empleado.cargaMunicipios = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: empleado.datos.estado.id_estado } , function( data ) {
+                empleado.municipios = data;
+            });
+        };
 
-            empleadoServices.actualizar( 
+        /**
+        *   Esta función carga el catálogo de colonias
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      02/11/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    empleado.cargaColonias( );
+        */
+        empleado.cargaColonias = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'colonia', id_padre: empleado.datos.municipio.id_municipio } , function( data ) {
+                empleado.colonias = data;
+            });
+        };
+
+        empleado.actualizar = function( ) {
+            empleado.datos_form.id_empleado     = id_empleado;
+            empleado.datos_form.id_cargo        = empleado.datos.cargo.id_cargo;
+            empleado.datos_form.id_departamento = empleado.datos.departamento.id_departamento;
+            empleado.datos_form.id_pais         = 1;
+            empleado.datos_form.id_estado       = empleado.datos.estado.id_estado;
+            empleado.datos_form.id_municipio    = empleado.datos.municipio.id_municipio;
+            empleado.datos_form.id_colonia      = empleado.datos.colonia.id_colonia;
+            empleado.datos_form.nombre          = empleado.datos.nombre;
+            empleado.datos_form.apellidos       = empleado.datos.apellidos;
+            empleado.datos_form.rfc             = empleado.datos.rfc;
+            //empleado.datos_form.foto            = empleado.datos.foto;
+            empleado.datos_form.correo          = empleado.datos.correo;
+            //empleado.datos_form.usuario         = empleado.datos.usuario;
+            //empleado.datos_form.password      = empleado.datos.password;
+            empleado.datos_form.calle           = empleado.datos.calle;
+            empleado.datos_form.num_ext         = empleado.datos.num_ext;
+            empleado.datos_form.num_int         = empleado.datos.num_int;
+            empleado.datos_form.telefono        = empleado.datos.telefono;
+            empleado.datos_form.celular         = empleado.datos.celular;
+
+            empleadoServices.modificar( 
                 empleado.datos_form , 
                 function( data ) {
                     console.log( data );
-                    $state.go( 'gestion.empleado_list' );
+                    empleado.ok( );
                 },
                 function( data ) {
                     console.log( data );
+                    empleado.cancel( );
                 }
             );
         };
+
+        empleado.ok = function( ) {
+            $modalInstance.close();
+        }
+
+        empleado.cancel = function( ) {
+            $modalInstance.dismiss();
+        }
     }
 ]);
