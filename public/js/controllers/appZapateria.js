@@ -8,7 +8,7 @@ angular.module( 'appZapateria' ,
 	function( $stateProvider , $urlRouterProvider ) {
 		'use strict';
 
-		$urlRouterProvider.otherwise('/gestion/inicio');
+		$urlRouterProvider.otherwise('/gestion');
 
 		$stateProvider
 		//Página Principal
@@ -22,6 +22,8 @@ angular.module( 'appZapateria' ,
 		.state('gestion', {
 			url: '/gestion',
 			templateUrl: 'views/sidebar.html',
+			controller: 	'SessionCtrl',
+			controllerAs: 	'sesion' ,
 		})
 			//Inicio del Sistema
 			.state('gestion.inicio', {
@@ -63,60 +65,76 @@ angular.module( 'appZapateria' ,
 			})
 			//Módulo Producto
 			.state( 'gestion.producto_create' , {
-				templateUrl: 'views/producto_form.html'
+				url: 		 	'/producto/create',
+				templateUrl: 	'views/producto_form.html'
 			})
 			.state( 'gestion.producto_list' , {
-				templateUrl: 'views/producto_list.html'
+				url: 		 	'/producto/list',
+				templateUrl: 	'views/producto_list.html'
 			})
 			//Módulo pedido
 			.state( 'gestion.pedido_create' , {
-				templateUrl: 'views/pedido_form.html'
+				url: 			 '/pedido/create',
+				templateUrl: 	'views/pedido_form.html'
 			})
 			.state( 'gestion.pedido_list' , {
-				templateUrl: 'views/pedido_list.html'
+				url: 			 '/pedido/list',
+				templateUrl: 	'views/pedido_list.html'
 			})
 			//Módulo Desarrollo
 			.state( 'gestion.desarrollo_create' , {
-				templateUrl: 'views/desarrollo_form.html'
+				url: 			 '/desarrollo/create',
+				templateUrl: 	'views/desarrollo_form.html'
 			})
 			.state( 'gestion.desarrollo_list' , {
-				templateUrl: 'views/desarrollo_list.html'
+				url: 			 '/desarrollo/list',
+				templateUrl: 	'views/desarrollo_list.html'
 			})
 			//Módulo Producción
 			.state( 'gestion.produccion_create' , {
-				templateUrl: 'views/produccion_form.html'
+				url: 			 '/produccion/create',
+				templateUrl: 	'views/produccion_form.html'
 			})
 			.state( 'gestion.produccion_list' , {
-				templateUrl: 'views/produccion_list.html'
+				url: 			 '/produccion/list',
+				templateUrl: 	'views/produccion_list.html'
 			})
 			//Módulo Remisión
 			.state( 'gestion.remision_create' , {
-				templateUrl: 'views/remision_form.html'
+				url: 			 '/remision/create',
+				templateUrl: 	'views/remision_form.html'
 			})
 			.state( 'gestion.remision_list' , {
-				templateUrl: 'views/remision_list.html'
+				url: 			 '/remision/list',
+				templateUrl: 	'views/remision_list.html'
 			})
 			//Módulo Recepción
 			.state( 'gestion.recepcion_create' , {
-				templateUrl: 'views/recepcion_form.html'
+				url: 			 '/recepcion/create',
+				templateUrl: 	'views/recepcion_form.html'
 			})
 			.state( 'gestion.recepcion_list' , {
-				templateUrl: 'views/recepcion_list.html'
+				url: 			 '/recepcion/list',
+				templateUrl: 	'views/recepcion_list.html'
 			})
 			//Módulo Ajuste Entrada
 			.state( 'gestion.ajuste_entrada_create' , {
-				templateUrl: 'views/ajuste_entrada_form.html'
+				url: 			 '/ajuste_entrada/create',
+				templateUrl: 	'views/ajuste_entrada_form.html'
 			})
 			.state( 'gestion.ajuste_entrada_list' , {
-				templateUrl: 'views/ajuste_entrada_list.html'
+				url: 			 '/ajuste_entrada/list',
+				templateUrl: 	'views/ajuste_entrada_list.html'
 			})
 			//Módulo Ajuste Salida
 			.state( 'gestion.ajuste_salida_create' , {
-				templateUrl: 'views/ajuste_salida_form.html'
+				url: 			 '/ajuste_salida/create',
+				templateUrl: 	'views/ajuste_salida_form.html'
 			})
 			.state( 'gestion.ajuste_salida_list' , {
-				templateUrl: 'views/ajuste_salida_list.html'
-			})
+				url: 			 '/ajuste_salida/list',
+				templateUrl: 	'views/ajuste_salida_list.html'
+			});
 	}
 ]);
 /*.config( function( $routeProvider ) {

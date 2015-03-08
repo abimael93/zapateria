@@ -38,7 +38,7 @@
                     </li>
 
                     <li class="sub-menu">
-                        <a><i class="fa fa-user"></i> Empleados<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-user"></i> Empleados<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".empleado_create">   Alta</a>
@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'cliente'}"><i class="fa fa-bar-chart-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-bar-chart-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".cliente_create"> Alta</a>
@@ -60,7 +60,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'proveedor'}"><i class="fa fa-table fa-fw"></i> Proveedores<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-table fa-fw"></i> Proveedores<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".proveedor_create"> Alta</a>
@@ -71,7 +71,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'producto'}"><i class="fa fa-shopping-cart"></i> Productos<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-shopping-cart"></i> Productos<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".producto_create"> Alta</a>
@@ -82,7 +82,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'pedido'}"><i class="fa fa-truck"></i> Pedidos<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-truck"></i> Pedidos<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".pedido_create"> Alta</a>
@@ -93,7 +93,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'desarrollo'}"><i class="fa fa-cogs"></i> Desarrollo<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-cogs"></i> Desarrollo<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".desarrollo_create"> Crear</a>
@@ -104,7 +104,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'produccion'}"><i class="fa fa-line-chart"></i> Producción<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-line-chart"></i> Producción<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".produccion_create"> Crear</a>
@@ -115,7 +115,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'remision'}"><i class="fa fa-money"></i> Ventas<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-money"></i> Ventas<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".remision_create"> Crear</a>
@@ -126,7 +126,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a ng-class="{active: nav.modulo.nombreBase == 'recepcion'}"><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
+                        <a href><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
                         <ul class="sub">
                             <li>
                                 <a class="fa fa-plus-square" ui-sref=".recepcion_create"> Crear</a>
@@ -173,7 +173,7 @@
             <section class="wrapper site-min-height">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12" ui-view>
+                        <div class="col-lg-12 view-container " ui-view>
                             
                         </div>
                         <!-- /.col-lg-12 -->
@@ -189,11 +189,13 @@
     <footer class="site-footer">
         <div class="text-center">
           2015 Zapateria Lady Sents
-            <a ui-sref="" class="go-top">
+            <a class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>
     </footer>
     <!--footer end-->
-
     </section>
+
+    <!--common script for all pages-->
+    <script src="Theme/js/common-scripts.js"></script>
