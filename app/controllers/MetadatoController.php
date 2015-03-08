@@ -2,6 +2,15 @@
 
 class MetadatoController extends BaseController{
     
+    /**
+    *   this function allows us to save all the metadatas from any kind of object in the system
+    *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
+    *   @since      01/22/2015
+    *   @version    1
+    *   @access     public
+    *   @param      String [$objeto] it's the system's object that we want to attach it some metadatas
+    *   @param      array [$metadatos] it's the array of metadatas that we will attach in the appropriate object table
+    */
     public static function insertarMetadatos ( $objeto , $metadatos ) {
         if ( property_exists( $objeto , 'id_cliente' ) ) {
             $tabla   = 'info_cliente';
