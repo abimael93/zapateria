@@ -29,7 +29,7 @@ class ClienteController extends BaseController{
     /**
     *   this function registers a client to the system
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
-    *   @since      01/31/2015
+    *   @since      03/07/2015
     *   @version    1
     *   @access     public
     *   @return     json ( status = ? , data = ? , mensaje = ? )
@@ -88,7 +88,7 @@ class ClienteController extends BaseController{
     /**
     *   this function modify a client the system already have
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
-    *   @since      01/31/2015
+    *   @since      03/07/2015
     *   @version    1
     *   @access     public
     *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to modify
@@ -151,7 +151,7 @@ class ClienteController extends BaseController{
     /**
     *   this function shows the complete information from a client
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
-    *   @since      01/31/2015
+    *   @since      03/07/2015
     *   @version    1
     *   @access     public
     *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to see
@@ -198,7 +198,7 @@ class ClienteController extends BaseController{
     /**
     *   this function deletes the client desired
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
-    *   @since      01/31/2015
+    *   @since      03/07/2015
     *   @version    1
     *   @access     public
     *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to erase
@@ -254,7 +254,7 @@ class ClienteController extends BaseController{
     /**
     *   this function recovers the client desired
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
-    *   @since      01/31/2015
+    *   @since      03/07/2015
     *   @version    1
     *   @access     public
     *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to recover
@@ -310,7 +310,7 @@ class ClienteController extends BaseController{
     /**
     *   this function lists all the clients available in the system if they are deleted or not
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
-    *   @since      01/31/2015
+    *   @since      03/07/2015
     *   @version    1
     *   @access     public
     *   @param      Integer [$offset] it's the page in the table of the db that you want to show depending on result number
