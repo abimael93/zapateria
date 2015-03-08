@@ -119,8 +119,8 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoAltaCtrl' , [ '$location' 
     *   @return     
     *   @example    empleado.listar( )
 */
-angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
-    function( $location , $modal , catalogosServices , empleadoServices ) {
+angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' , '$state' ,
+    function( $location , $modal , catalogosServices , empleadoServices , $state ) {
 
         var empleado_list   = this,
             offset          = 0;
@@ -159,8 +159,9 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
         *   @since      07/03/2015
         *   @version    1
         *   @access     public
+        *   @param      int [id_empleado]
         *   @return     void
-        *   @example    empleado_list.empleado_details( );
+        *   @example    empleado_list.empleado_details( id_empleado );
         */
         empleado_list.empleado_details = function( id_empleado ) {
             var instancia_modal = $modal.open( 
@@ -175,6 +176,48 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
                     }
                 }
             });
+        };
+
+        /**
+        *   Esta función permite eliminar un empleado activo
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      07/03/2015
+        *   @version    1
+        *   @access     public
+        *   @param      int [id_empleado]
+        *   @return     void
+        *   @example    empleado_list.empleado_eliminar( id_empleado );
+        */
+        empleado_list.empleado_eliminar = function( id_empleado ) {
+            empleadoServices.eliminar( id_empleado,
+                function( data ) {
+                    console.log( data );
+                    empleado_list.listar( );
+                }, function( data ) {
+                    console.log( data );
+                }
+            );
+        };
+
+        /**
+        *   Esta función permite recuperar un empleado eliminado
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      07/03/2015
+        *   @version    1
+        *   @access     public
+        *   @param      int [id_empleado]
+        *   @return     void
+        *   @example    empleado_list.empleado_recuperar( id_empleado );
+        */
+        empleado_list.empleado_recuperar = function( id_empleado ) {
+            empleadoServices.recuperar( id_empleado,
+                function( data ) {
+                    console.log( data );
+                    empleado_list.listar( );
+                }, function( data ) {
+                    console.log( data );
+                }
+            );
         };
 
         empleado_list.listar( );

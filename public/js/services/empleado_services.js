@@ -13,7 +13,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
 
         var path_server = routeServices.PathServer + 'empleados';
 
-        var empleado_resource   = $resource( path_server , {}, {
+        var empleado_agregar   = $resource( path_server , {}, {
                 agregar: {
                     method: 'POST'
                 }
@@ -27,7 +27,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
                     }
                 }
             }),
-            empleado_modificar     = $resource( path_server + "/:id_empleado" , {}, {
+            empleado_resource   = $resource( path_server + "/:id_empleado" , {}, {
                 modificar: {
                     method: 'PUT',
                     params: {
@@ -35,6 +35,20 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
                     }
                 },
                 mostrar: {
+                    method: 'GET',
+                    params: {
+                        id_empleado:    '@id_empleado',
+                    }
+                },
+                eliminar: {
+                    method: 'DELETE',
+                    params: {
+                        id_empleado:    '@id_empleado',
+                    }
+                }
+            }),
+            empleado_recuperar  = $resource( path_server + "/recuperar/:id_empleado" , {} , {
+                recuperar: {
                     method: 'GET',
                     params: {
                         id_empleado:    '@id_empleado',
@@ -62,7 +76,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             *   @example    empleadoServices.agregar( {usuario: 'kyele', nombre: '1414', ....} , function( data ){ .... }, function( data ) { .... } )
             */
             agregar: function( empleado , success, fail ) {
-                return empleado_resource.agregar( empleado ,
+                return empleado_agregar.agregar( empleado ,
                     function( data ) {
                         success( data );
                     }, function( data ) {
@@ -102,7 +116,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             *   @example    empleadoServices.modificar( datos_empleado , function( data ){ .... });
             */
             modificar: function( empleado , success , fail ) {
-                return empleado_modificar.actualizar( empleado ,
+                return empleado_resource.actualizar( empleado ,
                     function( data ) {
                         success( data );
                     }, function( data ) {
@@ -123,12 +137,60 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             *   @example    empleadoServices.mostrar( datos_empleado , function( data ){ .... });
             */
             mostrar: function( id_empleado , callback ) {
-                return empleado_modificar.mostrar(
-                {
-                    id_empleado: id_empleado,
-                } ,
+                return empleado_resource.mostrar(
+                    {
+                        id_empleado: id_empleado,
+                    } ,
                     function( data ) {
                         callback( data );
+                    }
+                );
+            },
+
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    empleadoServices.eliminar( datos_empleado , function( data ){ .... });
+            */
+            eliminar: function( id_empleado , success , fail ) {
+                return empleado_resource.eliminar(
+                    {
+                        id_empleado: id_empleado,
+                    },
+                    function( data ) {
+                        success( data );
+                    }, function( data ) {
+                        fail( data.data );
+                    }
+                );
+            },
+
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    empleadoServices.recuperar( datos_empleado , function( data ){ .... });
+            */
+            recuperar: function( id_empleado , success, fail ) {
+                return empleado_recuperar.recuperar(
+                    {
+                        id_empleado: id_empleado,
+                    },
+                    function( data ) {
+                        success( data );
+                    }, function( data ) {
+                        fail( data.data );
                     }
                 );
             },
