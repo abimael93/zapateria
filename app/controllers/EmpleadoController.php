@@ -499,7 +499,7 @@ class EmpleadoController extends BaseController{
     *   @access     public
     *   @param      Integer [$offset] it's the page in the table of the db that you want to show depending on result number by GET
     *   @param      Integer [$eliminado] it's a boolean flat that talks the function what kind of employees you want to show by GET
-    *   @param      String [palabra_clave] it's word that works as a filter to the set of the records
+    *   @param      String [palabra_clave] it's word that works as a filter to the set of the records by POST
     *   @return     json ( status = ? , data = ? , mensaje = ? )
     *   @example    http://localhost/zapateria/public/empleados/listar/0/1 eliminados by post
     *   @example    http://localhost/zapateria/public/empleados/listar/0/0 no eliminados by post
