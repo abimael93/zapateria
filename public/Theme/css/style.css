@@ -2256,3 +2256,8 @@ label {
 .view-container {
     margin-top: 1.5em;
 }
+
+/* Acciones */
+tbody > tr > td > i {
+    cursor: pointer;
+}
