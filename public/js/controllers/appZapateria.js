@@ -64,8 +64,10 @@ angular.module( 'appZapateria' ,
 				templateUrl: 	'views/proveedor_form.html'
 			})
 			.state('gestion.proveedor_list', {
+				controller: 	'ProveedorListCtrl',
+				controllerAs: 	'proveedor_list',
 				url: 			'/proveedor/list',
-				templateUrl: 	'views/empleado_list.html',
+				templateUrl: 	'views/proveedor_list.html',
 			})
 			//Módulo Producto
 			.state( 'gestion.producto_create' , {

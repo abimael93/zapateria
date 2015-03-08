@@ -42,7 +42,7 @@ angular.module( 'appZapateria' ).controller( 'ClienteCtrl' , [ '$location' , '$m
             cliente.datos_form.nombre          = cliente.nombre;
             cliente.datos_form.apellidos       = cliente.apellidos;
             cliente.datos_form.rfc             = cliente.rfc;
-            cliente.datos_form.razon_social    = cliente.rfc;
+            cliente.datos_form.razon_social    = cliente.razon_social;
             cliente.datos_form.correo          = cliente.correo;
             cliente.datos_form.calle           = cliente.calle;
             cliente.datos_form.num_ext         = cliente.num_ext;
