@@ -2261,3 +2261,6 @@ label {
 tbody > tr > td > i {
     cursor: pointer;
 }
+.panel, .panel-heading {
+    border-radius: 0px;
+}
