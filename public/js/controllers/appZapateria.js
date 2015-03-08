@@ -2,7 +2,124 @@ angular.module( 'appZapateria' ,
 	[ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , 'ui.select', 'ngSanitize' ,
 	  'modelOptions' , 'infinite-scroll' , 'ui.router', ] )
 
-.config( function( $routeProvider ) {
+
+.config(
+	[ '$stateProvider', '$urlRouterProvider',
+	function( $stateProvider , $urlRouterProvider ) {
+		'use strict';
+
+		$urlRouterProvider.otherwise('/gestion/inicio');
+
+		$stateProvider
+		//Página Principal
+		.state('login', {
+			url: 			'/login',
+			controller: 	'SessionCtrl',
+			controllerAs: 	'sesion' ,
+			templateUrl: 	'views/login.html' ,
+		})
+		//Carga del sidebar
+		.state('gestion', {
+			url: '/gestion',
+			templateUrl: 'views/sidebar.html',
+		})
+			//Inicio del Sistema
+			.state('gestion.inicio', {
+				url: 			'/inicio',
+				controller: 	'appController',
+				//controllerAs: 'login' ,
+				templateUrl: 	'views/home.html',
+			})
+			//Módulo Empleado
+			.state('gestion.empleado_create', {
+				url: 			'/empleado/create',
+				controller: 	'EmpleadoAltaCtrl' ,
+				controllerAs: 	'empleado' ,
+				templateUrl: 	'views/empleado_form.html'
+			})
+			.state('gestion.empleado_list', {
+				url: 			'/empleado/list',
+				controller: 	'EmpleadoListCtrl',
+				controllerAs: 	'empleado_list',
+				templateUrl: 	'views/empleado_list.html',
+			})
+			//Módulo Cliente
+			.state('gestion.cliente_create', {
+				url: 			'/cliente/create',
+				templateUrl: 	'views/cliente_form.html'
+			})
+			.state('gestion.cliente_list', {
+				url: 			'/cliente/list',
+				templateUrl: 	'views/empleado_list.html',
+			})
+			//Módulo Proveedor
+			.state('gestion.proveedor_create', {
+				url: 			'/proveedor/create',
+				templateUrl: 	'views/proveedor_form.html'
+			})
+			.state('gestion.proveedor_list', {
+				url: 			'/proveedor/list',
+				templateUrl: 	'views/empleado_list.html',
+			})
+			//Módulo Producto
+			.state( 'gestion.producto_create' , {
+				templateUrl: 'views/producto_form.html'
+			})
+			.state( 'gestion.producto_list' , {
+				templateUrl: 'views/producto_list.html'
+			})
+			//Módulo pedido
+			.state( 'gestion.pedido_create' , {
+				templateUrl: 'views/pedido_form.html'
+			})
+			.state( 'gestion.pedido_list' , {
+				templateUrl: 'views/pedido_list.html'
+			})
+			//Módulo Desarrollo
+			.state( 'gestion.desarrollo_create' , {
+				templateUrl: 'views/desarrollo_form.html'
+			})
+			.state( 'gestion.desarrollo_list' , {
+				templateUrl: 'views/desarrollo_list.html'
+			})
+			//Módulo Producción
+			.state( 'gestion.produccion_create' , {
+				templateUrl: 'views/produccion_form.html'
+			})
+			.state( 'gestion.produccion_list' , {
+				templateUrl: 'views/produccion_list.html'
+			})
+			//Módulo Remisión
+			.state( 'gestion.remision_create' , {
+				templateUrl: 'views/remision_form.html'
+			})
+			.state( 'gestion.remision_list' , {
+				templateUrl: 'views/remision_list.html'
+			})
+			//Módulo Recepción
+			.state( 'gestion.recepcion_create' , {
+				templateUrl: 'views/recepcion_form.html'
+			})
+			.state( 'gestion.recepcion_list' , {
+				templateUrl: 'views/recepcion_list.html'
+			})
+			//Módulo Ajuste Entrada
+			.state( 'gestion.ajuste_entrada_create' , {
+				templateUrl: 'views/ajuste_entrada_form.html'
+			})
+			.state( 'gestion.ajuste_entrada_list' , {
+				templateUrl: 'views/ajuste_entrada_list.html'
+			})
+			//Módulo Ajuste Salida
+			.state( 'gestion.ajuste_salida_create' , {
+				templateUrl: 'views/ajuste_salida_form.html'
+			})
+			.state( 'gestion.ajuste_salida_list' , {
+				templateUrl: 'views/ajuste_salida_list.html'
+			})
+	}
+]);
+/*.config( function( $routeProvider ) {
 	$routeProvider
 		//Inicio
 		.when( '/' , {
@@ -108,7 +225,7 @@ angular.module( 'appZapateria' ,
 			redirectTo: '/'
 		})
 });
-
+*/
 /*
 angular.module( 'appZapateria' ,
 	[ "ui.router" , 'ui.bootstrap' , 'ngResource' , 'ui.select', 'ngSanitize' ,
