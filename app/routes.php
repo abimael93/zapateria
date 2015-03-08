@@ -53,21 +53,32 @@ Route::put( '/empleados/changePassword' , array( 'uses' => 'EmpleadoController@c
 Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
                      'able_empleado' ) ) , 
     function () {
-    Route::get( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
     Route::get( '/recuperar/{id_empleado}' , array( 'uses' => 'EmpleadoController@recuperar' ) );
     Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
+    Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
     Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
     Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::delete( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@eliminar' ) );
 });
 
+Route::group( array( 'prefix' => 'clientes' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
+                     'able_empleado' ) ) , 
+    function () {
+    Route::get( '/recuperar/{id_cliente}' , array( 'uses' => 'ClienteController@recuperar' ) );
+    Route::get( '/{id_cliente}' , array( 'uses' => 'ClienteController@mostrar' ) );
+    Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'ClienteController@listar' ) );
+    Route::post( '' , array( 'uses' => 'ClienteController@registrar' ) );
+    Route::put( '/{id_cliente}' , array( 'uses' => 'ClienteController@modificar' ) );
+    Route::delete( '/{id_cliente}' , array( 'uses' => 'ClienteController@eliminar' ) );
+});
+
 Route::group( array( 'prefix' => 'proveedores' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
                      'able_empleado' ) ) , 
     function () {
-    Route::get( '/listar/{offset}/{eliminado}' , array( 'uses' => 'ProveedorController@listar' ) );
     Route::get( '/recuperar/{id_proveedor}' , array( 'uses' => 'ProveedorController@recuperar' ) );
     Route::get( '/{id_proveedor}' , array( 'uses' => 'ProveedorController@mostrar' ) );
+    Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'ProveedorController@listar' ) );
     Route::post( '' , array( 'uses' => 'ProveedorController@registrar' ) );
     Route::put( '/{id_proveedor}' , array( 'uses' => 'ProveedorController@modificar' ) );
     Route::delete( '/{id_proveedor}' , array( 'uses' => 'ProveedorController@eliminar' ) );

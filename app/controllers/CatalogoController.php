@@ -41,6 +41,14 @@ class CatalogoController extends BaseController {
             case 'cliente_categoria':
                 $query = ClienteCategoria::all();
                 break;
+            case 'grupo_empresarial':
+                $query = Cliente::whereNotNull( 'razon_social' )->get( 
+                                                                    array(
+                                                                            'id_cliente as id_grupo_empresarial' ,
+                                                                             'razon_social'
+                                                                         ) 
+                                                                     );
+                break;
             case 'color':
                 $query = Color::all();
                 break;
