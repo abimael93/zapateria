@@ -20,7 +20,7 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             }),
             empleado_listar     = $resource( path_server + "/listar/:offset/:eliminado" , {}, {
                 listar: {
-                    method: 'GET',
+                    method: 'POST',
                     params: {
                         offset:     '@offset',
                         eliminado:  '@eliminado',

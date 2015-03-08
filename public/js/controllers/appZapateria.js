@@ -8,7 +8,7 @@ angular.module( 'appZapateria' ,
 	function( $stateProvider , $urlRouterProvider ) {
 		'use strict';
 
-		$urlRouterProvider.otherwise('/gestion');
+		$urlRouterProvider.otherwise('/gestion/inicio');
 
 		$stateProvider
 		//Página Principal

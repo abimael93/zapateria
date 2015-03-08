@@ -126,8 +126,7 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
 
         empleado_list.empleados = [];
         empleado_list.estatus   = 0;
-
-        empleado_list.listar( );
+        
 
         /**
         *   Esta función carga el catálogo de empleados
@@ -136,12 +135,12 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
         *   @version    1
         *   @access     public
         *   @return     void
-        *   @example    empleado.cargaMunicipios( );
+        *   @example    empleado_list.listar( );
         */
         empleado_list.listar = function( ) {
             empleadoServices.listar( 
                 {
-                    offset:         empleado_list.offset, 
+                    offset:         offset, 
                     eliminado:      empleado_list.estatus,
                     palabra_clave:  empleado_list.palabra_clave,
                 }, 
@@ -152,29 +151,36 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
                 }
             );
         }
-        
+
         /**
-        *   Esta función carga el catálogo de colonias
+        *   Esta función crea un modal donde se cargan los datos de un empleado
         *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-        *   @since      02/11/2015
+        *   @since      07/03/2015
         *   @version    1
         *   @access     public
         *   @return     void
-        *   @example    empleado.cargaColonias( );
+        *   @example    empleado_list.empleado_details( );
         */
-        
+        empleado_list.empleado_details = function( datos_empleado ) {
+            var instancia_modal = $modal.open( 
+                {
+                    templateUrl: 'views/modals/empleado_modal_details.html',
+                    controller: 'EmpleadoModalDetailsCtrl',
+                    size: 'lg',
+                    resolve: {
+                    datos_empleado: function() {
+                        return datos_empleado;
+                    }
+                }
+            });
+        };
 
-        /**
-        *   Esta función crea un nuevo empleado
-        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-        *   @since      02/11/2015
-        *   @version    1
-        *   @access     public
-        *   @return     void
-        *   @example    empleado.agregar( );
-        */
-        
+        empleado_list.listar( );
+    }
+]);
 
+angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'datos_empleado' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
+    function( datos_empleado , $modal , catalogosServices , empleadoServices ) {
         
     }
 ]);
