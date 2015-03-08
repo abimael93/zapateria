@@ -112,11 +112,12 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoAltaCtrl' , [ '$location' 
     *   @since      02/07/2015
     *   @version    1
     *   @access     public
-    *   @param      Service [$resource]
     *   @param      Service [$location]
-    *   @param      Service [routeServices]
+    *   @param      Service [modal]
+    *   @param      Service [catalogosServices]
+    *   @param      Service [empleadoServices]
     *   @return     
-    *   @example    empleado.registrar( .... )
+    *   @example    empleado.listar( )
 */
 angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
     function( $location , $modal , catalogosServices , empleadoServices ) {
@@ -161,15 +162,16 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
         *   @return     void
         *   @example    empleado_list.empleado_details( );
         */
-        empleado_list.empleado_details = function( datos_empleado ) {
+        empleado_list.empleado_details = function( id_empleado ) {
             var instancia_modal = $modal.open( 
                 {
-                    templateUrl: 'views/modals/empleado_modal_details.html',
-                    controller: 'EmpleadoModalDetailsCtrl',
-                    size: 'lg',
+                    templateUrl:    'views/modals/empleado_modal_details.html',
+                    controller:     'EmpleadoModalDetailsCtrl',
+                    controllerAs:   'empleado',
+                    size:           'lg',
                     resolve: {
-                    datos_empleado: function() {
-                        return datos_empleado;
+                    id_empleado: function() {
+                        return id_empleado;
                     }
                 }
             });
@@ -179,8 +181,44 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' 
     }
 ]);
 
-angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'datos_empleado' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
-    function( datos_empleado , $modal , catalogosServices , empleadoServices ) {
+angular.module( 'appZapateria' ).controller( 'EmpleadoModalDetailsCtrl' , [ 'id_empleado' , 'empleadoServices' , '$state' , 'catalogosServices' , 
+    function( id_empleado , empleadoServices , $state , catalogosServices ) {
+
+        var empleado = this;
+
+        //Carga de catálogos
+        catalogosServices.tipo( 'departamento' , function( data ) {
+            empleado.departamentos = data;
+        });
+
+        catalogosServices.tipo( 'cargo' , function( data ) {
+            empleado.cargos = data;
+        });
+
+        catalogosServices.tipoDependiente( { tipo: 'estado', id_padre: 1 } , function( data ) {
+            empleado.estados = data;
+        });
         
+        empleadoServices.mostrar( id_empleado , 
+            function( data ) {
+                console.log( data.data );
+                empleado.datos = data.data;
+            }
+        );
+
+        empleado.actualizar = function( ) {
+            empleado.datos_form.id_empleado = id_empleado;
+
+            empleadoServices.actualizar( 
+                empleado.datos_form , 
+                function( data ) {
+                    console.log( data );
+                    $state.go( 'gestion.empleado_list' );
+                },
+                function( data ) {
+                    console.log( data );
+                }
+            );
+        };
     }
 ]);
