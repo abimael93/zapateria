@@ -59,7 +59,7 @@ Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_emplead
     Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
     Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
     Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
-    Route::post( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
+    Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::delete( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@eliminar' ) );
 });
