@@ -54,7 +54,9 @@ angular.module( 'appZapateria' ,
 			})
 			.state('gestion.cliente_list', {
 				url: 			'/cliente/list',
-				templateUrl: 	'views/empleado_list.html',
+				controller: 	'ClienteListCtrl',
+				controllerAs: 	'cliente_list',
+				templateUrl: 	'views/cliente_list.html',
 			})
 			//Módulo Proveedor
 			.state('gestion.proveedor_create', {
@@ -63,10 +65,10 @@ angular.module( 'appZapateria' ,
 				controllerAs: 	'proveedor' ,
 				templateUrl: 	'views/proveedor_form.html'
 			})
-			.state('gestion.proveedor_list', {
+			.state('gestion.proveedor_list', {				
+				url: 			'/proveedor/list',
 				controller: 	'ProveedorListCtrl',
 				controllerAs: 	'proveedor_list',
-				url: 			'/proveedor/list',
 				templateUrl: 	'views/proveedor_list.html',
 			})
 			//Módulo Producto

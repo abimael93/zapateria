@@ -13,9 +13,18 @@ angular.module( 'appZapateria' ).service( 'clienteServices' , [ '$resource' , 'r
 
         var path_server = routeServices.PathServer + 'clientes';
 
-        var proveedor_resource = $resource( path_server , {}, {
+        var cliente_resource = $resource( path_server , {}, {
                 agregar: {
                     method: 'POST'
+                }
+            });
+            cliente_listar     = $resource( path_server + "/listar/:offset/:eliminado" , {}, {
+                listar: {
+                    method: 'POST',
+                    params: {
+                        offset:         '@offset',
+                        eliminado:      '@eliminado',
+                    }
                 }
             });
 
@@ -26,18 +35,36 @@ angular.module( 'appZapateria' ).service( 'clienteServices' , [ '$resource' , 'r
             *   @since      03/08/2015
             *   @version    1
             *   @access     public
-            *   @param      jsonObject [proveedor]
+            *   @param      jsonObject [cliente]
             *   @param      Callbacks [success]
             *   @param      Callbacks [fail]
             *   @return     promise
             *   @example    clienteServices.registrar( {} , function( data ){ .... }, function( data ) { .... } )
             */
-            agregar: function( proveedor , success, fail ) {
-                return proveedor_resource.agregar( proveedor ,
+            agregar: function( cliente , success, fail ) {
+                return cliente_resource.agregar( cliente ,
                     function( data ) {
                         success( data );
                     }, function( data ) {
                         fail( data.data );
+                    }
+                );
+            },
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Cesar herrera <kyele936@gmail.com>
+            *   @since      03/08/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    clienteServices.listar( { offset: 0 , eliminado: 0 } function( data ){ .... });
+            */
+            listar: function( parametros , callback ) {
+                return cliente_listar.listar( parametros ,
+                    function( data ) {
+                        callback( data );
                     }
                 );
             },

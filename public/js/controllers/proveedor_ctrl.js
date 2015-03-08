@@ -101,7 +101,7 @@ angular.module( 'appZapateria' ).controller( 'ProveedorListCtrl' , [ '$location'
                     palabra_clave:  proveedor_list.palabra_clave,
                 }, 
                 function( data ) {
-                    proveedor_list.proveedors = data.data;
+                    proveedor_list.proveedores = data.data;
                     //console.log( proveedor_list.proveedors.nombre );
                     //console.log( data );
                 }
@@ -130,7 +130,6 @@ angular.module( 'appZapateria' ).controller( 'ProveedorListCtrl' , [ '$location'
                 }
             });
         };
-
         proveedor_list.listar( );
     }
 ]);

@@ -61,3 +61,75 @@ angular.module( 'appZapateria' ).controller( 'ClienteCtrl' , [ '$location' , '$m
         };
     }
 ]);
+/**
+    *   This controller allows us to manipulate information of employees.
+    *   @author     Cesar Herrera <kyele936@gmail.com>
+    *   @since      03/08/2015
+    *   @version    1
+    *   @access     public
+    *   @param      Service [$resource]
+    *   @param      Service [$location]
+    *   @param      Service [routeServices]
+    *   @return     
+    *   @example    cliente.listar( .... )
+*/
+angular.module( 'appZapateria' ).controller( 'ClienteListCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'clienteServices' ,
+    function( $location , $modal , catalogosServices , clienteServices ) {
+
+        var cliente_list   = this,
+            offset          = 0;
+
+        cliente_list.clientes = [];
+        cliente_list.estatus   = 0;
+        
+
+        /**
+        *   Esta función carga el catálogo de clientees
+        *   @author     Cesar Herrera <kyele936@gmail.com>
+        *   @since      03/08/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    cliente_list.listar( );
+        */
+        cliente_list.listar = function( ) {
+            clienteServices.listar( 
+                {
+                    offset:         offset, 
+                    eliminado:      cliente_list.estatus,
+                    palabra_clave:  cliente_list.palabra_clave,
+                }, 
+                function( data ) {
+                    cliente_list.clientes = data.data;
+                    //console.log( cliente_list.clientes.nombre );
+                    //console.log( data );
+                }
+            );
+        }
+
+        /**
+        *   Esta función crea un modal donde se cargan los datos de un cliente
+        *   @author     Cesar Herrera <kyele936@gmail.com>
+        *   @since      03/08/2015
+        *   @version    1
+        *   @access     public
+        *   @return     void
+        *   @example    cliente_list.cliente_details( );
+        */
+        cliente_list.cliente_details = function( datos_cliente ) {
+            var instancia_modal = $modal.open( 
+                {
+                    templateUrl: 'views/modals/cliente_modal_details.html',
+                    controller: 'clienteModalDetailsCtrl',
+                    size: 'lg',
+                    resolve: {
+                    datos_cliente: function() {
+                        return datos_cliente;
+                    }
+                }
+            });
+        };
+
+        cliente_list.listar( );
+    }
+]);

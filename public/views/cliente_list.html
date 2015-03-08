@@ -1,30 +1,25 @@
 <section>
-    <div >
+    <div>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 Registro
             </div>
             <div class="panel-body">              
               <div class="row">
-                <div ng-controller="MyController" class="my-controller col-xs-12">
+                <div class="my-controller col-xs-12">
                   <div class="row fluid breadcrumb div-buscar">                    
                     <div class="col-xs-6 col-md-3">
                       <label for="search">General:</label>
-                      <input ng-model="q.$" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar">                      
+                      <input ng-change="cliente_list.listar()" ng-model="cliente_list.palabra_clave" id="search" class="form-control fa fa-shopping-cart" placeholder="Buscar" ng-model-options="{ debounce: 600 }">                      
                     </div>
                     <div class="col-xs-6 col-md-3">
-                      <label for="search">Plataforma:</label>
-                      <input ng-model="q.plataform" id="search" class="form-control" placeholder="Buscar">
+                        <label for="search">Estatus:</label>
+                        <select class="form-control" required name="estatus" ng-model="cliente_list.estatus" ng-change="cliente_list.listar()">
+                          <option value="0">Activo</option>
+                          <option value="1">Eliminado</option>
+                        </select>
                     </div>
-                    <div class="col-xs-6 col-md-3">
-                      <label for="search">Version:</label>
-                      <input ng-model="q.version" id="search" class="form-control" placeholder="Buscar">
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                      <label for="search">Elementos p/pag:</label>
-                      <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
-                    </div>
-                    <p class="col-xs-12">Optimize su busqueda con los filtros de la aplicación</p>
+                    <p class="col-xs-12 text-info">Optimize su busqueda con los filtros de la aplicación</p>
                   </div>
 
                   <br>
@@ -33,47 +28,39 @@
                   <table class="table table-striped table-bordered table-hover">
                       <thead>
                           <tr>
-                              <th>Rendering engine</th>
-                              <th>Browser</th>
-                              <th>Platform(s)</th>
-                              <th>Engine version</th>
-                              <th>CSS grade</th>
+                              <th class="text-center">
+                                ID
+                                <span class="fa fa-sort pull-right"></span>
+                              </th>
+                              <th class="text-center">
+                                Razón Social
+                                <span class="fa fa-sort pull-right" style="cursor: pointer" ng-click="pag.ordenarPor('browser')"></span>
+                              </th>
+                              <th class="text-center">Representante</th>
+                              <th class="text-center">Fecha de Registro</th>
+                              <th class="text-center">&nbsp;&nbsp;&nbsp;Ver&nbsp;&nbsp;&nbsp;</th>
+                              <th class="text-center">Eliminar</th>
                           </tr>
                       </thead>
-                      <div class="vertical-scroll">
-                        <tbody class="vertical-scroll">
-                            <tr dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">
-                                <td>{{meal.rendering}}</td>
-                                <td>{{meal.browser | uppercase}}</td>
-                                <td>{{meal.plataform | lowercase}}</td>
-                                <td>{{meal.version}}</td>
-                                <td>{{meal.grade}}</td>
+                        <tbody>
+                            <tr ng-repeat="cliente in cliente_list.clientes">
+                                <td class="text-center" ng-bind="cliente.id_cliente"></td>
+                                <td class="text-center" ng-bind="cliente.razon_social"></td>
+                                <td ng-bind="cliente.nombre + '&nbsp;' + cliente.apellidos"></td>
+                                <td class="text-center" ng-bind="cliente.fecha_registro"></td>
+                                <td class="text-center">
+                                  <i class="fa fa-edit fa fa-2x"
+                                    ng-click="cliente_list.cliente_details( cliente.id_cliente )">
+                                  </i>
+                                </td>
+                                <td class="text-center">
+                                  <i class="fa fa-trash-o fa-2x" ng-click="cliente_list.cliente_eliminar()"></i>
+                                </td>
                             </tr>
                       </tbody>
-                      </div>
                   </table>
-                  <!--
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <ul>
-                        <li dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage">{{ meal }}</li>
-                      </ul>
-                    </div>
-                  </div>
-                  -->
                 </div>
-                <!--Fin Tabla resposive -->
-                <div style="border : none" ng-controller="OtherController" class="row other-controller breadcrumb fluid text-center div-paginado" >
-                  <div class="col-xs-12 col-md-3">
-                    <h3><i class="fa fa-book"> Página: {{currentPage}}</i></h3>
-
-                  </div>
-                  <div class="col-xs-12 col-md-9">
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
-                  </div>
-                  
-                </div>
-                
+                <!--Fin Tabla resposive -->               
               </div>
             </div>
           </div>
