@@ -22,6 +22,7 @@ class EmpleadoController extends BaseController{
                                 'usuario'           => array( 'sometimes' , 'alpha_dash' ),
                                 'password'          => array( 'sometimes' ),
                                 'eliminado'         => array( 'sometimes' ),
+                                'codigo_postal'     => array( 'required' , 'allow_all' ),
                                 'calle'             => array( 'required' , 'allow_all' ),
                                 'num_int'           => array( 'sometimes' , 'allow_all' ),
                                 'num_ext'           => array( 'required' , 'allow_all' ),
