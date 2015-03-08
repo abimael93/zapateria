@@ -10,9 +10,9 @@
     <title>Lady Sents</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="Theme/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_resources/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link href="Theme/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="bower_resources/fontawesome/css/font-awesome.css" rel="stylesheet"/>
         
     <!-- Custom styles for this template -->
     <link href="Theme/css/style.css" rel="stylesheet">
@@ -226,7 +226,7 @@
         <div class="text-center">
           {{10 - 6}}
             2014 - Alvarez.is
-            <a href="blank.html#" class="go-top">
+            <a href="" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>
@@ -275,23 +275,24 @@
     <script class="include" type="text/javascript" src="Theme/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="Theme/js/jquery.scrollTo.min.js"></script>
     <script src="Theme/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="bower_resources/angular/angular.js" type="text/javascript"></script>
+
+    <!-- AngularJS -->
+    <script src="bower_resources/angular/angular.js"></script>
+
+    <!-- Angular UI-Route -->
     <script src="bower_resources/angular-ui-router/release/angular-ui-router.js" type="text/javascript"></script>
 
     <!--common script for all pages-->
     <script src="Theme/js/common-scripts.js"></script>
 
-    <!-- AngularJS -->
-    <script src="bower_resources/angular/angular.js"></script>
-
     <!-- UI-Bootstrap -->
-    <script src="bower_resources/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_resources/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <!-- Angular Resource -->
-    <script src="bower_resources/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_resources/angular-resource/angular-resource.js"></script>
 
     <!-- Angular Route -->
-    <script src="bower_resources/angular-route/angular-route.min.js"></script>
+    <script src="bower_resources/angular-route/angular-route.js"></script>
 
     <!-- Angular UI-Select -->
     <script src="bower_resources/angular-ui-select/dist/select.js"></script>
@@ -299,10 +300,10 @@
     <script src="bower_resources/angular-sanitize/angular-sanitize.js"></script>
     
     <!-- Angular Infinite Scroll -->
-    <script src="bower_resources/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+    <script src="bower_resources/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     
     <!-- Angular Infinite Scroll -->
-    <script src="bower_resources/ngmodeloptions/ngModelOptions.min.js"></script>
+    <script src="bower_resources/ngmodeloptions/ngModelOptions.js"></script>
 
     <!-- Fancybox -->
     <script src="bower_resources/fancybox/source/jquery.fancybox.js"></script>
@@ -323,17 +324,6 @@
     <script src="js/services/catalogos_services.js"></script>
     <script src="js/services/session_services.js"></script>
     <script src="js/services/empleado_services.js"></script>
-    <script src="js/services/proveedor_services.js"></script>
-
-    <script type="text/javascript">
-        //custom select box
-
-        $(function(){
-          $('select.styled').customSelect();
-        });
-
-    </script>
-
-    
+    <script src="js/services/proveedor_services.js"></script>    
 </body>
 </html>

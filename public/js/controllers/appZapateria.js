@@ -1,6 +1,6 @@
 angular.module( 'appZapateria' , 
 	[ 'ngRoute' , 'ui.bootstrap' , 'ngResource' , 'ui.select', 'ngSanitize' ,
-	  'modelOptions' , 'infinite-scroll' , ] )
+	  'modelOptions' , 'infinite-scroll' , 'ui.router', ] )
 
 .config( function( $routeProvider ) {
 	$routeProvider

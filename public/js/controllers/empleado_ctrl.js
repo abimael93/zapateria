@@ -98,11 +98,11 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoAltaCtrl' , [ '$location' 
             );
         };
 
-        empleadoServices.listar( { offset: 0 , eliminado: 0 } , 
+        /*empleadoServices.listar( { offset: 0 , eliminado: 0 } , 
             function( data ) {
                 console.log( data );
             }
-        );
+        );*/
     }
 ]);
 
@@ -121,44 +121,38 @@ angular.module( 'appZapateria' ).controller( 'EmpleadoAltaCtrl' , [ '$location' 
 angular.module( 'appZapateria' ).controller( 'EmpleadoListCtrl' , [ '$location' , '$modal' , 'catalogosServices' , 'empleadoServices' ,
     function( $location , $modal , catalogosServices , empleadoServices ) {
 
-        var empleado_list       = this;
+        var empleado_list   = this,
+            offset          = 0;
 
         empleado_list.empleados = [];
-        empleado_list.offset    = 0;
         empleado_list.estatus   = 0;
 
-
-        empleadoServices.listar( { offset: empleado_list.offset , eliminado: empleado_list.estatus } , 
-            function( data ) {
-                empleado_list.empleados = data.data;
-                console.log( empleado_list.empleados.nombre );
-                //console.log( data );
-            }
-        );
-
-        empleado_list.buscar    = function( ) {
-            empleadoServices.listar( 
-            {
-                offset: empleado_list.offset,
-                eliminado: empleado_list.estatus,
-            }, function( data ) {
-                empleado_list.empleados = data.data;
-                //console.log( empleado_list.empleados.nombre );
-                //console.log( data );
-            });
-        }
+        empleado_list.listar( );
 
         /**
-        *   Esta función carga el catálogo de municipios
+        *   Esta función carga el catálogo de empleados
         *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-        *   @since      02/11/2015
+        *   @since      07/03/2015
         *   @version    1
         *   @access     public
         *   @return     void
         *   @example    empleado.cargaMunicipios( );
         */
+        empleado_list.listar = function( ) {
+            empleadoServices.listar( 
+                {
+                    offset:         empleado_list.offset, 
+                    eliminado:      empleado_list.estatus,
+                    palabra_clave:  empleado_list.palabra_clave,
+                }, 
+                function( data ) {
+                    empleado_list.empleados = data.data;
+                    //console.log( empleado_list.empleados.nombre );
+                    //console.log( data );
+                }
+            );
+        }
         
-
         /**
         *   Esta función carga el catálogo de colonias
         *   @author     Christian Velazquez <chris.abimael93@gmail.com>
