@@ -2252,4 +2252,7 @@ label {
     min-height: 900px;
 }
 
-
+/* Panel */
+.view-container {
+    margin-top: 1.5em;
+}
