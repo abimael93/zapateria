@@ -1,13 +1,12 @@
 <section>
     <div id="login-page">
-	  	<div class="container">
-	  	
-            <form class="form-login" action="index.html" ng-submit="sesion.loguear()">
+	  	<div class="container">	  	
+            <form class="form-login" ng-submit="sesion.loguear()">
                 <h2 class="form-login-heading">Acceso al Sistema</h2>
                 <div class="login-wrap">
-                    <input type="text" class="form-control" placeholder="User ID" autofocus>
+                    <input type="text" class="form-control" placeholder="Nombre de usuario" name="usuario" required autofocus ng-model="sesion.user">
                     <br>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password" required ng-model="sesion.pass">
                     <label class="checkbox">
                         <span class="pull-right">
                             <a href=""> No puedes acceder a tu cuenta?</a>

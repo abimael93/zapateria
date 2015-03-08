@@ -26,7 +26,6 @@ angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'session
     *   @example    session.loguear();
     */
     session.loguear = function() {
-        console.log( 'lo que quieras' );
         session.empleado.usuario    = session.user;
         session.empleado.password   = session.pass;
 
@@ -34,7 +33,7 @@ angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'session
             function( data ) {
                 session.datos = data;
                 //routeServices.goInicio();
-                //$state.go('gestion.inicio');
+                $state.go('gestion.inicio');
                 console.log( data.message );
             }, function( data ) {
                 console.log( data.message );
