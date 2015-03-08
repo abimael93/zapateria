@@ -1,21 +1,24 @@
 <?php
 
-class ProveedorController extends BaseController{
+class ClienteController extends BaseController{
     
     private $validaciones;
     private $campos_root;
     function __construct () {
         
         $this->validaciones = array(
-                                'nombre'            => array( 'required' , 'alpha_spaces' ), 
-                                'apellidos'         => array( 'required' , 'alpha_spaces' ),
-                                'razon_social'      => array( 'sometimes' , 'allow_all' ),
-                                'rfc'               => array( 'sometimes' , 'alpha_num' ),               
-                                'eliminado'         => array( 'sometimes' ),
+                                'id_grupo_empresarial' => array( 'sometimes' , 'integer' ),
+                                'id_cliente_categoria' => array( 'sometimes' , 'integer' ),
+                                'id_cliente_tipo'      => array( 'sometimes' , 'integer' ),
+                                'nombre'               => array( 'required' , 'alpha_spaces' ), 
+                                'apellidos'            => array( 'required' , 'alpha_spaces' ),
+                                'razon_social'         => array( 'sometimes' , 'allow_all' ),
+                                'rfc'                  => array( 'sometimes' , 'alpha_num' ),               
+                                'eliminado'            => array( 'sometimes' ),
                               );
 
         $this->campos_root = array(
-                                    'id_proveedor',
+                                    'id_cliente',
                                     'nombre',
                                     'apellidos',
                                     'razon_social',
@@ -24,13 +27,13 @@ class ProveedorController extends BaseController{
     }
 
     /**
-    *   this function registers a supplier to the system
+    *   this function registers a client to the system
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/31/2015
     *   @version    1
     *   @access     public
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/proveedores by post
+    *   @example    http://localhost/zapateria/public/clientes by post
     */
     public function registrar () {
         Input::merge( 
@@ -44,20 +47,20 @@ class ProveedorController extends BaseController{
         if ( !$validador->fails() ) {
             try {
                 DB::transaction( function () use ( $inputs ) {
-                    $proveedor = new Proveedor();
-                    $proveedor->create( $inputs );
+                    $cliente = new Cliente();
+                    $cliente->create( $inputs );
                     if ( array_key_exists( 'metadatos' , $inputs ) ) {
-                        MetadatoController::insertarMetadatos( $proveedor , $inputs['metadatos'] );
+                        MetadatoController::insertarMetadatos( $cliente , $inputs['metadatos'] );
                     }
                 });
                 $status    = OK;
                 $data      = NULL;
-                $mensaje   = 'Proveedor registrado.';
+                $mensaje   = 'Cliente registrado.';
             } catch ( Exception $e ) {
                 echo $e;
                 $status  = ERROR_DB;
                 $data    = NULL;
-                $mensaje = 'Error al insertar proveedor.';
+                $mensaje = 'Error al insertar cliente.';
             }
         } else {
             $mensajes = $validador->messages();
@@ -83,16 +86,16 @@ class ProveedorController extends BaseController{
     }
 
     /**
-    *   this function modify a supplier the system already have
+    *   this function modify a client the system already have
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/31/2015
     *   @version    1
     *   @access     public
-    *   @param      Integer [$id_proveedor] it's the id_proveedor that reference which supplier wants to modify
+    *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to modify
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/proveedores by put
+    *   @example    http://localhost/zapateria/public/clientes by put
     */
-    public function modificar ( $id_proveedor = NULL) {
+    public function modificar ( $id_cliente = NULL) {
         Input::merge( 
                         array( 
                             'nombre'     => ucwords( strtolower( Input::get( 'nombre' ) ) ) , 
@@ -103,24 +106,24 @@ class ProveedorController extends BaseController{
         $validador = Validator::make( $inputs , $this->validaciones );
         if ( !$validador->fails() ) {
             try {
-                if( $id_proveedor !== NULL ){
-                    $proveedor = Proveedor::find( $id_proveedor );
+                if( $id_cliente !== NULL ){
+                    $cliente = Cliente::find( $id_cliente );
                 } else {
-                    throw new Exception( "El identificador del proveedor esta vacio");
+                    throw new Exception( "El identificador del cliente esta vacio");
                 }
-                DB::transaction( function () use ( $inputs , $proveedor ) {
-                    $proveedor->update( $inputs );
+                DB::transaction( function () use ( $inputs , $cliente ) {
+                    $cliente->update( $inputs );
                     if ( array_key_exists( 'metadatos' , $inputs ) ) {
-                        MetadatoController::insertarMetadatos( $proveedor , $inputs['metadatos'] );
+                        MetadatoController::insertarMetadatos( $cliente , $inputs['metadatos'] );
                     }
                 });
                 $status   = OK;
                 $data     = NULL;
-                $mensaje  = 'Proveedor actualizado.';
+                $mensaje  = 'Cliente actualizado.';
             } catch ( Exception $e ) {
                 $status  = ERROR_DB;
                 $data    = NULL;
-                $mensaje = 'Error al actualizar proveedor.';
+                $mensaje = 'Error al actualizar cliente.';
             }
         } else {
             $mensajes = $validador->messages();
@@ -146,28 +149,28 @@ class ProveedorController extends BaseController{
     }
 
     /**
-    *   this function shows the complete information from a supplier
+    *   this function shows the complete information from a client
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/31/2015
     *   @version    1
     *   @access     public
-    *   @param      Integer [$id_proveedor] it's the id_proveedor that reference which supplier wants to see
+    *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to see
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/proveedores/4 by get
+    *   @example    http://localhost/zapateria/public/clientes/4 by get
     */
-    public function mostrar ( $id_proveedor ) {
-        $validaciones = array( 'id_proveedor' => array( 'required' , 'integer') );
-        $validador    = Validator::make( array( 'id_proveedor' => $id_proveedor ) , $validaciones );
+    public function mostrar ( $id_cliente ) {
+        $validaciones = array( 'id_cliente' => array( 'required' , 'integer') );
+        $validador    = Validator::make( array( 'id_cliente' => $id_cliente ) , $validaciones );
         if ( !$validador->fails() ) {
             try {
-                $proveedor = Proveedor::find( $id_proveedor );
+                $cliente   = Cliente::find( $id_cliente );
                 $status    = OK;
-                $data      = $proveedor;
+                $data      = $cliente;
                 $mensaje   = '';
             } catch ( Exception $e ) {
                 $status  = ERROR_DB;
                 $data    = NULL;
-                $mensaje = 'Error al mostrar datos del proveedor.';
+                $mensaje = 'Error al mostrar datos del cliente.';
             }
         } else {
             $mensajes = $validador->messages();
@@ -193,37 +196,37 @@ class ProveedorController extends BaseController{
     }
 
     /**
-    *   this function deletes the supplier desired
+    *   this function deletes the client desired
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/31/2015
     *   @version    1
     *   @access     public
-    *   @param      Integer [$id_proveedor] it's the id_proveedor that reference which supplier wants to erase
+    *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to erase
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/proveedores/1 by delete
+    *   @example    http://localhost/zapateria/public/clientes/1 by delete
     */
-    public function eliminar ( $id_proveedor ) {
-        $validaciones = array( 'id_proveedor' => array( 'required' , 'integer') );
-        $validador    = Validator::make( array( 'id_proveedor' => $id_proveedor ) , $validaciones );
+    public function eliminar ( $id_cliente ) {
+        $validaciones = array( 'id_cliente' => array( 'required' , 'integer') );
+        $validador    = Validator::make( array( 'id_cliente' => $id_cliente ) , $validaciones );
         if ( !$validador->fails() ) {
             try {
-                $proveedor = Proveedor::find( $id_proveedor );
-                if( $proveedor->eliminado == 'F' ) {
-                    $proveedor->eliminado = 'P';
-                    $proveedor->save();
+                $cliente = Cliente::find( $id_cliente );
+                if( $cliente->eliminado == 'F' ) {
+                    $cliente->eliminado = 'P';
+                    $cliente->save();
                     $status   = OK;
                     $data     = NULL;
-                    $mensaje  = 'Proveedor eliminado.';
+                    $mensaje  = 'Cliente eliminado.';
                 } else {
                     $status   = NO_PERMITIDO;
                     $data     = NULL;
-                    $mensaje  = 'No puedes llevar acabo esta operación, este proveedor ya ha sido eliminado
+                    $mensaje  = 'No puedes llevar acabo esta operación, este cliente ya ha sido eliminado
                                  anteriormente.';
                 }
             } catch ( Exception $e ) {
                 $status  = ERROR_DB;
                 $data    = NULL;
-                $mensaje = 'Error al eliminar proveedor.';
+                $mensaje = 'Error al eliminar cliente.';
             }
         } else {
             $mensajes = $validador->messages();
@@ -249,37 +252,37 @@ class ProveedorController extends BaseController{
     }
 
     /**
-    *   this function recovers the supplier desired
+    *   this function recovers the client desired
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/31/2015
     *   @version    1
     *   @access     public
-    *   @param      Integer [$id_proveedor] it's the id_proveedor that reference which supplier wants to recover
+    *   @param      Integer [$id_cliente] it's the id_cliente that reference which client wants to recover
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/proveedores/recuperar/1 by get
+    *   @example    http://localhost/zapateria/public/clientes/recuperar/1 by get
     */
-    public function recuperar ( $id_proveedor ) {
-        $validaciones = array( 'id_proveedor' => array( 'required' , 'integer') );
-        $validador    = Validator::make( array( 'id_proveedor' => $id_proveedor ) , $validaciones );
+    public function recuperar ( $id_cliente ) {
+        $validaciones = array( 'id_cliente' => array( 'required' , 'integer') );
+        $validador    = Validator::make( array( 'id_cliente' => $id_cliente ) , $validaciones );
         if ( !$validador->fails() ) {
             try {
-                $proveedor = Proveedor::find( $id_proveedor );
-                if( $proveedor->eliminado == 'P' ) {
-                    $proveedor->eliminado = 'F';
-                    $proveedor->save();
+                $cliente = Cliente::find( $id_cliente );
+                if( $cliente->eliminado == 'P' ) {
+                    $cliente->eliminado = 'F';
+                    $cliente->save();
                     $status   = OK;
                     $data     = NULL;
-                    $mensaje  = 'Proveedor recuperado.';
+                    $mensaje  = 'Cliente recuperado.';
                 } else {
                     $status   = NO_PERMITIDO;
                     $data     = NULL;
-                    $mensaje  = 'No puedes llevar acabo esta operación, este proveedor no ha sido eliminado
+                    $mensaje  = 'No puedes llevar acabo esta operación, este cliente no ha sido eliminado
                                  anteriormente.';
                 }
             } catch ( Exception $e ) {
                 $status  = ERROR_DB;
                 $data    = NULL;
-                $mensaje = 'Error al recuperar proveedor.';
+                $mensaje = 'Error al recuperar cliente.';
             }
         } else {
             $mensajes = $validador->messages();
@@ -305,17 +308,17 @@ class ProveedorController extends BaseController{
     }
 
     /**
-    *   this function lists all the suppliers available in the system if they are deleted or not
+    *   this function lists all the clients available in the system if they are deleted or not
     *   @author     Ramón Lozano <gerardo528-1@hotmail.com>
     *   @since      01/31/2015
     *   @version    1
     *   @access     public
     *   @param      Integer [$offset] it's the page in the table of the db that you want to show depending on result number
-    *   @param      Integer [$eliminado] it's a boolean flat that talks the function what kind of suppliers you want to show
+    *   @param      Integer [$eliminado] it's a boolean flat that talks the function what kind of clients you want to show
     *   @param      String [palabra_clave] it's word that works as a filter to the set of the records
     *   @return     json ( status = ? , data = ? , mensaje = ? )
-    *   @example    http://localhost/zapateria/public/proveedores/listar/0/1 eliminados by get
-    *   @example    http://localhost/zapateria/public/proveedores/listar/0/0 no eliminados by get
+    *   @example    http://localhost/zapateria/public/clientes/listar/0/1 eliminados by get
+    *   @example    http://localhost/zapateria/public/clientes/listar/0/0 no eliminados by get
     */
     public function listar ( $offset , $eliminado ) {
         $palabra_clave = Input::get('palabra_clave');
@@ -333,21 +336,21 @@ class ProveedorController extends BaseController{
                                         );
         if ( !$validador->fails() ) {
             try {
-                $proveedores = Proveedor::select( $this->campos_root )
+                $clientes = Cliente::select( $this->campos_root )
                                         ->where( 'eliminado' , '=' , ( $eliminado == 0 ) ? 'F' : 'P' );
                 if( isset($palabra_clave) && $palabra_clave != '' ){
-                    $proveedores->where( DB::raw( "CONCAT(nombre,' ',apellidos)" ) , 'LIKE' , "%$palabra_clave%" );
+                    $clientes->where( DB::raw( "CONCAT(nombre,' ',apellidos)" ) , 'LIKE' , "%$palabra_clave%" );
                 }
-                $proveedores = $proveedores->take( NUM_RESULTADOS )
+                $clientes = $clientes->take( NUM_RESULTADOS )
                                            ->skip( NUM_RESULTADOS*$offset )
                                            ->get();
                 $status   = OK;
-                $data     = $proveedores;
+                $data     = $clientes;
                 $mensaje  = '';
             } catch ( Exception $e ) {
                 $status  = ERROR_DB;
                 $data    = NULL;
-                $mensaje = 'Error al listar datos de los proveedores.';
+                $mensaje = 'Error al listar datos de los clientes.';
             }
         } else {
             $mensajes = $validador->messages();

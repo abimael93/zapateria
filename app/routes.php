@@ -62,6 +62,17 @@ Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_emplead
     Route::delete( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@eliminar' ) );
 });
 
+Route::group( array( 'prefix' => 'clientes' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
+                     'able_empleado' ) ) , 
+    function () {
+    Route::get( '/recuperar/{id_cliente}' , array( 'uses' => 'ClienteController@recuperar' ) );
+    Route::get( '/{id_cliente}' , array( 'uses' => 'ClienteController@mostrar' ) );
+    Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'ClienteController@listar' ) );
+    Route::post( '' , array( 'uses' => 'ClienteController@registrar' ) );
+    Route::put( '/{id_cliente}' , array( 'uses' => 'ClienteController@modificar' ) );
+    Route::delete( '/{id_cliente}' , array( 'uses' => 'ClienteController@eliminar' ) );
+});
+
 Route::group( array( 'prefix' => 'proveedores' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
                      'able_empleado' ) ) , 
     function () {
