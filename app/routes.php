@@ -37,6 +37,8 @@ define('SERVIDOR',__DIR__);
 
 define('NUM_RESULTADOS', 10);
 
+define('ARCHIVOS', 'cargas');
+
 require(SERVIDOR.'/helpers/Utiles.php');
 
 Route::get( '/' , function()
@@ -57,7 +59,7 @@ Route::group( array( 'prefix' => 'empleados' , 'before' => array ( 'auth_emplead
     Route::get( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@mostrar' ) );
     Route::post( '/listar/{offset}/{eliminado}' , array( 'uses' => 'EmpleadoController@listar' ) );
     Route::post( '' , array( 'uses' => 'EmpleadoController@registrar' ) );
-    Route::put( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
+    Route::post( '' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::put( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@modificar' ) );
     Route::delete( '/{id_empleado}' , array( 'uses' => 'EmpleadoController@eliminar' ) );
 });
@@ -89,4 +91,10 @@ Route::group( array( 'prefix' => 'catalogos' , 'before' => array ( 'auth_emplead
     function () {
     Route::get( '/{tipo}' , array( 'uses' => 'CatalogoController@catalogos' ) );
     Route::get( '/dependientes/{tipo}/{id}' , array( 'uses' => 'CatalogoController@catalogosDependientes' ) );
+});
+
+Route::group( array( 'prefix' => 'adjuntos' , 'before' => array ( 'auth_empleado' , 'activated_empleado' ,
+                     'able_empleado' ) ) , 
+    function () {
+    Route::post( '' , array( 'uses' => 'AdjuntoController@subir' ) );
 });

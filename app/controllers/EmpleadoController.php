@@ -1,7 +1,6 @@
 <?php
 
 class EmpleadoController extends BaseController{
-    
     private $validaciones;
     private $validaciones_login;
     private $campos;
@@ -81,8 +80,22 @@ class EmpleadoController extends BaseController{
         $validador = Validator::make( $inputs , $this->validaciones );
         if ( !$validador->fails() ) {
             try {
-                $empleado = new Empleado();
-                $empleado->create( $inputs );
+                DB::transaction( function() use ( $inputs ) {
+                    $empleado = new Empleado();
+                    if ( array_key_exists( 'foto' , $inputs ) ) {
+                        $imagen = new SimpleImage( $inputs['foto'] );
+                        $imagen->resize( 110 , 110 );
+                        $imagen->save( $inputs['foto'] );
+                        $ruta_salida = explode( '.' , $inputs['foto'] )[0];
+                        $extension   = explode( '.' , $inputs['foto'] )[1];
+                        CircleCrop::circleCropImage($inputs['foto'],$ruta_salida.'.png');
+                        if($extension != 'png'){
+                            unlink($inputs['foto']);
+                            $inputs['foto'] = $ruta_salida.'.png';
+                        }
+                    }
+                    $empleado->create( $inputs );
+                } );
                 $status   = OK;
                 $data     = NULL;
                 $mensaje  = 'Empleado registrado.';
@@ -216,7 +229,21 @@ class EmpleadoController extends BaseController{
                 } else {
                     $empleado = Empleado::find( Auth::User()->id_empleado );
                 }
-                $empleado->update( $inputs );
+                DB::transaction( function() use ( $empleado , $inputs ) {
+                    if ( array_key_exists( 'foto' , $inputs ) ) {
+                        $imagen = new SimpleImage( $inputs['foto'] );
+                        $imagen->resize( 110 , 110 );
+                        $imagen->save( $inputs['foto'] );
+                        $ruta_salida = explode( '.' , $inputs['foto'] )[0];
+                        $extension   = explode( '.' , $inputs['foto'] )[1];
+                        CircleCrop::circleCropImage($inputs['foto'],$ruta_salida.'.png');
+                        if($extension != 'png'){
+                            unlink($inputs['foto']);
+                            $inputs['foto'] = $ruta_salida.'.png';
+                        }
+                    }
+                    $empleado->update( $inputs );
+                } );
                 $status   = OK;
                 $data     = NULL;
                 $mensaje  = 'Empleado actualizado.';
