@@ -27,9 +27,15 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
                     }
                 }
             }),
-            empleado_update     = $resource( path_server + "/:id_empleado" , {}, {
-                listar: {
+            empleado_modificar     = $resource( path_server + "/:id_empleado" , {}, {
+                modificar: {
                     method: 'PUT',
+                    params: {
+                        id_empleado:    '@id_empleado',
+                    }
+                },
+                mostrar: {
+                    method: 'GET',
                     params: {
                         id_empleado:    '@id_empleado',
                     }
@@ -87,16 +93,40 @@ angular.module( 'appZapateria' ).service( 'empleadoServices' , [ '$resource' , '
             /**
             *   this function returns the promise that contains a json
             *   @author     Christian Velazquez <chris.abimael93@gmail.com>
-            *   @since      02/24/2015
+            *   @since      08/03/2015
             *   @version    1
             *   @access     public
             *   @param      jsonObject [parametros]
             *   @param      Callbacks [callback]
             *   @return     promise
-            *   @example    empleadoServices.listar( { offset: 0 , eliminado: 0 } function( data ){ .... });
+            *   @example    empleadoServices.modificar( datos_empleado , function( data ){ .... });
             */
-            update: function( parametros , callback ) {
-                return empleado_listar.listar( parametros ,
+            modificar: function( empleado , success , fail ) {
+                return empleado_modificar.actualizar( empleado ,
+                    function( data ) {
+                        success( data );
+                    }, function( data ) {
+                        fail( data.data );
+                    }
+                );
+            },
+
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    empleadoServices.mostrar( datos_empleado , function( data ){ .... });
+            */
+            mostrar: function( id_empleado , callback ) {
+                return empleado_modificar.mostrar(
+                {
+                    id_empleado: id_empleado,
+                } ,
                     function( data ) {
                         callback( data );
                     }
