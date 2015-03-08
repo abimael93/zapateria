@@ -1,0 +1,199 @@
+<section id="container" >
+        <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation">                  
+                </div>
+            </div>
+                <!--logo start-->
+                <a ui-sref="index.html" class="logo"><b>SYSTEM Lady Sents</b></a>
+                <!--logo end-->     
+
+                <div class="top-menu">
+                    <a class="navbar-brand blanco-font"><i class="{{nav.modulo.icon}} blanco-font"></i> <strong class="blanco-font" ng-bind="nav.modulo.nombre"> </strong> <span ng-bind="nav.separador" class="blanco-font"> </span> <small class="blanco-font" ng-bind="nav.modulo.accion"> </small></a>
+                    <ul class="nav pull-right top-menu">
+                        <li><a class="logout" ui-sref="login.html">Logout</a></li>
+                    </ul>
+                </div>
+        </header>
+        <!--header end-->
+
+        <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar"  class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">                
+                      <p class="centered"><a ui-sref="#"><img src="Theme/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                      <h5 class="centered">Nombre Usuario</h5>
+                        
+                    <li>
+                        <a ui-sref=".inicio"><i class="fa fa-home"></i> Inicio</a>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a><i class="fa fa-user"></i> Empleados<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".empleado_create">   Alta</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".empleado_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'cliente'}"><i class="fa fa-bar-chart-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".cliente_create"> Alta</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".cliente_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'proveedor'}"><i class="fa fa-table fa-fw"></i> Proveedores<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".proveedor_create"> Alta</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".proveedor_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'producto'}"><i class="fa fa-shopping-cart"></i> Productos<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".producto_create"> Alta</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".producto_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'pedido'}"><i class="fa fa-truck"></i> Pedidos<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".pedido_create"> Alta</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".pedido_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'desarrollo'}"><i class="fa fa-cogs"></i> Desarrollo<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".desarrollo_create"> Crear</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".desarrollo_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'produccion'}"><i class="fa fa-line-chart"></i> Producción<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".produccion_create"> Crear</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".produccion_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'remision'}"><i class="fa fa-money"></i> Ventas<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".remision_create"> Crear</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".remision_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a ng-class="{active: nav.modulo.nombreBase == 'recepcion'}"><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".recepcion_create"> Crear</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".recepcion_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>                    
+                    <li class="sub-menu">
+                        <a class="fa fa-arrow-circle-right"> Ajustes de Entrada<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".ajuste_entrada_create"> Crear</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".ajuste_entrada_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a class="fa fa-arrow-circle-left"> Ajustes de Salida<span class="fa arrow"></span></a>
+                        <ul class="sub">
+                            <li>
+                                <a class="fa fa-plus-square" ui-sref=".ajuste_salida_create"> Crear</a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list-ul" ui-sref=".ajuste_salida_list"> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper site-min-height">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12" ui-view>
+                            
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section><! --/wrapper -->
+        </section><!-- /MAIN CONTENT -->
+        <!--main content end-->
+
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+          2015 Zapateria Lady Sents
+            <a ui-sref="" class="go-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </footer>
+    <!--footer end-->
+
+    </section>
