@@ -1,6 +1,6 @@
 /**
     *   This controller allows us to manipulate information of employees.
-    *   @author     Christian Velázquez <chris.abimael93@gmail.com>
+    *   @author     Cesar Herrera <kyele936@gmail.com>
     *   @since      02/07/2015
     *   @version    1
     *   @access     public
@@ -53,6 +53,7 @@ angular.module( 'appZapateria' ).controller( 'ProveedorCtrl' , [ '$location' , '
             proveedorServices.agregar( proveedor.datos_form ,
                 function( data ) {
                     console.log( data.message );
+                    $state.go("gestion.cliente_list");
                 }, function( data ) {
                     console.log( data.message );
                 }

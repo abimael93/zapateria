@@ -4,7 +4,6 @@
             Registro
         </div>
             <div class="panel-body">
-            <div>
             <!-- para justificar utilze nav-justified -->
             <!-- 
             <ul class="nav nav-pills nav-justified "  ng-init="tab = 1">
@@ -12,90 +11,94 @@
                 <li ng-class="{active:tab===2}" ng-click="tab = 2"><a href data-toggle="tab" class="fa fa-building-o"> Sucursales</a></li>
 
             </ul>-->     
-            <form role="form">                
+            <form role="form" name="cliente_form" novalidate>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label>RFC <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="El RFC debe tener 12 o 13 caracteres" name="" id="" ng-required>
-                        </div>
-                        <div class="form-group">
-                            <label>Razón Social <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Nombre del negocio o empresa" name="" id="">
-                        </div>
-                        <div class="form-group">
-                            <label>Representante <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Dueño o Gerente" name="" id="">
+                        <div class="form-group" ng-class="{'has-error': cliente_form.rfc.$invalid}">
+                            <label>RFC:</label>
+                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" name="rfc" ng-model="cliente.rfc" ng-pattern="/[A-Za-z]{3,4}[\d]{6}[A-Za-z\d]{3}/" maxlength="13">
+                            <p ng-show="cliente_form.rfc.$invalid && cliente_form.rfc.$error" class="help-block">El formato del RFC es incorrecto, ejemplo: XXX000000X0X</p>
                         </div>                        
-                        <label>Correo electrónico <FONT color="red">* </FONT>:</label>
-                        <div class="form-group input-group">                            
-                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="text" class="form-control" placeholder="Email">
+                        <div class="form-group" ng-class="{'has-error': cliente_form.razon_social.$invalid && !cliente_form.razon_social.$pristine}">
+                            <label>Razón Social <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre del negocio o empresa" name="razon_social" ng-model="cliente.razon_social" required>
+                            <p ng-show="cliente_form.razon_social.$invalid && !cliente_form.razon_social.$pristine" class="help-block">El nombre del cliente es requerido</p>
+                        </div>
+                        <strong><h4>Representante</h4></strong><hr>
+                        <div class="form-group" ng-class="{'has-error': cliente_form.nombre.$invalid && !cliente_form.nombre.$pristine}">
+                            <label>Nombre(s) <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre del gerente o representante" name="nombre" ng-model="cliente.nombre" required>
+                            <p ng-show="cliente_form.nombre.$invalid && !cliente_form.nombre.$pristine" class="help-block">El nombre del representante es requerido</p>
                         </div>  
-                        <label>Teléfono <FONT color="red">* </FONT>:</label>
-                        <div class="form-group input-group">
+                        <div class="form-group" ng-class="{'has-error': cliente_form.apellidos.$invalid && !cliente_form.apellidos.$pristine}">
+                            <label>Apellidos <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Apellidos del gerente o representante" name="apellidos" ng-model="cliente.apellidos" required>
+                            <p ng-show="cliente_form.apellidos.$invalid && !cliente_form.apellidos.$pristine" class="help-block">El nombre del representante es requerido</p><hr>
+                        </div>                                              
+                        <label>Correo electrónico :</label>
+                        <div class="form-group input-group" ng-class="{'has-error': cliente_form.correo.$invalid && !cliente_form.correo.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email" class="form-control" placeholder="Email" name="correo" ng-model="cliente.correo">
+                        </div>
+                        <p ng-show="cliente_form.correo.$invalid" class="help-block"><span class="text-danger ">El formato del correo es incorrecto</span></p>
+                        <label>Teléfono <span class="text-danger">* </span>:</label>
+                        <div class="form-group input-group" ng-class="{'has-error': cliente_form.telefono.$invalid && !cliente_form.telefono.$pristine}">
                             <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                            <input type="text" class="form-control" placeholder="Teléfono">
+                            <input type="text" class="form-control" placeholder="Teléfono" name="telefono" ng-model="cliente.telefono" required maxlength="10" ng-pattern="/[\d]{8,10}/">
                         </div>
-                        <label>Celular :</label>
-                        <div class="form-group input-group">
-                            <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
-                            <input type="text" class="form-control" placeholder="Celular">
-                        </div>
-                        
+                        <p ng-show="cliente_form.telefono.$error.required && !cliente_form.telefono.$pristine" class="help-block"><span class="text-danger">El teléfono es requerido</span></p>
+                        <p ng-show="cliente_form.telefono.$error.pattern" class="help-block"><span class="text-danger">El formato de teléfono es incorrecto</span></p>
                 </div>
 
                 <!-- /.col-md-6 (nested) -->
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Estado <FONT color="red">* </FONT>:</label>
-                        <select class="form-control">
-                            <option>Jalisco</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                    <label>Celular :</label>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                        <input type="text" class="form-control" placeholder="Celular" name="celular" ng-model="cliente.celular">
                     </div>
-                    <div class="form-group">
-                        <label>Municipio <FONT color="red">* </FONT>:</label>
-                        <select class="form-control">
-                            <option>Guadalajara</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                    <div class="form-group" ng-class="{'has-error': cliente_form.estado.$invalid && !cliente_form.estado.$pristine}">
+                        <label>Estado <span class="text-danger">* </span>:</label>
+                        <select class="form-control" ng-change="cliente.cargaMunicipios()" required name="estado" ng-model="cliente.estado" ng-options="estado.nombre for estado in cliente.estados">
+                            <option value="">Selecciona un estado</option>
                         </select>
-                    </div>  
-                    <div class="form-group">
-                        <label>Colonia <FONT color="red">* </FONT>:</label>
-                        <select class="form-control">
-                            <option>Alameda</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <p ng-show="cliente_form.estado.$invalid && !cliente_form.estado.$pristine" class="help-block">El estado es requerido</p>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': cliente_form.municipio.$invalid && !cliente_form.municipio.$pristine}">
+                        <label>Municipio <span class="text-danger">* </span>:</label>
+                        <select class="form-control" ng-change="cliente.cargaColonias()" required name="municipio" ng-model="cliente.municipio" ng-options="municipio.nombre for municipio in cliente.municipios">
+                            <option value="">Selecciona un municipio</option>
                         </select>
-                    </div>  
+                        <p ng-show="cliente_form.municipio.$invalid && !cliente_form.municipio.$pristine" class="help-block">El municipio es requerido</p>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': cliente_form.colonia.$invalid && !cliente_form.colonia.$pristine}">
+                        <label>Colonia <span class="text-danger">* </span>:</label>
+                        <select class="form-control" name="colonia" ng-model="cliente.colonia" required ng-options="colonia.nombre for colonia in cliente.colonias">
+                            <option value="">Selecciona un colonia</option>
+                        </select>
+                        <p ng-show="cliente_form.colonia.$invalid && !cliente_form.colonia.$pristine" class="help-block">La colonia es requerida</p>
+                    </div>
                     <div class="row">
-                        <div class="col-md-8 form-group">
-                            <label>Calle <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Nombre de la calle" name="" id="">
+                        <div class="col-md-8 form-group" ng-class="{'has-error': cliente_form.calle.$invalid && !cliente_form.calle.$pristine}">
+                            <label>Calle <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Nombre de la calle" required name="calle" ng-model="cliente.calle">
+                            <p ng-show="cliente_form.calle.$invalid && !cliente_form.calle.$pristine" class="help-block">La calle es requerida</p>
                          </div>
-                        <div class="col-md-4 form-group">
-                            <label>CP <FONT color="red">* </FONT>:</label>
-                            <input class="form-control" placeholder="Codigo Postal" name="" id="">
+                        <div class="col-md-4 form-group" ng-class="{'has-error': cliente_form.codigo_postal.$invalid && !cliente_form.codigo_postal.$pristine}">
+                            <label>CP <span class="text-danger">* </span>:</label>
+                            <input class="form-control" placeholder="Codigo Postal" required name="codigo_postal" ng-model="cliente.codigo_postal">
+                            <p ng-show="cliente_form.codigo_postal.$invalid && !cliente_form.codigo_postal.$pristine" class="help-block">El código postal es requerido</p>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-6 form-group" ng-class="{'has-error': cliente_form.num_ext.$invalid && !cliente_form.num_ext.$pristine}">
+                            <label>Número Exterior <span class="text-danger">*</span>:</label>
+                            <input class="form-control" placeholder="Número Exterior" name="num_ext" ng-model="cliente.num_ext" required>
+                            <p ng-show="cliente_form.num_ext.$invalid && !cliente_form.num_ext.$pristine" class="help-block">El número exterior es requerido</p>
+                        </div>
                         <div class="col-md-6 form-group" border="0">
                             <label>Número Interior :</label>
-                            <input class="form-control" placeholder="Número Interior" name="" id="">
-                        </div>
-
-                        <div class="col-md-6 form-group">
-                            <label>Número Exterior :</label>
-                            <input class="form-control" placeholder="Número Exterior" name="" id="">
+                            <input class="form-control" placeholder="Número Interior" name="num_int" ng-model="cliente.num_int">
                         </div>
                     </div>
                     <div class="form-group">
@@ -137,11 +140,10 @@
             <div class="pull-right row">
                 <div class="col-md-12">
                     
-                    <button type="submit" class="btn btn-success"><span class="fa fa-save "></span> Guardar</button>
+                    <button type="submit" class="btn btn-success" ng-disabled='cliente_form.$invalid' ng-click="cliente.agregar()"><span class="fa fa-save"></span> Guardar</button>
                 </div>              
             </div>
         </form>
-        </div>
         <!-- /.panel-body -->
     </div>
 </section>
