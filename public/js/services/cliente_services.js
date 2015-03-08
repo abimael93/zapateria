@@ -27,6 +27,35 @@ angular.module( 'appZapateria' ).service( 'clienteServices' , [ '$resource' , 'r
                     }
                 }
             });
+            cliente_resource   = $resource( path_server + "/:id_cliente" , {}, {
+                modificar: {
+                    method: 'PUT',
+                    params: {
+                        id_cliente:    '@id_cliente',
+                    }
+                },
+                mostrar: {
+                    method: 'GET',
+                    params: {
+                        id_cliente:    '@id_cliente',
+                    }
+                },
+                eliminar: {
+                    method: 'DELETE',
+                    params: {
+                        id_cliente:    '@id_cliente',
+                    }
+                }
+            }),
+            cliente_recuperar  = $resource( path_server + "/recuperar/:id_cliente" , {} , {
+                recuperar: {
+                    method: 'GET',
+                    params: {
+                        id_cliente:    '@id_cliente',
+                    }
+                }
+            });
+
 
         return {
             /**
@@ -65,6 +94,96 @@ angular.module( 'appZapateria' ).service( 'clienteServices' , [ '$resource' , 'r
                 return cliente_listar.listar( parametros ,
                     function( data ) {
                         callback( data );
+                    }
+                );
+            },
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    clienteServices.modificar( datos_cliente , function( data ){ .... });
+            */
+            modificar: function( cliente , success , fail ) {
+                return cliente_resource.actualizar( cliente ,
+                    function( data ) {
+                        success( data );
+                    }, function( data ) {
+                        fail( data.data );
+                    }
+                );
+            },
+
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    clienteServices.mostrar( datos_cliente , function( data ){ .... });
+            */
+            mostrar: function( id_cliente , callback ) {
+                return cliente_resource.mostrar(
+                    {
+                        id_cliente: id_cliente,
+                    } ,
+                    function( data ) {
+                        callback( data );
+                    }
+                );
+            },
+
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    clienteServices.eliminar( datos_cliente , function( data ){ .... });
+            */
+            eliminar: function( id_cliente , success , fail ) {
+                return cliente_resource.eliminar(
+                    {
+                        id_cliente: id_cliente,
+                    },
+                    function( data ) {
+                        success( data );
+                    }, function( data ) {
+                        fail( data.data );
+                    }
+                );
+            },
+
+            /**
+            *   this function returns the promise that contains a json
+            *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+            *   @since      08/03/2015
+            *   @version    1
+            *   @access     public
+            *   @param      jsonObject [parametros]
+            *   @param      Callbacks [callback]
+            *   @return     promise
+            *   @example    clienteServices.recuperar( datos_cliente , function( data ){ .... });
+            */
+            recuperar: function( id_cliente , success, fail ) {
+                return cliente_recuperar.recuperar(
+                    {
+                        id_cliente: id_cliente,
+                    },
+                    function( data ) {
+                        success( data );
+                    }, function( data ) {
+                        fail( data.data );
                     }
                 );
             },

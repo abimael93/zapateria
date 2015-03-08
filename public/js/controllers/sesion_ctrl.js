@@ -10,7 +10,8 @@
     *   @return     
     *   @example    session.loguear( .... )
 */
-angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices','sessionServices', function ( $http, routeServices, sessionServices ) {
+angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'sessionServices' , '$state' ,
+    function ( $http,  sessionServices , $state ) {
     var session = this;
 
     session.empleado = {};
@@ -25,13 +26,15 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
     *   @example    session.loguear();
     */
     session.loguear = function() {
+        console.log( 'lo que quieras' );
         session.empleado.usuario    = session.user;
         session.empleado.password   = session.pass;
 
         sessionServices.loguear( session.empleado ,
             function( data ) {
                 session.datos = data;
-                routeServices.goInicio();
+                //routeServices.goInicio();
+                //$state.go('gestion.inicio');
                 console.log( data.message );
             }, function( data ) {
                 console.log( data.message );
@@ -53,7 +56,8 @@ angular.module('appZapateria').controller('SessionCtrl',['$http','routeServices'
         sessionServices.logout( 
             function( data ) {
                 console.log( data.message );
-                routeServices.goLogin();
+                //routeServices.goLogin();}
+                $state.go('login');
             }, function( data ) {
                 console.log( data.message );
             }

@@ -113,23 +113,113 @@ angular.module( 'appZapateria' ).controller( 'ClienteListCtrl' , [ '$location' ,
         *   @since      03/08/2015
         *   @version    1
         *   @access     public
+        *   @param      int [id_cliente]
         *   @return     void
-        *   @example    cliente_list.cliente_details( );
+        *   @example    cliente_list.cliente_details( id_cliente );
         */
-        cliente_list.cliente_details = function( datos_cliente ) {
+        cliente_list.cliente_details = function( id_cliente ) {
             var instancia_modal = $modal.open( 
                 {
-                    templateUrl: 'views/modals/cliente_modal_details.html',
-                    controller: 'clienteModalDetailsCtrl',
-                    size: 'lg',
+                    templateUrl:    'views/modals/cliente_modal_details.html',
+                    controller:     'ClienteModalDetailsCtrl',
+                    controllerAs:   'cliente',
+                    size:           'lg',
                     resolve: {
-                    datos_cliente: function() {
-                        return datos_cliente;
+                        id_cliente: function() {
+                            return id_cliente;
+                        }
                     }
                 }
+            );
+        };
+
+        /**
+        *   Esta función permite eliminar un cliente activo
+        *   @author     Cesar Herrera <kyele936@gmail.com>
+        *   @since      03/08/2015
+        *   @version    1
+        *   @access     public
+        *   @param      int [id_cliente]
+        *   @return     void
+        *   @example    cliente_list.cliente_eliminar( id_cliente );
+        */
+        cliente_list.cliente_eliminar = function( id_cliente ) {
+            clienteServices.eliminar( id_cliente,
+                function( data ) {
+                    console.log( data );
+                    cliente_list.listar( );
+                }, function( data ) {
+                    console.log( data );
+                }
+            );
+        };
+
+        /**
+        *   Esta función permite recuperar un cliente eliminado
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      07/03/2015
+        *   @version    1
+        *   @access     public
+        *   @param      int [id_cliente]
+        *   @return     void
+        *   @example    cliente_list.cliente_recuperar( id_cliente );
+        */
+        cliente_list.cliente_recuperar = function( id_cliente ) {
+            clienteServices.recuperar( id_cliente,
+                function( data ) {
+                    console.log( data );
+                    cliente_list.listar( );
+                }, function( data ) {
+                    console.log( data );
+                }
+            );
+        };
+        cliente_list.listar( );
+    }
+]);
+
+angular.module( 'appZapateria' ).controller( 'ClienteModalDetailsCtrl' , [ 'id_cliente' , 'clienteServices' , '$state' , 'catalogosServices' , 
+    function( id_cliente , clienteServices , $state , catalogosServices ) {
+
+        var cliente = this;
+
+        //Carga de catálogos
+        catalogosServices.tipoDependiente( { tipo: 'estado', id_padre: 1 } , function( data ) {
+            cliente.estados = data;
+        });
+        cliente.cargaMunicipios = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: cliente.estado.id_estado } , function( data ) {
+                cliente.municipios = data;
             });
         };
 
-        cliente_list.listar( );
+        cliente.cargaColonias = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'colonia', id_padre: cliente.municipio.id_municipio } , function( data ) {
+                cliente.colonias = data;
+            });
+        };
+        
+        clienteServices.mostrar( id_cliente , 
+            function( data ) {
+                console.log( data.data );
+                cliente.datos = data.data;
+
+            }
+        );
+
+        cliente.actualizar = function( ) {
+            cliente.datos_form.id_cliente = id_cliente;
+
+            clienteServices.actualizar( 
+                cliente.datos_form , 
+                function( data ) {
+                    console.log( data );
+                    $state.go( 'gestion.cliente_list' );
+                },
+                function( data ) {
+                    console.log( data );
+                }
+            );
+        };
     }
 ]);

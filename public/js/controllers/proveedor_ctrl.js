@@ -106,7 +106,7 @@ angular.module( 'appZapateria' ).controller( 'ProveedorListCtrl' , [ '$location'
                     //console.log( data );
                 }
             );
-        }
+        };
 
         /**
         *   Esta función crea un modal donde se cargan los datos de un proveedor
@@ -114,22 +114,113 @@ angular.module( 'appZapateria' ).controller( 'ProveedorListCtrl' , [ '$location'
         *   @since      03/08/2015
         *   @version    1
         *   @access     public
+        *   @param      int [id_proveedor]
         *   @return     void
-        *   @example    proveedor_list.proveedor_details( );
+        *   @example    proveedor_list.proveedor_details( id_proveedor );
         */
-        proveedor_list.proveedor_details = function( datos_proveedor ) {
+        proveedor_list.proveedor_details = function( id_proveedor ) {
             var instancia_modal = $modal.open( 
                 {
-                    templateUrl: 'views/modals/proveedor_modal_details.html',
-                    controller: 'proveedorModalDetailsCtrl',
-                    size: 'lg',
+                    templateUrl:    'views/modals/proveedor_modal_details.html',
+                    controller:     'ProveedorModalDetailsCtrl',
+                    controllerAs:   'proveedor',
+                    size:           'lg',
                     resolve: {
-                    datos_proveedor: function() {
-                        return datos_proveedor;
+                        id_proveedor: function() {
+                            return id_proveedor;
+                        }
                     }
                 }
-            });
+            );
+        };
+
+        /**
+        *   Esta función permite eliminar un proveedor activo
+        *   @author     Cesar Herrera <kyele936@gmail.com>
+        *   @since      03/08/2015
+        *   @version    1
+        *   @access     public
+        *   @param      int [id_proveedor]
+        *   @return     void
+        *   @example    proveedor_list.proveedor_eliminar( id_proveedor );
+        */
+        proveedor_list.proveedor_eliminar = function( id_proveedor ) {
+            proveedorServices.eliminar( id_proveedor,
+                function( data ) {
+                    console.log( data );
+                    proveedor_list.listar( );
+                }, function( data ) {
+                    console.log( data );
+                }
+            );
+        };
+
+        /**
+        *   Esta función permite recuperar un proveedor eliminado
+        *   @author     Christian Velazquez <chris.abimael93@gmail.com>
+        *   @since      07/03/2015
+        *   @version    1
+        *   @access     public
+        *   @param      int [id_proveedor]
+        *   @return     void
+        *   @example    proveedor_list.proveedor_recuperar( id_proveedor );
+        */
+        proveedor_list.proveedor_recuperar = function( id_proveedor ) {
+            proveedorServices.recuperar( id_proveedor,
+                function( data ) {
+                    console.log( data );
+                    proveedor_list.listar( );
+                }, function( data ) {
+                    console.log( data );
+                }
+            );
         };
         proveedor_list.listar( );
+    }
+]);
+
+angular.module( 'appZapateria' ).controller( 'ProveedorModalDetailsCtrl' , [ 'id_proveedor' , 'proveedorServices' , '$state' , 'catalogosServices' , 
+    function( id_proveedor , proveedorServices , $state , catalogosServices ) {
+
+        var proveedor = this;
+
+        //Carga de catálogos
+        catalogosServices.tipoDependiente( { tipo: 'estado', id_padre: 1 } , function( data ) {
+            proveedor.estados = data;
+        });
+        proveedor.cargaMunicipios = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'municipio', id_padre: proveedor.estado.id_estado } , function( data ) {
+                proveedor.municipios = data;
+            });
+        };
+
+        proveedor.cargaColonias = function( ) {
+            catalogosServices.tipoDependiente( { tipo: 'colonia', id_padre: proveedor.municipio.id_municipio } , function( data ) {
+                proveedor.colonias = data;
+            });
+        };
+        
+        proveedorServices.mostrar( id_proveedor , 
+            function( data ) {
+                console.log( data.data );
+                proveedor.datos = data.data;
+
+            }
+        );
+
+        proveedor.actualizar = function( ) {
+            proveedor.datos_form.id_proveedor = id_proveedor;
+
+            proveedorServices.actualizar( 
+                proveedor.datos_form , 
+                function( data ) {
+                    console.log( data );
+                    $state.go( 'gestion.proveedor_list' );
+                },
+                function( data ) {
+                    console.log( data );
+                }
+            );
+        };
     }
 ]);

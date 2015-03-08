@@ -39,7 +39,8 @@
                               <th class="text-center">Representante</th>
                               <th class="text-center">Fecha de Registro</th>
                               <th class="text-center">&nbsp;&nbsp;&nbsp;Ver&nbsp;&nbsp;&nbsp;</th>
-                              <th class="text-center">Eliminar</th>
+                              <th class="text-center" ng-if="cliente_list.estatus == 0">Eliminar</th>
+                              <th class="text-center" ng-if="cliente_list.estatus == 1">Recuperar</th>
                           </tr>
                       </thead>
                         <tbody>
@@ -53,8 +54,13 @@
                                     ng-click="cliente_list.cliente_details( cliente.id_cliente )">
                                   </i>
                                 </td>
-                                <td class="text-center">
-                                  <i class="fa fa-trash-o fa-2x" ng-click="cliente_list.cliente_eliminar()"></i>
+                                <td class="text-center" ng-if="cliente_list.estatus == 0">
+                                  <i class="fa fa-trash-o fa-2x" ng-click="cliente_list.cliente_eliminar( cliente.id_cliente )"></i>
+                                </td>
+                                <td class="text-center" ng-if="cliente_list.estatus == 1">
+                                  <i class="fa fa-recycle fa-2x"
+                                    ng-click="cliente_list.cliente_recuperar( cliente.id_cliente )">
+                                  </i>
                                 </td>
                             </tr>
                       </tbody>

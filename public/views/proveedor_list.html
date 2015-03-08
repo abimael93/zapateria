@@ -39,7 +39,8 @@
                               <th class="text-center">Representante</th>
                               <th class="text-center">Fecha de Registro</th>
                               <th class="text-center">&nbsp;&nbsp;&nbsp;Ver&nbsp;&nbsp;&nbsp;</th>
-                              <th class="text-center">Eliminar</th>
+                              <th class="text-center" ng-if="proveedor_list.estatus == 0">Eliminar</th>
+                              <th class="text-center" ng-if="proveedor_list.estatus == 1">Recuperar</th>
                           </tr>
                       </thead>
                         <tbody>
@@ -53,8 +54,13 @@
                                     ng-click="proveedor_list.proveedor_details( proveedor.id_proveedor )">
                                   </i>
                                 </td>
-                                <td class="text-center">
-                                  <i class="fa fa-trash-o fa-2x" ng-click="proveedor_list.proveedor_eliminar()"></i>
+                                <td class="text-center" ng-if="proveedor_list.estatus == 0">
+                                  <i class="fa fa-trash-o fa-2x" ng-click="proveedor_list.proveedor_eliminar( proveedor.id_proveedor )"></i>
+                                </td>
+                                <td class="text-center" ng-if="proveedor_list.estatus == 1">
+                                  <i class="fa fa-recycle fa-2x"
+                                    ng-click="proveedor_list.proveedor_recuperar( proveedor.id_proveedor )">
+                                  </i>
                                 </td>
                             </tr>
                       </tbody>

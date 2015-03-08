@@ -1,3 +1,29 @@
+<section>
+    <div id="login-page">
+	  	<div class="container">
+	  	
+            <form class="form-login" action="index.html" ng-submit="sesion.loguear()">
+                <h2 class="form-login-heading">Acceso al Sistema</h2>
+                <div class="login-wrap">
+                    <input type="text" class="form-control" placeholder="User ID" autofocus>
+                    <br>
+                    <input type="password" class="form-control" placeholder="Password">
+                    <label class="checkbox">
+                        <span class="pull-right">
+                            <a href=""> No puedes acceder a tu cuenta?</a>
+                        </span>
+                    </label>
+                    <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Inciar Sesión</button>
+                </div>
+            </form>
+	  	</div>
+    </div>
+</section>
+<script type="text/javascript" src="Theme/js/jquery.backstretch.min.js"></script>
+<script>
+    $.backstretch("Theme/img/login-bg.jpg", {speed: 500});
+</script>
+<!--
 <div class="container well" id="sha">
 
 	<div class="row">
@@ -18,4 +44,4 @@
 		<button class="btn btn-primary btn-lag btn-block" type="submit" id="submit" >Iniciar sesión</button>
 		<p class="help-block"><a href="#">No puedes acceder a tu cuenta?</a></p>
 	</form>
-</div>
+</div> -->
