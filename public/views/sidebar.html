@@ -1,4 +1,4 @@
-<section id="container" >
+<section id="container" class="vistaFondo">
         <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -14,13 +14,16 @@
 
                 <div class="top-menu">
                     <a class="navbar-brand blanco-font"><i class="{{nav.modulo.icon}} blanco-font"></i> <strong class="blanco-font" ng-bind="nav.modulo.nombre"> </strong> <span ng-bind="nav.separador" class="blanco-font"> </span> <small class="blanco-font" ng-bind="nav.modulo.accion"> </small></a>
-                    <ul class="nav pull-right top-menu">
-                        <li><a href=""><i class="fa fa-user fa-fw"></i> User Profile</a>
-                            <!-- /.dropdown-user -->
-                        </li>
-                        <li ng-controller="SessionCtrl as session"><a ng-click="session.logout()" href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
+                    <div class="top-menu">
+                        <ul class="nav pull-right top-menu">
+                            <li ng-controller="SessionCtrl as session"><a class="logout" ng-click="session.logout()" href=""><i class="fa fa-sign-out"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="top-menu">
+                        <ul class="nav pull-right top-menu">
+                           <li><a class="logout" href=""><i class="fa fa-user fa-fw"></i>Mi Perfil</a>
+                        </ul>
+                    </div>                    
                 </div>
         </header>
         <!--header end-->

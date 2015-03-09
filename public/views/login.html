@@ -3,7 +3,7 @@
 	  	<div class="container">	  	
             <form class="form-login" ng-submit="sesion.loguear()">
                 <h2 class="form-login-heading">Acceso al Sistema</h2>
-                <div class="login-wrap">
+                <div class="login-wrap sha">
                     <input type="text" class="form-control" placeholder="Nombre de usuario" name="usuario" required autofocus ng-model="sesion.user">
                     <br>
                     <input type="password" class="form-control" placeholder="Contraseña" name="password" required ng-model="sesion.pass">
@@ -11,7 +11,7 @@
                         <span class="pull-right">
                             <a href=""> No puedes acceder a tu cuenta?</a>
                         </span>
-                    </label>
+                    </label><br>
                     <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Inciar Sesión</button>
                 </div>
             </form>
