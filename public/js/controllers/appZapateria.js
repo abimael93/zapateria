@@ -15,7 +15,7 @@ angular.module( 'appZapateria' ,
 		.state('login', {
 			url: 			'/login',
 			controller: 	'SessionCtrl',
-			controllerAs: 	'sesion' ,
+			controllerAs: 	'sesion' , 
 			templateUrl: 	'views/login.html' ,
 		})
 		//Carga del sidebar
@@ -144,133 +144,52 @@ angular.module( 'appZapateria' ,
 				templateUrl: 	'views/ajuste_salida_list.html'
 			});
 	}
-]);
-/*.config( function( $routeProvider ) {
-	$routeProvider
-		//Inicio
-		.when( '/' , {
-			controller: 	'appController' ,
-			//controllerAs: 'login' ,
-			templateUrl: 	'views/home.html'
-		})
-		//Login
-		.when( '/login' , {
-			controller: 	'SessionCtrl' ,
-			controllerAs: 	'sesion' ,
-			templateUrl: 	'views/login.html' ,
-		})
-		//Módulo Empleado
-		.when( '/empleado/create' , {
-			controller: 	'EmpleadoAltaCtrl' ,
-			controllerAs: 	'empleado' ,
-			templateUrl: 	'views/empleado_form.html'
-		})
-		.when( '/empleado/list' , {
-			//controller: 'ControladorEmpleados' ,pag
-			//controller: 'MyController' ,
-			controller: 	'EmpleadoListCtrl',
-			controllerAs: 	'empleado_list',
-			templateUrl: 	'views/empleado_list.html' ,
-		})
-		//Módulo Cliente
-		.when( '/cliente/create' , {
-			//controller: 'TabsDemoCtrl' ,
-			templateUrl: 	'views/cliente_form.html'
-		})
-		.when( '/cliente/list' , {
-			templateUrl: 	'views/cliente_list.html'
-		})
-		//Módulo Proveedor
-		.when( '/proveedor/create' , {
-			controller: 	'ProveedorCtrl' ,
-			controllerAs: 	'proveedor' ,
-			templateUrl: 	'views/proveedor_form.html'
-		})
-		.when( '/proveedor/list' , {
-			controller: 'ProveedorCtrl' ,
-			controllerAs: 'proveedor' ,
-			templateUrl: 'views/proveedor_list.html' ,
-		})
-		//Módulo Producto
-		.when( '/producto/create' , {
-			templateUrl: 'views/producto_form.html'
-		})
-		.when( '/producto/list' , {
-			templateUrl: 'views/producto_list.html'
-		})
-		//Módulo pedido
-		.when( '/pedido/create' , {
-			templateUrl: 'views/pedido_form.html'
-		})
-		.when( '/pedido/list' , {
-			templateUrl: 'views/pedido_list.html'
-		})
-		//Módulo Desarrollo
-		.when( '/desarrollo/create' , {
-			templateUrl: 'views/desarrollo_form.html'
-		})
-		.when( '/desarrollo/list' , {
-			templateUrl: 'views/desarrollo_list.html'
-		})
-		//Módulo Producción
-		.when( '/produccion/create' , {
-			templateUrl: 'views/produccion_form.html'
-		})
-		.when( '/produccion/list' , {
-			templateUrl: 'views/produccion_list.html'
-		})
-		//Módulo Remisión
-		.when( '/remision/create' , {
-			templateUrl: 'views/remision_form.html'
-		})
-		.when( '/remision/list' , {
-			templateUrl: 'views/remision_list.html'
-		})
-		//Módulo Recepción
-		.when( '/recepcion/create' , {
-			templateUrl: 'views/recepcion_form.html'
-		})
-		.when( '/recepcion/list' , {
-			templateUrl: 'views/recepcion_list.html'
-		})
-		//Módulo Ajuste Entrada
-		.when( '/ajuste_entrada/create' , {
-			templateUrl: 'views/ajuste_entrada_form.html'
-		})
-		.when( '/ajuste_entrada/list' , {
-			templateUrl: 'views/ajuste_entrada_list.html'
-		})
-		//Módulo Ajuste Salida
-		.when( '/ajuste_salida/create' , {
-			templateUrl: 'views/ajuste_salida_form.html'
-		})
-		.when( '/ajuste_salida/list' , {
-			templateUrl: 'views/ajuste_salida_list.html'
-		})
-		.otherwise({
-			redirectTo: '/'
-		})
-});
-*/
-/*
-angular.module( 'appZapateria' ,
-	[ "ui.router" , 'ui.bootstrap' , 'ngResource' , 'ui.select', 'ngSanitize' ,
-	  'modelOptions' , 'infinite-scroll' , ] )
+])
+
+.run([
+	'$rootScope', '$state', '$location', 'sessionServices',
+	function($rootScope, $state, $location, sessionServices ) {
+	'use strict';
+
+	$rootScope.$state = $state;
+
+	if ( !$rootScope.sesion ) {
+		$rootScope.sesion = {};
+	}
 	
-	.config(function( $stateProvider , $urlRouterProvider ){
-    
-    // For any unmatched url, send to /route1
-    $urlRouterProvider.otherwise( "/home" )
-    
-    $stateProvider
-		.state( 'login' , {
-			url: "/login" , //nombre que aparecera en la url
-			templateUrl: "views/login.html" , //Direccion del archivo que sera llamado
-			controller: 'SessionCtrl as sesion'
-		})        
-		.state('route2', {
-			url: "/views/route2",
-			templateUrl: "views/route2.html"
-		})        
-})
-*/
+	$rootScope.$on( '$stateChangeStart' , function( event, toState, toParams, from, fromParams ) {
+	    //Intentamos acceder, comprobamos sesion de laravel
+	    if( !$rootScope.sesion.status ) {
+	    	sessionServices.loguear( {},
+	    		//Hay una sesión activa
+	        	function( data ) {
+	        		//Guardamos esa sesión y no hacemos nada más
+	        		$rootScope.sesion = data;
+	        		console.log( $rootScope.sesion );
+	        		//Guardamos el status (0 de éxito al loguear)
+	        		$rootScope.sesion.status = 0;
+	        		if( toState.name == 'login' ) {
+	        			$state.go( 'gestion.inicio' );
+	        		}
+	        	}, function( data ) {//Si no hay sesión de Laravel lo mandamos al login
+	        		$state.go( 'login' );
+	        		//Guardamos el status, no hay sesión de Laravel activa
+	        		//	$rootScope.sesion.status = data.status;
+	        	}
+			);
+	    } else {//En caso de que el status si esté seteado
+	    	if( $rootScope.sesion.status == 0 ) {//Ya está logueado
+	    		sessionServices.loguear( {},
+	    			function( data ) {//Comprobamos solo la sesión por cada acceso a una ruta distinta
+	    				$rootScope.sesion = data;//Guardamos su sesión, quizá hizo cambios en su perfil
+	    				//Mensajes para corroborar que si está logueado
+	    				console.log( 'Ya estás logueado' );
+	    			}, function( data ) {//Si falla la sesión por cualquier situación (ejem: conexión)
+	    				//Matamos su sesión
+	    				$rootScope.sesion = {};
+	    			}
+				);
+	    	}//Caso contrario no hacemos nada, se mantiene en el login
+	    }
+    });
+}]);

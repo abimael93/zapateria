@@ -10,11 +10,13 @@
     *   @return     
     *   @example    session.loguear( .... )
 */
-angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'sessionServices' , '$state' ,
-    function ( $http,  sessionServices , $state ) {
+angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'sessionServices' , '$state' , '$rootScope' ,
+    function ( $http,  sessionServices , $state , $rootScope ) {
     var session = this;
 
     session.empleado = {};
+    console.log( $rootScope.sesion );
+    session.nombre_usuario = $rootScope.sesion.nombre + " " + $rootScope.sesion.apellidos;
 
     /**
     *   This function is used for a user logs on.
@@ -34,6 +36,8 @@ angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'session
                 session.datos = data;
                 //routeServices.goInicio();
                 $state.go('gestion.inicio');
+                $rootScope.sesion = data;
+                $rootScope.sesion.status = 0;
                 console.log( data.message );
             }, function( data ) {
                 console.log( data.message );
@@ -61,5 +65,5 @@ angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'session
                 console.log( data.message );
             }
         );
-    }       
+    }
 }]);

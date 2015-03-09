@@ -10,7 +10,7 @@
                     <div class="col-md-6">
                         <div class="form-group" ng-class="{'has-error': empleado_modal_form.rfc.$invalid}">
                             <label>RFC:</label>
-                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" name="rfc" ng-model="empleado.datos.rfc" ng-pattern="/[A-Za-z]{3,4}[\d]{6}[A-Za-z\d]{3}/" maxlength="13">
+                            <input class="form-control" placeholder="El RFC debe tener 13 caracteres" name="rfc" ng-model="empleado.datos.rfc" ng-pattern="/^[A-Za-z]{3,4}[\d]{6}[A-Za-z\d]{3}$/" maxlength="13">
                             <p ng-show="empleado_modal_form.rfc.$invalid && empleado_modal_form.rfc.$error" class="help-block">El formato del RFC es incorrecto, ejemplo: XXX000000X0X</p>
                         </div>
                         <div class="form-group" ng-class="{'has-error': empleado_modal_form.nombre.$invalid && !empleado_modal_form.nombre.$pristine}">
@@ -32,7 +32,7 @@
                         <label>Teléfono <span class="text-danger">* </span>:</label>
                         <div class="form-group input-group" ng-class="{'has-error': empleado_modal_form.telefono.$invalid && !empleado_modal_form.telefono.$pristine}">
                             <span class="input-group-addon"><i class="fa  fa-phone "></i></span>
-                            <input type="text" class="form-control" placeholder="Teléfono" name="telefono" ng-model="empleado.datos.telefono" required maxlength="10" ng-pattern="/[\d]{8,10}/">
+                            <input type="text" class="form-control" placeholder="Teléfono" name="telefono" ng-model="empleado.datos.telefono" required maxlength="10" ng-pattern="/^[\d]{8,10}$/">
                         </div>
                         <p ng-show="empleado_modal_form.telefono.$error.required && !empleado_modal_form.telefono.$pristine" class="help-block"><span class="text-danger">El teléfono es requerido</span></p>
                         <p ng-show="empleado_modal_form.telefono.$error.pattern" class="help-block"><span class="text-danger">El formato de teléfono es incorrecto</span></p>
