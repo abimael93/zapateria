@@ -62,7 +62,7 @@ angular.module( 'appZapateria' ).controller( 'SessionCtrl' ,[ '$http' , 'session
                 //routeServices.goLogin();}
                 $rootScope.sesion = {};
                 //Estado de deslogueado
-                //$rootScope.sesion.status = 2;
+                //$rootScope.sesion.status = 500;
                 $state.go('login');
             }, function( data ) {
                 console.log( data.message );

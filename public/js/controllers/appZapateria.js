@@ -177,7 +177,7 @@ angular.module( 'appZapateria' ,
 	        		*/
 	        	}, function( data ) {//Si no hay sesión de Laravel lo mandamos al login
 	        		$state.go( 'login' );
-	        		//$rootScope.sesion.status = 500;
+	        		
 	        		//Guardamos el status, no hay sesión de Laravel activa
 	        		//	$rootScope.sesion.status = data.status;
 	        	}
@@ -188,6 +188,9 @@ angular.module( 'appZapateria' ,
 	    	//$state.go( 'gestion.inicio' );
 	    }
 
+	    if( $rootScope.sesion.status == 500 ) {
+	    	event.preventDefault();
+	    }
 	    /*
 	    if( typeof $rootScope.sesion.status == 'undefined' && toState.name == 'login' ) {
 	    	event.preventDefault();
@@ -197,7 +200,10 @@ angular.module( 'appZapateria' ,
 			function( data ) {//Comprobamos solo la sesión por cada acceso a una ruta distinta
 				$rootScope.sesion = data;//Guardamos su sesión, quizá hizo cambios en su perfil
 				$rootScope.sesion.status = 0;
-				$state.go( 'gestion.inicio' );
+				console.log( $state.current );
+				if( toState.name == 'login' ) {
+					$state.go( 'gestion.inicio' );
+				}
 				//Mensajes para corroborar que si está logueado
 				console.log( 'Ya estás logueado' );
 			}, function( data ) {//Si falla la sesión por cualquier situación (ejem: conexión)
