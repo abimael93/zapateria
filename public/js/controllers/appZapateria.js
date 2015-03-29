@@ -159,7 +159,8 @@ angular.module( 'appZapateria' ,
 	
 	$rootScope.$on( '$stateChangeStart' , function( event, toState, toParams, from, fromParams ) {
 	    //Intentamos acceder, comprobamos sesion de laravel
-	    if( !$rootScope.sesion.status ) {
+	    if( typeof $rootScope.sesion.status === 'undefined' && toState.name != 'login' ) {
+	    	event.preventDefault();
 	    	sessionServices.loguear( {},
 	    		//Hay una sesión activa
 	        	function( data ) {
@@ -168,28 +169,41 @@ angular.module( 'appZapateria' ,
 	        		console.log( $rootScope.sesion );
 	        		//Guardamos el status (0 de éxito al loguear)
 	        		$rootScope.sesion.status = 0;
+	        		$state.go( toState.name );
+	        		/*
 	        		if( toState.name == 'login' ) {
 	        			$state.go( 'gestion.inicio' );
 	        		}
+	        		*/
 	        	}, function( data ) {//Si no hay sesión de Laravel lo mandamos al login
 	        		$state.go( 'login' );
+	        		//$rootScope.sesion.status = 500;
 	        		//Guardamos el status, no hay sesión de Laravel activa
 	        		//	$rootScope.sesion.status = data.status;
 	        	}
 			);
-	    } else {//En caso de que el status si esté seteado
-	    	if( $rootScope.sesion.status == 0 ) {//Ya está logueado
-	    		sessionServices.loguear( {},
-	    			function( data ) {//Comprobamos solo la sesión por cada acceso a una ruta distinta
-	    				$rootScope.sesion = data;//Guardamos su sesión, quizá hizo cambios en su perfil
-	    				//Mensajes para corroborar que si está logueado
-	    				console.log( 'Ya estás logueado' );
-	    			}, function( data ) {//Si falla la sesión por cualquier situación (ejem: conexión)
-	    				//Matamos su sesión
-	    				$rootScope.sesion = {};
-	    			}
-				);
-	    	}//Caso contrario no hacemos nada, se mantiene en el login
 	    }
+	    if( typeof $rootScope.sesion.status !== 'undefined' && toState.name == 'login' ) {
+	    	event.preventDefault();
+	    	//$state.go( 'gestion.inicio' );
+	    }
+
+	    /*
+	    if( typeof $rootScope.sesion.status == 'undefined' && toState.name == 'login' ) {
+	    	event.preventDefault();
+	    }
+	    */
+	    sessionServices.loguear( {},
+			function( data ) {//Comprobamos solo la sesión por cada acceso a una ruta distinta
+				$rootScope.sesion = data;//Guardamos su sesión, quizá hizo cambios en su perfil
+				$rootScope.sesion.status = 0;
+				$state.go( 'gestion.inicio' );
+				//Mensajes para corroborar que si está logueado
+				console.log( 'Ya estás logueado' );
+			}, function( data ) {//Si falla la sesión por cualquier situación (ejem: conexión)
+				//Matamos su sesión
+				$rootScope.sesion = {};
+			}
+		);
     });
 }]);
