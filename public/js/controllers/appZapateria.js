@@ -155,6 +155,7 @@ angular.module( 'appZapateria' ,
 
 	if ( !$rootScope.sesion ) {
 		$rootScope.sesion = {};
+		$rootScope.sesion.status = 500;
 	}
 	
 	$rootScope.$on( '$stateChangeStart' , function( event, toState, toParams, from, fromParams ) {
@@ -190,6 +191,12 @@ angular.module( 'appZapateria' ,
 
 	    if( $rootScope.sesion.status == 500 ) {
 	    	event.preventDefault();
+	    	$rootScope.sesion = {};
+	    	if( toState.name != 'login' ) {
+	    		$state.go( toState.name );
+	    	} else {
+	    		$state.go( 'gestion.inicio' );
+	    	}
 	    }
 	    /*
 	    if( typeof $rootScope.sesion.status == 'undefined' && toState.name == 'login' ) {
